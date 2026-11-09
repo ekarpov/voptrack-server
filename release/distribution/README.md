@@ -10,10 +10,10 @@ enable GitHub Actions or publish anything automatically.
 
 | Item | Name |
 | --- | --- |
-| Home image | `ghcr.io/ekarpov/voptrack-home:v0.1.0` |
-| Research image | `ghcr.io/ekarpov/voptrack-research:v0.1.0` |
-| Small download, per product | `voptrack-<home or research>-v0.1.0-linux-amd64-install.tar.gz` |
-| Offline download, per product | `voptrack-<home or research>-v0.1.0-linux-amd64-offline.tar.gz` |
+| Home image | `ghcr.io/ekarpov/voptrack-home:v0.1.1` |
+| Research image | `ghcr.io/ekarpov/voptrack-research:v0.1.1` |
+| Small download, per product | `voptrack-<home or research>-v0.1.1-linux-amd64-install.tar.gz` |
+| Offline download, per product | `voptrack-<home or research>-v0.1.1-linux-amd64-offline.tar.gz` |
 | Combined download checksums | `SHA256SUMS` |
 
 The images contain the same tested programs and separate product defaults. Each
@@ -49,7 +49,7 @@ independent recovery custody and fresh-host guide acceptance remain separate.
 On the qualified clean commit, with Docker, Buildx and public Go modules available:
 
 ```sh
-version=v0.1.0
+version=v0.1.1
 VOPTRACK_PLATFORMS=linux/amd64 make release-image PRODUCT=home IMAGE="ghcr.io/ekarpov/voptrack-home:$version"
 VOPTRACK_PLATFORMS=linux/amd64 make release-image PRODUCT=research IMAGE="ghcr.io/ekarpov/voptrack-research:$version"
 docker image inspect "ghcr.io/ekarpov/voptrack-home:$version" --format '{{.Id}}'
@@ -135,7 +135,7 @@ The bundle builder checks source/version/product labels. Review the exact
 inspections and license archive. Keep each file under GitHub's release-asset
 size limit. Re-run the guide checks against the published digest-based downloads.
 
-Create an annotated `v0.1.0` tag on the qualified source and a draft GitHub Release
+Create an annotated `v0.1.1` tag on the qualified source and a draft GitHub Release
 only after owner approval. Attach the four archives and combined SHA256SUMS.
 Include the public test report, exact source, Tessera pin, image digests, supported
 platform, installation links and known limits. Publish the release after download

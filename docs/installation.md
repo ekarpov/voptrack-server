@@ -5,8 +5,8 @@ source code or a GitHub account. Docker runs the server and keeps its data betwe
 restarts. Use the small download to fetch images from GitHub Packages, or the
 larger offline download to load the images from files.
 
-The first v0.1.0 downloads are being prepared. The commands below stop if a
-release has not been published; do not substitute `latest` or an older image.
+Choose the exact published release for this installation. The download fixes
+the image versions for you.
 Start with fresh data. Alpha and release-candidate data are not supported inputs.
 
 Use the same Bash terminal through the numbered steps so the chosen values stay

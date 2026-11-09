@@ -21,12 +21,11 @@ Choose one path. Each guide starts with an overview, then commands you can copy.
 | Clone the repository, build and run on your host | [Source installation](docs/install-source.md) | [Source runbook](docs/install-source-agent.md) |
 | Use prepared Home or Research Docker images | [Image installation](docs/installation.md) | [Image runbook](docs/install-agent.md) |
 
-The first Voptrack v0.1.0 images and downloads are being prepared. Check
-[GitHub Releases](https://github.com/ekarpov/voptrack-server/releases) for published
-files before following the image path. No example download is a promise that it
-is already available. [Release preparation](docs/releases/v0.1.0.md) records what
-has been tested and what remains. [GitHub delivery](release/distribution/README.md)
-explains how images and downloads are prepared and published.
+Choose a published release and download the files for your product from
+[GitHub Releases](https://github.com/ekarpov/voptrack-server/releases). Use the
+same release tag for its source, installation files, and images.
+[GitHub delivery](release/distribution/README.md) explains how these files are
+prepared and published.
 
 Use a fresh Linux x86-64 host with Docker, encrypted storage, room for data and
 backups, and a reachable address. Use a domain for public HTTPS or an IP with a local

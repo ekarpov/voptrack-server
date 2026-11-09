@@ -3,12 +3,9 @@
 Run a Voptrack Compose installation, choose its mode, and manage settings,
 backups and upgrades. Use the quick guide to find the detailed procedure.
 
-**Development source, not a published release.** No image is published yet.
-The current source pins Tessera v0.1.0. Use fresh storage for development;
-the first stable release will not support alpha data. This guide is awaiting
-public-release review and fresh-install qualification. The first Home and
-Research web UIs have been accepted in local `dev`; that does not publish an
-installation artifact. Test code is not execution evidence.
+The current source pins Tessera v0.1.0. Start with fresh storage for the first
+stable release. Use the operations guide from the same source revision as the
+installation.
 
 For the GHCR and downloadable archive paths, use the
 [installation guide](../docs/installation.md), including its public

@@ -5,9 +5,9 @@ host. Docker then runs Home or Research. Both this repository and Tessera are
 public; you need no GitHub account or private repository credentials.
 
 The commands below are for a fresh Linux x86-64 host. They use a selected release
-so its source, settings and guides stay together. Voptrack v0.1.0 is being
-prepared; until its tag is published, choose a reviewed commit explicitly for a
-source trial. Do not use old alpha/RC data with the first release.
+so its source, settings and guides stay together. Choose a published release tag
+for installation or an exact reviewed commit for a source trial. Start with
+fresh storage.
 
 Use the same Bash terminal through the numbered steps so the chosen values stay
 available.

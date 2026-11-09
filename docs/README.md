@@ -1,8 +1,7 @@
 # Voptrack documentation
 
-Start with a task, then follow the detailed reference when needed. The project
-is development source; public distribution and fresh-host qualification remain
-pending. See the [project overview](../README.md) for release status.
+Start with a task, then follow the detailed reference when needed. For a
+published installation, use the guides and downloads for the exact release.
 
 ## Quick guide
 
