@@ -17,3 +17,14 @@
   use the runbook for the exact release. See [development](docs/development.md)
   for source checks and [distribution](release/distribution/README.md) for
   release checks.
+
+## Public development
+
+Follow [CONTRIBUTING.md](CONTRIBUTING.md#public-development-workflow) for branches,
+public PRs and maintainer-approved merges. Start from current `origin/main`.
+Treat commits, issues, reviews, attachments, and release notes as public.
+Keep private history and unsanitized evidence in protected storage.
+
+Use the [Voptrack Server skill](.agents/skills/voptrack-server/SKILL.md) for
+shell work, delivery, validation and operations. Release publication and
+app-facing deployment follow their respective authorization and checks.

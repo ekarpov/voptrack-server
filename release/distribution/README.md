@@ -33,7 +33,9 @@ Keep development history and private artifacts out of the public push. Run
 `make public-check`; its locations need review and are not automatic failures or
 approvals. Do not rewrite append-only specifications to silence catalog questions.
 
-The final squash commit on `main` must have its own passing full CI note. Run:
+The exact commit on `main` to be tagged must have its own passing full CI note.
+Follow the [public PR workflow](../../CONTRIBUTING.md#public-development-workflow)
+for changes leading up to the release. Run:
 
 ```sh
 make ci-remote

@@ -57,7 +57,8 @@ server, with the backup key separately held. Test recovery before relying on it.
 For build tools and disposable test servers, see [Development](docs/development.md).
 Client integration uses port 8081 and a token file; keep credentials private.
 [Documentation](docs/README.md) covers architecture, vocabulary, integration and
-checks. Agents changing this repository start with [AGENTS.md](AGENTS.md).
+checks. See [Contributing](CONTRIBUTING.md) for the public PR workflow and
+[AGENTS.md](AGENTS.md) for repository rules.
 
 ## License
 
