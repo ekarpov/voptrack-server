@@ -1,0 +1,15 @@
+{{define "page_title"}}{{call .T "connect_title"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<h1>{{call .T "connect_title"}}</h1>
+<p>{{call .T "connect_explained"}}</p>
+<div class="qr">
+<svg viewBox="0 0 {{$d.QR.Size}} {{$d.QR.Size}}" width="280" height="280" role="img" aria-label="{{$d.Link}}" shape-rendering="crispEdges">
+  <rect width="{{$d.QR.Size}}" height="{{$d.QR.Size}}" fill="#fff"/>
+  <path d="{{$d.QR.Path}}" fill="#000"/>
+</svg>
+</div>
+<p>{{call .T "connect_host"}} <strong data-host>{{$d.Host}}</strong></p>
+<p class="muted">{{call .T "connect_safe"}}</p>
+<p class="muted"><code class="link" data-link>{{$d.Link}}</code></p>
+{{end}}

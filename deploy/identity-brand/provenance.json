@@ -1,0 +1,10 @@
+{
+  "source_repository": "ekarpov/voptrack-ios",
+  "source_path": "web/brand/brand-mark-light.png",
+  "source_revision": "c97c8dc9dcee658d62b0116123493ce2f53fce32",
+  "source_sha256": "feb83cb63de89114999ab304145228db8f608ff3fd3ced4990732fda68346d76",
+  "output_sha256": "aea950f61508cf83fa86d73ac81a2e1631f01cb337e883e73c5143712bb089c9",
+  "operation": "Area-average premultiplied channels from 1024 to 512; preserve alpha, artwork and aspect; no background compositing",
+  "operator_approved": "Owner request, 6 Nov 2026: same transparent mark everywhere, including Home and Research login",
+  "dark_variant": "Single logo in Tessera rc.4; shipped login palettes both use the light backdrop for navy-mark contrast"
+}

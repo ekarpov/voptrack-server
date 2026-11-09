@@ -1,0 +1,29 @@
+{{define "design_fields"}}
+{{$d := .Data}}
+  {{range $t := $d.Rows}}
+  {{$hasValues := false}}{{range $t.Fields}}{{if .Name}}{{$hasValues = true}}{{end}}{{end}}
+  {{$trackProblem := designerProblem $d.Error $t.Name "" false}}{{if and (eq $trackProblem "form_track_name") (not $hasValues)}}{{$trackProblem = ""}}{{end}}
+  <fieldset class="track">
+    <legend>{{if $t.Name}}{{$t.Name}}{{else}}{{call $.T "new_track"}}{{end}}</legend>
+    <input type="hidden" name="t{{$t.Index}}.present" value="1">
+    <label>{{if $t.Name}}{{call $.T "track_name"}}{{else}}{{call $.T "new_track"}}{{end}}<input id="track-{{$t.Index}}" {{if $trackProblem}}aria-invalid="true" aria-describedby="track-error-{{$t.Index}}"{{end}} name="t{{$t.Index}}.name" value="{{$t.Name}}" maxlength="120">{{if $trackProblem}}<span class="field-error" id="track-error-{{$t.Index}}">{{call $.T $trackProblem}}</span>{{end}}</label>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "study_tracks"}}">
+<table class="data">
+      <thead><tr><th scope="col">{{call $.T "value_name"}}</th><th scope="col">{{call $.T "value_kind"}}</th><th scope="col">{{call $.T "value_unit"}} <span class="muted">({{call $.T "optional"}})</span></th><th scope="col">{{call $.T "value_meaning"}} <span class="muted">({{call $.T "optional"}})</span></th><th scope="col">{{call $.T "remove"}}</th></tr></thead>
+      <tbody>{{range $f := $t.Fields}}{{$p := printf "t%d.f%d." $t.Index $f.Index}}{{$fieldProblem := designerProblem $d.Error $t.Name $f.Name true}}
+      <tr><td data-label="{{call $.T "value_name"}}"><input type="hidden" name="{{$p}}present" value="1"><input id="value-{{$t.Index}}-{{$f.Index}}" {{if $fieldProblem}}aria-invalid="true" aria-describedby="value-error-{{$t.Index}}-{{$f.Index}}"{{end}} aria-label="{{call $.T "value_name"}}" name="{{$p}}name" value="{{$f.Name}}" maxlength="120">{{if $fieldProblem}}<span class="field-error" id="value-error-{{$t.Index}}-{{$f.Index}}">{{call $.T $fieldProblem}}</span>{{end}}</td>
+        <td data-label="{{call $.T "value_kind"}}"><select aria-label="{{call $.T "value_kind"}}" name="{{$p}}kind">{{range $d.Kinds}}<option value="{{.}}" {{if eq (print .) $f.Kind}}selected{{end}}>{{call $.T (printf "kind_%s" .)}}</option>{{end}}</select></td>
+        <td data-label="{{call $.T "value_unit"}} ({{call $.T "optional"}})"><input aria-label="{{call $.T "value_unit"}}" name="{{$p}}unit" value="{{$f.Unit}}" maxlength="40" size="8"></td>
+        <td data-label="{{call $.T "value_meaning"}} ({{call $.T "optional"}})"><select aria-label="{{call $.T "value_meaning"}}" name="{{$p}}meaning"><option value="">—</option>
+          <option value="additive" {{if eq $f.Meaning "additive"}}selected{{end}}>{{call $.T "meaning_additive"}}</option>
+          <option value="sample" {{if eq $f.Meaning "sample"}}selected{{end}}>{{call $.T "meaning_sample"}}</option></select></td>
+        <td>{{if $f.Name}}<label class="inline"><input type="checkbox" name="{{$p}}remove" value="1" aria-label="{{call $.T "remove"}} {{$f.Name}}"> {{call $.T "remove"}}</label>{{end}}</td></tr>{{end}}</tbody>
+    </table>
+</div>
+    {{if $t.Name}}<label class="inline"><input type="checkbox" name="t{{$t.Index}}.remove" value="1"> {{call $.T "remove_track"}}</label>{{end}}
+  </fieldset>
+  {{end}}
+  <fieldset><legend>{{call .T "catalogue_title"}}</legend>
+    {{range $d.Catalogue}}<label class="inline"><input type="checkbox" name="catalogue" value="{{.ID}}" {{if index $d.Picked .ID}}checked{{end}}> {{call $.T (catalogueLabel .ID)}}</label>{{end}}
+  </fieldset>
+{{end}}

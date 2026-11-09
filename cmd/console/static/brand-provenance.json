@@ -1,0 +1,22 @@
+{
+  "source_repository": "ekarpov/voptrack-ios",
+  "source_revision": "c97c8dc9dcee658d62b0116123493ce2f53fce32",
+  "source_directory": "web/brand",
+  "assets": {
+    "brand-mark-dark.svg": "f505e7c766927b4130cc55650172d9b7e18fd623dbc47dffd2274139399b4db2",
+    "brand-mark-light.svg": "4087fa98629821728e67d477b347fc734105e2cb2b64b888b0a8a6b8666c6798",
+    "favicon.svg": "bdade7ef6e68a45d9643eaf6fdec07538934b7570e965a823dc8b165109bdd3a"
+  },
+  "operation": "Unmodified transparent SVG exports, plus transparent PNG sizes derived from the same exported mark. No navy-backed app-icon variants.",
+  "derived_assets": {
+    "source_path": "web/brand/brand-mark-light.png",
+    "source_sha256": "feb83cb63de89114999ab304145228db8f608ff3fd3ced4990732fda68346d76",
+    "operation": "Area-average premultiplied channels; preserve alpha, artwork and aspect; no background compositing. ICO wraps the transparent 16px/32px PNGs unchanged.",
+    "assets": {
+      "favicon-32.png": "2f47f7ae2136a347070e8ecac8f7249d3d2a276c41bdffdbb094b5854b99c2f5",
+      "favicon-16.png": "a9c466e0613599d01d0ec30a5539078bce077676b47409ba22d1ba42f0d08aa3",
+      "apple-touch-icon-180.png": "8f08dd0ff5776415183e3a889b62a1b9fa8d7443c7596f2420e40a1ad94d1868",
+      "favicon.ico": "34990db95c6846899d3985a161eac7e2cc08390e06a11d20189a883f6c2a5210"
+    }
+  }
+}

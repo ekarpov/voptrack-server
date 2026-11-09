@@ -1,0 +1,652 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "endFieldID" : "endTimestamp"
+        },
+        "collectionMeaning" : "interval",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.rowing.field.mode"
+        }
+      },
+      "id" : "mode",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.rowing",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "indoor"
+            },
+            {
+              "type" : "text",
+              "value" : "outdoor"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "indoor" : {
+              "bundled" : {
+                "key" : "model.activity.option.indoor"
+              }
+            },
+            "outdoor" : {
+              "bundled" : {
+                "key" : "model.activity.option.outdoor"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.rowing.field.distance"
+        }
+      },
+      "id" : "distance",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.rowing",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "mode"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "length",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "m",
+              "fieldID" : "distanceUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : true,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "m",
+                "km",
+                "mi"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "km" : 2,
+              "m" : 0,
+              "mi" : 2
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "m"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1000
+            },
+            "id" : "km"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1609.3440000000001
+            },
+            "id" : "mi"
+          }
+        ],
+        "canonicalUnit" : "m",
+        "defaultUnit" : "m",
+        "dimension" : "length",
+        "unitField" : "distanceUnit",
+        "usesRegionalDefault" : true,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "m",
+              "km",
+              "mi"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.rowing.field.distanceUnit"
+        }
+      },
+      "id" : "distanceUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.rowing",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.rowing.field.strokeCount"
+        }
+      },
+      "id" : "strokeCount",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.rowing",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "mode",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "automatic",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.rowing.field.resistance"
+        }
+      },
+      "id" : "resistance",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.rowing",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.rowing",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"mode\",\"meta_id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing.field.mode\",\"type\":\"text\"},{\"id\":\"distance\",\"meta_id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing.field.distance\",\"type\":\"float\"},{\"id\":\"distanceUnit\",\"meta_id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing.field.distanceUnit\",\"type\":\"text\"},{\"id\":\"strokeCount\",\"meta_id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing.field.strokeCount\",\"type\":\"integer\"},{\"id\":\"resistance\",\"meta_id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing.field.resistance\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.rowing\",\"name\":\"model.activity.rowing\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "mode",
+          "meta_id" : "com.voptrack.track.rowing",
+          "name" : "model.activity.rowing.field.mode",
+          "type" : "text"
+        },
+        {
+          "id" : "distance",
+          "meta_id" : "com.voptrack.track.rowing",
+          "name" : "model.activity.rowing.field.distance",
+          "type" : "float"
+        },
+        {
+          "id" : "distanceUnit",
+          "meta_id" : "com.voptrack.track.rowing",
+          "name" : "model.activity.rowing.field.distanceUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "strokeCount",
+          "meta_id" : "com.voptrack.track.rowing",
+          "name" : "model.activity.rowing.field.strokeCount",
+          "type" : "integer"
+        },
+        {
+          "id" : "resistance",
+          "meta_id" : "com.voptrack.track.rowing",
+          "name" : "model.activity.rowing.field.resistance",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.rowing",
+      "name" : "model.activity.rowing",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.rowing"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "sessions.weeklyDuration",
+        "label" : {
+          "bundled" : {
+            "key" : "model.activity.metric.weeklyDuration"
+          }
+        },
+        "operation" : {
+          "duration" : {
+            "fieldID" : "timestamp",
+            "open" : "reject",
+            "overlap" : "sum"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "week"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R1",
+        "R2",
+        "R6"
+      ],
+      "appearance" : {
+        "color" : "activity.rowing",
+        "symbol" : "figure.rower"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "activity.walking",
+          "symbol" : "figure.walk"
+        },
+        "id" : "com.voptrack.category.activity",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.activity"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "sessions.weeklyDuration",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.metric.weeklyDuration"
+            }
+          },
+          "operation" : {
+            "duration" : {
+              "fieldID" : "timestamp",
+              "open" : "reject",
+              "overlap" : "sum"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          }
+        },
+        {
+          "id" : "sessions.weeklyCount",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.metric.weeklySessions"
+            }
+          },
+          "operation" : {
+            "count" : {
+
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          }
+        }
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P1",
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "recordNoun" : {
+        "bundled" : {
+          "key" : "model.track.recordNoun.session"
+        }
+      },
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "mode",
+      "distance",
+      "distanceUnit",
+      "strokeCount",
+      "resistance"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+Copied from voptrack-ios at cf62746c (subject.json, source.json at 38dfab22), docs/research-vectors/. The app generates
+these from its own composer code and checks them on every test run; this copy
+is checked by TestResearchVectors. When the app's vectors change, copy them
+again and record the new revision here. Never edit them by hand.

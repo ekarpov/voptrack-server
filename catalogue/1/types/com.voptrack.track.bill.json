@@ -1,0 +1,644 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.billID"
+        }
+      },
+      "id" : "billID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.amount"
+        }
+      },
+      "id" : "amount",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "currencyFieldID" : "currency",
+          "datedByFieldID" : "dueDate",
+          "discriminatorFieldID" : "billID",
+          "isEventAmount" : true,
+          "moneyScale" : 2
+        },
+        "collectionMeaning" : "moneyValuation",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.currency"
+        }
+      },
+      "id" : "currency",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.issuer"
+        }
+      },
+      "id" : "issuer",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.reference"
+        }
+      },
+      "id" : "reference",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.dueDate"
+        }
+      },
+      "id" : "dueDate",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.status"
+        }
+      },
+      "id" : "status",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "billID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "unpaid"
+            },
+            {
+              "type" : "text",
+              "value" : "partlyPaid"
+            },
+            {
+              "type" : "text",
+              "value" : "paid"
+            },
+            {
+              "type" : "text",
+              "value" : "overdue"
+            }
+          ],
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 16
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "overdue" : {
+              "bundled" : {
+                "key" : "model.finance.billStatus.overdue"
+              }
+            },
+            "paid" : {
+              "bundled" : {
+                "key" : "model.finance.billStatus.paid"
+              }
+            },
+            "partlyPaid" : {
+              "bundled" : {
+                "key" : "model.finance.billStatus.partlyPaid"
+              }
+            },
+            "unpaid" : {
+              "bundled" : {
+                "key" : "model.finance.billStatus.unpaid"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.finance.bill.field.paymentPortion"
+        }
+      },
+      "id" : "paymentPortion",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bill",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "currencyFieldID" : "currency",
+          "discriminatorFieldID" : "billID",
+          "isEventAmount" : true,
+          "moneyScale" : 2
+        },
+        "collectionMeaning" : "moneyValuation",
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.bill",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"billID\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.billID\",\"type\":\"text\"},{\"id\":\"amount\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.amount\",\"type\":\"integer\"},{\"id\":\"currency\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.currency\",\"type\":\"text\"},{\"id\":\"issuer\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.issuer\",\"type\":\"text\"},{\"id\":\"reference\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.reference\",\"type\":\"text\"},{\"id\":\"dueDate\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.dueDate\",\"type\":\"date_time\"},{\"id\":\"status\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.status\",\"type\":\"text\"},{\"id\":\"paymentPortion\",\"meta_id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill.field.paymentPortion\",\"type\":\"integer\"}],\"id\":\"com.voptrack.track.bill\",\"name\":\"model.finance.bill\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "billID",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.billID",
+          "type" : "text"
+        },
+        {
+          "id" : "amount",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.amount",
+          "type" : "integer"
+        },
+        {
+          "id" : "currency",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.currency",
+          "type" : "text"
+        },
+        {
+          "id" : "issuer",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.issuer",
+          "type" : "text"
+        },
+        {
+          "id" : "reference",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.reference",
+          "type" : "text"
+        },
+        {
+          "id" : "dueDate",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.dueDate",
+          "type" : "date_time"
+        },
+        {
+          "id" : "status",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.status",
+          "type" : "text"
+        },
+        {
+          "id" : "paymentPortion",
+          "meta_id" : "com.voptrack.track.bill",
+          "name" : "model.finance.bill.field.paymentPortion",
+          "type" : "integer"
+        }
+      ],
+      "id" : "com.voptrack.track.bill",
+      "name" : "model.finance.bill",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.finance.bill"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : "billTotal",
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "finance.bill",
+        "symbol" : "doc.text.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "finance.expense",
+          "symbol" : "creditcard.fill"
+        },
+        "id" : "com.voptrack.category.finance",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.finance"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ],
+        "sum" : "billTotal"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+        {
+          "comparison" : {
+            "_1" : "lessThanOrEqual",
+            "left" : "paymentPortion",
+            "right" : "amount"
+          }
+        }
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "billID",
+      "amount",
+      "currency",
+      "issuer",
+      "reference",
+      "dueDate",
+      "status",
+      "paymentPortion"
+    ]
+  }
+}

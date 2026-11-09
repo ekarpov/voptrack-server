@@ -1,0 +1,15 @@
+{{define "page_title"}}{{call .T "confirm_title"}} · Voptrack{{end}}
+{{define "content"}}
+{{$e := .Data}}
+<h1>{{call .T "confirm_title"}}: {{$e.Dataset.DisplayName}}</h1>
+<div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "confirm_title"}}">
+<table class="data">
+  <tr><td>{{call .T "confirm_objects"}}</td><td class="num" data-count="objects">{{$e.Preview.Objects}}</td></tr>
+  <tr><td>{{call .T "confirm_types"}}</td><td class="num" data-count="types">{{$e.Preview.Types}}</td></tr>
+  <tr><td>{{call .T "confirm_others"}}</td><td class="num" data-count="others">{{$e.Preview.OthersLose}}</td></tr>
+</table>
+</div>
+<p class="notice">{{call .T "confirm_irreversible"}}</p>
+<form method="post" action="/leave/confirm"><input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="dataset" value="{{$e.Dataset.ID}}"><button class="button danger">{{call .T "confirm_button"}}</button></form>
+<form method="post" action="/leave/cancel"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="link">{{call .T "cancel"}}</button></form>
+{{end}}

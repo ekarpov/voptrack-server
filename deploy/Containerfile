@@ -1,0 +1,139 @@
+# Voptrack's server image: the Tessera reference server at the version this
+# repository pins, the Voptrack Console and confined deployment helpers. Build it with
+#
+#   make image
+#
+# which runs deploy/modproxy.sh to gather the Go modules this build needs from
+# the machine's own Go cache, then passes them in as a build context:
+#
+#   docker build --build-context modproxy=DIR -f deploy/Containerfile -t voptrack-server .
+#
+# So the build fetches nothing and needs no key. It used to clone Tessera, a
+# then-private repository, over SSH -- which needed a key in an ssh-agent, and the
+# agent on a developer's machine is shared by everything on it: a build once
+# made every other session's git authenticate as a read-only deploy key. When
+# the repositories became public this could fetch from the network again; it has
+# no reason to.
+#
+# No server source is copied in. The server is a module dependency rather than
+# source here, so go.mod and go.sum are its whole input and the binary's
+# reported version comes from the module, not from git metadata. What IS copied
+# is this repository's own: cmd/console, the Console, and deploy/voptrack-init,
+# the first-run bootstrap for release/. (cmd/verify is this repository's own Go
+# too, but it is a deployment check and is not in this image.)
+FROM golang:1.27-alpine AS build
+RUN apk add --no-cache gcc musl-dev
+WORKDIR /src
+COPY go.mod go.sum LICENSE ./
+COPY deploy/collect-licenses.sh ./collect-licenses.sh
+# Tessera depends only on the published module pin. Keep its unchanged build
+# cached independently from Voptrack UI/collector/replication fault candidates.
+ENV GOPROXY=file:///modproxy GOSUMDB=off GONOSUMDB=* GOFLAGS=-mod=mod
+RUN --mount=type=bind,from=modproxy,target=/modproxy \
+    CGO_ENABLED=1 go build -trimpath -o /out/tesserad github.com/ekarpov/tessera/cmd/tesserad \
+    && cp "$(go list -m -f '{{.Dir}}' github.com/ekarpov/tessera)/tools/verify_acquisition.py" /out/verify_acquisition.py
+# Voptrack's Console and deployment helpers are built from this repository.
+# Its one dependency beyond the standard library, rsc.io/qr, comes through the
+# same local proxy as Tessera.
+COPY catalogue ./catalogue
+COPY cmd/console ./cmd/console
+COPY cmd/deployctl ./cmd/deployctl
+COPY cmd/recoverykit ./cmd/recoverykit
+COPY cmd/recoveryset ./cmd/recoveryset
+COPY internal/recoveryset ./internal/recoveryset
+COPY internal/recoverykit ./internal/recoverykit
+COPY internal/recoverymaterial ./internal/recoverymaterial
+COPY internal/runtimeobs ./internal/runtimeobs
+COPY internal/backupsettings ./internal/backupsettings
+COPY internal/schedulerclient ./internal/schedulerclient
+COPY internal/acquisitionclient ./internal/acquisitionclient
+COPY internal/backupcollector ./internal/backupcollector
+COPY internal/homesetup ./internal/homesetup
+COPY internal/identitybrand ./internal/identitybrand
+COPY internal/websignin ./internal/websignin
+COPY cmd/backupcollector ./cmd/backupcollector
+# Modules come from the local proxy, never the network: GOFLAGS=-mod=mod and
+# GOSUMDB=off, because go.sum travels with the build and is still checked
+# against every module read. CGO for SQLite, which is why this is a two-stage
+# Alpine build and not a static scratch image.
+RUN --mount=type=bind,from=modproxy,target=/modproxy \
+    CGO_ENABLED=0 go build -trimpath -o /out/voptrack-console ./cmd/console \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-deploy ./cmd/deployctl \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-collector ./cmd/backupcollector \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-kit ./cmd/recoverykit \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-recovery-set ./cmd/recoveryset
+
+# Keep setup/recovery UI edits from rebuilding the unchanged Tessera binary.
+COPY cmd/homesetup ./cmd/homesetup
+COPY cmd/backupreplicator ./cmd/backupreplicator
+COPY internal/backupreplication ./internal/backupreplication
+COPY cmd/recovery ./cmd/recovery
+COPY internal/guidedrecovery ./internal/guidedrecovery
+RUN --mount=type=bind,from=modproxy,target=/modproxy \
+    CGO_ENABLED=0 go build -trimpath -o /out/voptrack-setup ./cmd/homesetup \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-recovery ./cmd/recovery \
+    && CGO_ENABLED=0 go build -trimpath -o /out/voptrack-replicator ./cmd/backupreplicator
+
+RUN --mount=type=bind,from=modproxy,target=/modproxy sh ./collect-licenses.sh /out/licenses
+
+FROM alpine:3.24.4@sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0f5a48c71bf
+ARG VOPTRACK_DEFAULT_VARIANT=standard
+ENV VOPTRACK_VARIANT=${VOPTRACK_DEFAULT_VARIANT}
+# curl is here for one reason: a container healthcheck that actually verifies
+# the server answers, against its own certificate. BusyBox wget cannot be given
+# a CA file, so the alternative was a check that skipped verification or one
+# that only proved a port was open -- and a healthcheck nobody trusts is worse
+# than none, because orchestrators act on it.
+#
+# openssl is for voptrack-init, which generates the internal certificate and
+# the owner's initial password on first start.
+#
+# The two release directories are created owned by the server's user so that
+# a NAMED volume mounted over them inherits that ownership. That is what lets
+# release/compose.yaml start with no files on the host at all: nothing is
+# bind-mounted, so no host uid has to match.
+#
+# They are deliberately NOT /etc/tessera. The scenarios run the server as the
+# host's uid and bind-mount files into /etc/tessera, and a 0700 directory owned
+# by 10001 there locked every one of them out -- which is what the first
+# version of this did, caught by running a scenario gate against the new image.
+RUN apk add --no-cache ca-certificates tzdata curl openssl python3 \
+    && adduser -S -u 10001 -h /var/lib/tessera tessera \
+    && mkdir -p /var/lib/tessera /var/lib/voptrack-config /var/lib/voptrack-bootstrap \
+                /var/lib/voptrack-public /var/lib/voptrack-console /var/lib/voptrack-backups \
+                /var/lib/voptrack-ca /var/lib/voptrack-collector /var/lib/voptrack-bundles /var/lib/voptrack-runtime /var/lib/voptrack-kits /var/lib/voptrack-kit-control \
+    && chown tessera /var/lib/tessera /var/lib/voptrack-config /var/lib/voptrack-bootstrap \
+                     /var/lib/voptrack-public /var/lib/voptrack-console /var/lib/voptrack-backups \
+                     /var/lib/voptrack-ca /var/lib/voptrack-collector /var/lib/voptrack-bundles /var/lib/voptrack-runtime /var/lib/voptrack-kits /var/lib/voptrack-kit-control \
+    && chmod 700 /var/lib/tessera /var/lib/voptrack-config /var/lib/voptrack-bootstrap \
+                 /var/lib/voptrack-console /var/lib/voptrack-backups /var/lib/voptrack-ca /var/lib/voptrack-collector /var/lib/voptrack-bundles /var/lib/voptrack-runtime /var/lib/voptrack-kits /var/lib/voptrack-kit-control \
+    && chmod 755 /var/lib/voptrack-public
+RUN mkdir -p /var/lib/voptrack-setup && chown tessera /var/lib/voptrack-setup && chmod 700 /var/lib/voptrack-setup
+COPY --from=build /out/voptrack-setup /usr/local/bin/voptrack-setup
+RUN mkdir -p /var/lib/voptrack-replication && chown tessera /var/lib/voptrack-replication && chmod 700 /var/lib/voptrack-replication
+COPY --from=build /out/verify_acquisition.py /usr/local/lib/tessera/verify_acquisition.py
+COPY --from=build /out/voptrack-replicator /usr/local/bin/voptrack-replicator
+COPY --from=build /out/voptrack-recovery /usr/local/bin/voptrack-recovery
+COPY --from=build /out/voptrack-recovery-set /usr/local/bin/voptrack-recovery-set
+COPY --from=build /out/voptrack-kit /usr/local/bin/voptrack-kit
+COPY --from=build /out/voptrack-collector /usr/local/bin/voptrack-collector
+COPY --from=build /out/voptrack-deploy /usr/local/bin/voptrack-deploy
+COPY --from=build /out/tesserad /usr/local/bin/tesserad
+# Git archives and Windows checkouts can carry non-executable source modes.
+COPY --chmod=0755 deploy/voptrack-init /usr/local/bin/voptrack-init
+COPY --chmod=0644 deploy/identity-brand/voptrack-mark.png /usr/local/share/voptrack/identity-logo.png
+COPY --chmod=0644 cmd/console/static/favicon.ico /usr/local/share/voptrack/favicon.ico
+# COPY chmod can also affect an automatically created destination directory.
+RUN chmod 0755 /usr/local/share/voptrack
+COPY --from=build /out/voptrack-console /usr/local/bin/voptrack-console
+COPY --from=build /out/licenses /usr/share/voptrack/licenses
+COPY THIRD-PARTY.md /usr/share/voptrack/licenses/THIRD-PARTY.md
+RUN apk info --all > /usr/share/voptrack/licenses/alpine-packages.txt
+USER tessera
+WORKDIR /var/lib/tessera
+# The data directory must survive the container and must not be world
+# readable; the server refuses to start otherwise.
+VOLUME ["/var/lib/tessera"]
+EXPOSE 8443
+ENTRYPOINT ["/usr/local/bin/tesserad"]
+CMD ["-config", "/etc/tessera/server.json"]

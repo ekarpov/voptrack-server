@@ -1,0 +1,15 @@
+{{define "page_title"}}Sign in · Voptrack{{end}}
+{{define "content"}}
+<section class="web-login">
+<picture class="product-mark"><source media="(prefers-color-scheme: dark)" srcset="/static/brand-mark-dark.svg"><img src="/static/brand-mark-light.svg" width="64" height="64" alt=""></picture>
+<h1>Welcome to Voptrack{{if .Research}} Research{{else}} Home{{end}}</h1>
+<p>Sign in to see your shared tracks and insights.</p>
+<form method="post" action="/login{{if .Data.Study}}?study={{.Data.Study}}{{end}}">
+<input type="hidden" name="csrf" value="{{.CSRF}}">
+<label class="remember-choice"><input type="checkbox" name="remember"> <span>Keep me signed in on this device for up to 30 days</span></label>
+<p class="muted">Choose this on a device you trust. Signing out ends this remembered sign-in.</p>
+<button class="button" type="submit">Continue to sign in</button>
+</form>
+<p class="muted">You’ll sign in securely, then choose what Voptrack may access.</p>
+</section>
+{{end}}

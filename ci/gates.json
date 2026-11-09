@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "gates": [
+    {
+      "name": "check",
+      "command": "make check",
+      "stage": "preflight",
+      "depends": []
+    },
+    {
+      "name": "image-selection-check",
+      "command": "make image-selection-check",
+      "stage": "preflight",
+      "depends": [
+        "check"
+      ]
+    },
+    {
+      "name": "producer-recovery-check",
+      "command": "./release/native-settings/producer-recovery.sh",
+      "stage": "preflight",
+      "depends": [
+        "image-selection-check"
+      ]
+    },
+    {
+      "name": "backup-check",
+      "command": "make backup-check",
+      "stage": "preflight",
+      "depends": [
+        "producer-recovery-check"
+      ]
+    },
+    {
+      "name": "postgres-check",
+      "command": "make postgres-check",
+      "stage": "preflight",
+      "depends": [
+        "backup-check"
+      ]
+    },
+    {
+      "name": "image",
+      "command": "build_image",
+      "stage": "preflight",
+      "depends": [
+        "postgres-check"
+      ]
+    },
+    {
+      "name": "recovery-set-check",
+      "command": "recovery_sets",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "guided-recovery-check",
+      "command": "guided_recovery",
+      "stage": "runtime",
+      "depends": [
+        "recovery-set-check"
+      ],
+      "exclusive": true
+    },
+    {
+      "name": "off-machine-backups-check",
+      "command": "off_machine_backups",
+      "stage": "runtime",
+      "depends": [
+        "guided-recovery-check"
+      ],
+      "exclusive": true
+    },
+    {
+      "name": "release-check",
+      "command": "make release-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "household-check",
+      "command": "make household-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "console-check",
+      "command": "make console-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "kit-check",
+      "command": "make kit-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "research-check",
+      "command": "make research-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "recovery-check",
+      "command": "make recovery-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "home-app-check",
+      "command": "make home-app-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "private-console-check",
+      "command": "make private-console-check",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "home-dev",
+      "command": "home_dev",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "research-dev",
+      "command": "research_dev",
+      "stage": "runtime",
+      "depends": [
+        "image"
+      ]
+    },
+    {
+      "name": "evaluation",
+      "command": "evaluation",
+      "stage": "scenario",
+      "depends": [
+        "recovery-set-check",
+        "guided-recovery-check",
+        "off-machine-backups-check",
+        "release-check",
+        "household-check",
+        "console-check",
+        "kit-check",
+        "research-check",
+        "recovery-check",
+        "home-app-check",
+        "private-console-check",
+        "home-dev",
+        "research-dev"
+      ]
+    },
+    {
+      "name": "single-user",
+      "command": "scenario single-user",
+      "stage": "scenario",
+      "depends": [
+        "evaluation"
+      ]
+    },
+    {
+      "name": "multi-user",
+      "command": "scenario multi-user",
+      "stage": "scenario",
+      "depends": [
+        "single-user"
+      ]
+    },
+    {
+      "name": "household",
+      "command": "scenario household",
+      "stage": "scenario",
+      "depends": [
+        "multi-user"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,980 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.track.expense"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.energyKind"
+        }
+      },
+      "id" : "energyKind",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "fuel"
+            },
+            {
+              "type" : "text",
+              "value" : "electricity"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "electricity" : {
+              "bundled" : {
+                "key" : "model.household.option.electricity"
+              }
+            },
+            "fuel" : {
+              "bundled" : {
+                "key" : "model.household.option.fuel"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.fuelKind"
+        }
+      },
+      "id" : "fuelKind",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.fuelVolume"
+        }
+      },
+      "id" : "fuelVolume",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "fuelKind"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : false,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "volume",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "L",
+              "fieldID" : "fuelUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "L",
+                "gal_us"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "L"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 3.7854117839999999
+            },
+            "id" : "gal_us"
+          }
+        ],
+        "canonicalUnit" : "L",
+        "defaultUnit" : "L",
+        "dimension" : "volume",
+        "unitField" : "fuelUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "L",
+              "gal_us"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.fuelUnit"
+        }
+      },
+      "id" : "fuelUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.electricity"
+        }
+      },
+      "id" : "electricity",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "energyKind"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : false,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "energy",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "kWh",
+              "fieldID" : "electricityUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "kWh"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 3600
+            },
+            "id" : "kWh"
+          }
+        ],
+        "canonicalUnit" : "kJ",
+        "defaultUnit" : "kWh",
+        "dimension" : "energy",
+        "unitField" : "electricityUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "kWh"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.electricityUnit"
+        }
+      },
+      "id" : "electricityUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.vehicleID"
+        }
+      },
+      "id" : "vehicleID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.vehicleMeterEpochID"
+        }
+      },
+      "id" : "vehicleMeterEpochID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.odometer"
+        }
+      },
+      "id" : "odometer",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "vehicleMeterEpochID"
+        },
+        "collectionMeaning" : "counter",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "length",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "km",
+              "fieldID" : "odometerUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : true,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "m",
+                "km",
+                "mi"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "m"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1000
+            },
+            "id" : "km"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1609.3440000000001
+            },
+            "id" : "mi"
+          }
+        ],
+        "canonicalUnit" : "m",
+        "defaultUnit" : "km",
+        "dimension" : "length",
+        "unitField" : "odometerUnit",
+        "usesRegionalDefault" : true,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "m",
+              "km",
+              "mi"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.odometerUnit"
+        }
+      },
+      "id" : "odometerUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.fill"
+        }
+      },
+      "id" : "fill",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "full"
+            },
+            {
+              "type" : "text",
+              "value" : "partial"
+            }
+          ],
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "full" : {
+              "bundled" : {
+                "key" : "model.household.option.full"
+              }
+            },
+            "partial" : {
+              "bundled" : {
+                "key" : "model.household.option.partial"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.refuellingSession.field.expense"
+        }
+      },
+      "id" : "expense",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.refuelling_session",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.track.expense"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.track.expense"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.refuelling_session",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"energyKind\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.energyKind\",\"type\":\"text\"},{\"id\":\"fuelKind\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.fuelKind\",\"type\":\"text\"},{\"id\":\"fuelVolume\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.fuelVolume\",\"type\":\"float\"},{\"id\":\"fuelUnit\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.fuelUnit\",\"type\":\"text\"},{\"id\":\"electricity\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.electricity\",\"type\":\"float\"},{\"id\":\"electricityUnit\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.electricityUnit\",\"type\":\"text\"},{\"id\":\"vehicleID\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.vehicleID\",\"type\":\"text\"},{\"id\":\"vehicleMeterEpochID\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.vehicleMeterEpochID\",\"type\":\"text\"},{\"id\":\"odometer\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.odometer\",\"type\":\"float\"},{\"id\":\"odometerUnit\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.odometerUnit\",\"type\":\"text\"},{\"id\":\"fill\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.fill\",\"type\":\"text\"},{\"id\":\"expense\",\"meta_id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession.field.expense\",\"type\":\"reference\"}],\"id\":\"com.voptrack.track.refuelling_session\",\"name\":\"model.household.refuellingSession\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "energyKind",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.energyKind",
+          "type" : "text"
+        },
+        {
+          "id" : "fuelKind",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.fuelKind",
+          "type" : "text"
+        },
+        {
+          "id" : "fuelVolume",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.fuelVolume",
+          "type" : "float"
+        },
+        {
+          "id" : "fuelUnit",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.fuelUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "electricity",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.electricity",
+          "type" : "float"
+        },
+        {
+          "id" : "electricityUnit",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.electricityUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "vehicleID",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.vehicleID",
+          "type" : "text"
+        },
+        {
+          "id" : "vehicleMeterEpochID",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.vehicleMeterEpochID",
+          "type" : "text"
+        },
+        {
+          "id" : "odometer",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.odometer",
+          "type" : "float"
+        },
+        {
+          "id" : "odometerUnit",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.odometerUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "fill",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.fill",
+          "type" : "text"
+        },
+        {
+          "id" : "expense",
+          "meta_id" : "com.voptrack.track.refuelling_session",
+          "name" : "model.household.refuellingSession.field.expense",
+          "type" : "reference"
+        }
+      ],
+      "id" : "com.voptrack.track.refuelling_session",
+      "name" : "model.household.refuellingSession",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.household.refuellingSession"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : "refuelling",
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "household.refuelling",
+        "symbol" : "fuelpump.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "household.maintenance",
+          "symbol" : "house.fill"
+        },
+        "id" : "com.voptrack.category.household",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.household"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ],
+        "sum" : "refuelling"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+        {
+          "presence" : {
+            "_0" : "exactlyOne",
+            "fields" : [
+              "fuelVolume",
+              "electricity"
+            ]
+          }
+        }
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+      {
+        "category" : "thing",
+        "kindText" : "car",
+        "position" : 0
+      },
+      {
+        "category" : "thing",
+        "kindText" : "motorbike",
+        "position" : 0
+      },
+      {
+        "category" : "thing",
+        "kindText" : "boat",
+        "position" : 0
+      }
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "energyKind",
+      "fuelKind",
+      "fuelVolume",
+      "fuelUnit",
+      "electricity",
+      "electricityUnit",
+      "vehicleID",
+      "vehicleMeterEpochID",
+      "odometer",
+      "odometerUnit",
+      "fill",
+      "expense"
+    ]
+  }
+}

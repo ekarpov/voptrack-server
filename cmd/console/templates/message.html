@@ -1,0 +1,8 @@
+{{define "page_title"}}{{call .T .Data.Key}} · Voptrack{{end}}
+{{define "content"}}
+<section class="hero">
+  {{if .Data.Title}}<h1>{{call .T .Data.Title}}</h1><p role="status">{{call .T .Data.Key}}</p>{{else}}<h1>{{call .T .Data.Key}}</h1>{{end}}
+  {{if .Data.Retry}}<p><a class="button" href="{{.Data.Retry}}">{{call .T .Data.RetryLabel}}</a></p>{{end}}
+  <p><a href="/">{{call .T "back"}}</a></p>
+</section>
+{{end}}

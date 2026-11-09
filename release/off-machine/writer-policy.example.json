@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListOnlyApprovedPrefix",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::APPROVED_BUCKET",
+      "Condition": {"StringLike": {"s3:prefix": ["APPROVED_PREFIX/*"]}}
+    },
+    {
+      "Sid": "ReadAndConditionallyCreate",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": "arn:aws:s3:::APPROVED_BUCKET/APPROVED_PREFIX/*"
+    },
+    {
+      "Sid": "NeverDeleteOrChangeProtection",
+      "Effect": "Deny",
+      "Action": ["s3:DeleteObject", "s3:DeleteObjectVersion", "s3:PutBucketPolicy", "s3:DeleteBucketPolicy", "s3:PutBucketVersioning", "s3:PutLifecycleConfiguration", "s3:PutBucketPublicAccessBlock", "s3:PutObjectAcl", "s3:PutObjectRetention", "s3:PutObjectLegalHold"],
+      "Resource": "*"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{{define "page_title"}}{{if hasPrefix .Data.Scope "study:"}}{{call .T "study_dashboard"}}{{else if eq .Data.Scope "home"}}{{if .Data.Household}}{{.Data.Household.Title}}{{else}}{{call .T "home_dashboards"}}{{end}}{{else}}{{call .T "my_dashboards"}}{{end}} · Voptrack{{end}}
+{{define "content"}}
+{{if eq .Data.Scope "home"}}
+{{if .Data.Household}}{{template "household_dashboard" .}}{{else}}
+{{$d := .Data}}
+<section class="home-intro">
+ <h1>{{if .ServerName}}{{.ServerName}}{{else}}Home{{end}}</h1>
+ <p>Recorded activity</p>
+ <div class="home-context"><span>{{$d.TotalTracks}} {{if or $d.Controls.Member $d.Controls.Query}}matching {{end}}shared {{if eq $d.TotalTracks 1}}track{{else}}tracks{{end}}</span><span>{{$d.PeriodLabel}}</span></div>
+</section>
+{{template "explore_controls" $d.Controls}}
+{{if $d.Skipped}}<p class="notice" role="status">Some shared stores could not be read. Charts may be incomplete. <a href="/home">Try again</a>.</p>{{end}}
+{{if $d.Categories}}
+<nav class="home-categories" aria-label="Shared track categories">
+ <a href="{{$d.AllURL}}" {{if not $d.SelectedCategory}}aria-current="page"{{end}}>All <span>{{$d.TotalTracks}}</span></a>
+ {{range $d.Categories}}<a href="{{.URL}}" {{if eq $d.SelectedCategory .ID}}aria-current="page"{{end}}>{{.Name}} <span>{{.Count}}</span></a>{{end}}
+</nav>
+<div class="home-section-title"><h2>{{if $d.SelectedCategory}}{{range $d.Categories}}{{if eq .ID $d.SelectedCategory}}{{.Name}}{{end}}{{end}}{{else}}Shared activity{{end}}</h2><span class="muted">Only what members chose to share</span></div>
+{{end}}
+<div class="home-track-grid">
+{{range $d.Cards}}
+ <article class="home-track">
+  <div class="track-heading"><span class="track-family">{{.CategoryName}}</span><span class="contributor-count">{{.People}} {{if eq .People 1}}contributor{{else}}contributors{{end}}{{if .Incomplete}} read{{end}}</span></div>
+  <h2>{{localizeName .Type.Name $.T}}</h2>
+  <div class="track-headline">{{.Headline}}</div>
+  <p class="headline-context">{{.HeadlineLabel}}</p><p class="period-comparison">{{.Comparison}}</p>
+  <p class="track-measure">{{if .ValueView}}{{.MetricLabel}}{{else if .Trend}}{{if .ActivityOnly}}Records shared each month{{else}}{{localizeName .Field $.T}} · {{call $.T .Measure}}{{end}}{{else}}Records by member{{end}}</p>
+  {{if or .PerStore.Skipped .PerStore.Truncated}}<p class="notice">This view is incomplete. Open the track for details.</p>{{end}}
+  {{if .Trend}}{{if or .Trend.Skipped .Trend.Truncated}}<p class="notice">Some data in this period is unavailable. Open the track for details.</p>{{end}}{{end}}
+  {{if .Chart.TooMany}}<p class="muted">Open the track to see all values in a table.</p>{{else if .Chart.Empty}}<div class="track-empty">No chart data in this period. <a href="{{.Link}}">Explore another date range</a>.</div>{{else}}
+  <div class="home-chart-wide">{{template "chart" .Chart}}</div><div class="home-chart-small">{{template "chart" .CompactChart}}</div>
+  {{end}}
+  <div class="track-footer"><span>{{if .Incomplete}}At least {{.Records}} records read{{else}}{{.Records}} records{{if not .ValueView}} · all time{{else}} in this view{{end}}{{end}}</span><a href="{{.Link}}">Explore {{localizeName .Type.Name $.T}} <span aria-hidden="true">↗</span></a></div>
+  <details class="track-data"><summary>View chart data</summary>
+   <div class="table-scroll" role="region" tabindex="0" aria-label="Chart data for {{localizeName .Type.Name $.T}}"><table class="data"><thead><tr><th scope="col">{{if .Trend}}Period{{else}}Member{{end}}</th><th scope="col">{{if .Trend}}{{if .ValueView}}{{.MetricLabel}}{{else if .ActivityOnly}}Records{{else}}{{call $.T .Measure}}{{end}}{{else}}Records{{end}}</th></tr></thead><tbody>
+   {{if .Trend}}{{range resultRows .Trend}}<tr><th scope="row">{{.Label}}</th><td class="num">{{.Value}}</td></tr>{{end}}{{else}}{{range resultRows .PerStore}}<tr><th scope="row">{{.Label}}</th><td class="num">{{.Value}}</td></tr>{{end}}{{end}}
+   </tbody></table></div>
+  </details>
+ </article>
+{{else}}
+ {{if or $d.Controls.Member $d.Controls.Query}}<section class="home-empty"><h2>No matching records</h2><p>Try a different period, member or search.</p>{{if $d.Controls.ClearURL}}<a href="{{$d.Controls.ClearURL}}">Clear filters</a>{{end}}</section>{{else}}
+ <section class="home-empty"><picture class="product-mark"><source media="(prefers-color-scheme: dark)" srcset="/static/brand-mark-dark.svg"><img src="/static/brand-mark-light.svg" width="64" height="64" alt=""></picture><h2>Your household's story starts here.</h2>
+ <p>Shared tracks become charts and insights here. Each member chooses what to share; personal tracks stay private.</p>
+ <div class="empty-actions">{{if $.IsOwner}}<a class="button" href="/members">Invite your household</a>{{else}}<a class="button" href="/sharing">Choose tracks to share</a>{{end}}<a href="/connect-app">Connect the app →</a></div>
+ {{if not $d.HomeReady}}<p class="muted">No shared household sources are available yet.</p>{{end}}</section>{{end}}
+{{end}}
+</div>
+<p class="home-privacy">Your private tracks stay yours. This space shows only the tracks members share with Home.</p>
+
+{{end}}
+{{else}}
+{{$d := .Data}}
+{{if eq $d.Scope "home"}}
+  <h1>{{call .T "home_dashboards"}}</h1>
+  <p class="muted">{{call .T "home_explained"}}</p>
+  {{if not $d.HomeReady}}<p class="notice">{{call .T "no_home"}}</p>{{end}}
+{{else if hasPrefix $d.Scope "study:"}}
+  <h1>{{call .T "study_dashboard"}} · {{$d.StudyTitle}}</h1>
+  <p><a class="button" href="/studies/{{slice $d.Scope 6}}/policy">{{call .T "policy_title"}}</a></p>
+  <p class="muted">{{call .T "policy_limits"}}</p>
+  {{if eq $d.Status "unavailable"}}<p><a href="/studies/{{slice $d.Scope 6}}/dashboard">{{call .T "policy_retry"}}</a></p>{{end}}
+  {{if $d.Status}}<p class="notice" data-release="{{$d.Status}}">{{call .T (printf "policy_result_%s" $d.Status)}}</p>{{end}}
+  <p><a href="/studies/{{slice $d.Scope 6}}/participants">← {{call .T "participants"}}</a></p>
+{{else}}
+  <h1>{{call .T "my_dashboards"}}</h1>
+  <div class="stores">
+    <span class="muted">{{call .T "connected"}}:</span>
+    {{range $d.Connected}}<span class="chip">{{.DisplayName}}</span>{{end}}
+    <form method="post" action="/connect"><input type="hidden" name="csrf" value="{{$.CSRF}}"><button class="link">+ {{call .T "connect_another"}}</button></form>
+  </div>
+{{end}}
+{{if $d.SavedError}}<p class="notice" role="alert">{{call .T "dashboard_load_failed"}}</p>{{else if and (hasPrefix $d.Scope "study:") (not $d.Saved)}}<p class="muted">{{call .T "study_dashboards_empty"}}</p>{{end}}
+{{if $d.Saved}}
+  <h2 class="spaced">{{call .T "saved_dashboards"}}</h2>
+  <div class="stores">{{range $d.Saved}}<a class="chip" href="/dashboards/{{$d.Scope}}/{{.ID}}">{{.Name}} · {{len .Panels}}</a>{{end}}</div>
+{{end}}
+{{if $d.Skipped}}<p class="notice">{{call .T "skipped"}} {{range $d.Skipped}}<span class="chip">{{.}}</span>{{end}}</p>{{end}}
+{{if and (not $d.Status) (not $d.Cards)}}{{if or (ne $d.Scope "home") $d.HomeReady}}<p class="muted">{{call .T "no_tracks"}}</p>{{end}}{{end}}
+<div class="cards">
+{{range $d.Cards}}
+  <article class="card">
+    <h2>{{localizeName .Type.Name $.T}}</h2>
+    {{if .Trend}}
+      <h3>{{localizeName .Field $.T}} · {{call $.T .Measure}} · {{call $.T "last_12"}}</h3>
+      {{if and .Trend.Research (ne .Trend.Status "released")}}<p class="notice" data-release="{{.Trend.Status}}">{{call $.T (printf "policy_result_%s" .Trend.Status)}} {{if .Trend.K}}(K = {{.Trend.K}}){{end}}</p>{{end}}
+      {{if .Chart.TooMany}}<p class="muted" data-too-many>{{call $.T "chart_too_many"}}</p>{{else}}<p class="chart-hint muted">{{call $.T "chart_scroll"}}</p>{{template "chart" .Chart}}{{end}}
+      {{if .Trend.Points}}
+      <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "period"}}">
+        <table class="data summary">
+          <thead><tr><th scope="col">{{call $.T "period"}}</th><th scope="col">{{call $.T .Measure}}</th></tr></thead>
+          <tbody>{{range resultRows .Trend}}<tr><th scope="row">{{.Label}}</th><td class="num">{{if and .Status (ne .Status "released")}}{{call $.T (printf "policy_cell_%s" .Status)}}{{else}}{{.Value}}{{end}}</td></tr>{{end}}</tbody>
+        </table>
+      </div>
+      {{end}}
+      <p><a href="{{.Link}}">{{call $.T "open"}} →</a></p>
+    {{end}}
+    <h3>{{call $.T "per_store"}}</h3>
+    {{if and .PerStore.Research (ne .PerStore.Status "released")}}<p class="notice" data-release="{{.PerStore.Status}}">{{call $.T (printf "policy_result_%s" .PerStore.Status)}} {{if .PerStore.K}}(K = {{.PerStore.K}}){{end}}</p>{{end}}
+    {{if .PerChart.TooMany}}<p class="muted" data-too-many>{{call $.T "chart_too_many"}}</p>{{else}}<p class="chart-hint muted">{{call $.T "chart_scroll"}}</p>{{template "chart" .PerChart}}{{end}}
+    {{if .PerStore.Points}}
+    <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "per_store"}}">
+      <table class="data summary">
+        <thead><tr><th scope="col">{{call $.T "g_store"}}</th><th scope="col">{{call $.T "records"}}</th></tr></thead>
+        <tbody>{{range resultRows .PerStore}}<tr><th scope="row">{{.Label}}</th><td class="num">{{if and .Status (ne .Status "released")}}{{call $.T (printf "policy_cell_%s" .Status)}}{{else}}{{.Value}}{{end}}</td></tr>{{end}}</tbody>
+      </table>
+    </div>
+    {{end}}
+    <p><a href="{{.PerLink}}">{{call $.T "open"}} →</a></p>
+  </article>
+{{end}}
+</div>
+
+{{end}}
+{{end}}
+
+{{define "household_dashboard"}}
+{{$h := .Data.Household}}
+<section class="household-dashboard home-reading home-view-{{$h.Section}}">
+<header class="dashboard-heading"><div><h1>{{$h.Title}}</h1>{{if $h.SelectedSubject}}<p class="named-context">{{if $h.SelectedSubject.Kind}}{{$h.SelectedSubject.Kind}} · {{end}}Shared by {{$h.SelectedSubject.Member}}</p>{{end}}</div></header>
+{{if ne $h.Section "add"}}
+{{if or (eq $h.Section "directory") (eq $h.Section "timeline") (eq $h.Section "subjects")}}<nav class="browse-tabs" aria-label="Browse records"><a href="{{index .HomeLinks "directory"}}" {{if eq $h.Section "directory"}}aria-current="page"{{end}}>By activity</a><a href="{{index .HomeLinks "timeline"}}" {{if eq $h.Section "timeline"}}aria-current="page"{{end}}>All entries</a><a href="{{index .HomeLinks "subjects"}}" {{if eq $h.Section "subjects"}}aria-current="page"{{end}}>By household item</a></nav>{{end}}
+{{template "selection_controls" $h.Controls}}
+{{end}}
+{{if or $h.Incomplete .Data.Skipped}}<p class="notice" role="status">Some shared information could not be read in full. Totals cover the available entries only; comparisons may be unavailable.</p>{{end}}
+{{if $h.ContextIncomplete}}<p class="notice" role="status">Some names or categories are unavailable. Recorded values are still shown. Filtered views may be incomplete.</p>{{end}}
+{{if $h.SubjectUnavailable}}<p class="notice" role="status">These details are no longer available with your current access. <a href="{{index .HomeLinks "overview"}}">Return to Home</a>.</p>{{end}}
+{{if eq $h.Section "add"}}
+<section class="surface home-add-guide"><h2>Choose what to follow in the app</h2><div class="home-add-choices"><div><h3>A pet</h3><p>Feeding, weight and vet visits.</p></div><div><h3>A vehicle</h3><p>Fuel, mileage and maintenance.</p></div><div><h3>Your place</h3><p>Costs, readings and maintenance.</p></div><div><h3>Something else</h3><p>Other activities you want to share.</p></div></div><h2>Share from the app</h2><ol><li>Add or choose what you want to follow in Voptrack.</li><li>Choose an activity and record an entry.</li><li>Share that activity with this household. Its shared entries will appear here.</li></ol><p>Each person chooses what to share. Copies shared from the app are read-only here.</p><a href="/connect-app">Connect the app →</a></section>
+{{else}}
+{{if eq $h.Section "expenses"}}{{template "expense_dashboard" .}}{{else if $h.ShowSpending}}
+<div class="home-overview-board"><section class="surface home-spending-card"><div class="section-heading"><h2>Recorded spending</h2><a href="{{index .HomeLinks "expenses"}}">See spending →</a></div><div class="spend-total">{{$h.Current}}</div><p class="home-value-context">{{$h.HeroCaption}}</p>{{if $h.Change}}<p class="period-comparison">{{$h.Change}}</p>{{end}}<nav class="currency-tabs" aria-label="Currency">{{range $h.Currencies}}<a href="{{.URL}}" {{if .Selected}}aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{if not $h.Chart.Empty}}<div class="home-chart-wide">{{template "chart" $h.Chart}}</div><div class="home-chart-small">{{template "chart" $h.CompactChart}}</div>{{end}}{{if $h.ChartRows}}<details class="chart-values"><summary>Exact chart values</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Recorded spending values"><table class="data"><thead><tr><th scope="col">Date</th><th scope="col">Amount</th></tr></thead><tbody>{{range $h.ChartRows}}<tr><th scope="row">{{.Label}}</th><td>{{.Value}}</td></tr>{{end}}</tbody></table></div></details>{{end}}</section>
+<section class="surface home-category-card"><h2>Top categories</h2>{{range $i,$g := $h.Spending}}{{if lt $i 5}}<a class="spending-category tone-{{$g.Tone}}" href="{{$g.URL}}"><div><span>{{$g.Name}}</span><strong>{{$g.Value}}</strong></div>{{if gt $g.Width 0}}<meter min="0" max="100" value="{{$g.Width}}" aria-label="{{$g.Name}} share of recorded net spending">{{$g.Width}}%</meter>{{end}}</a>{{end}}{{else}}<p>No category details in this period.</p>{{end}}<a class="home-all-categories" href="{{index .HomeLinks "expenses"}}">All categories →</a></section></div>
+{{end}}
+{{if and (not $h.FilterSubject) (ne $h.Section "expenses") (ne $h.Section "timeline") (ne $h.Section "directory")}}
+<section class="subjects-section"><div class="section-heading"><h2>Your household</h2></div>{{if $h.Subjects}}<div class="subject-cards">{{range $h.Subjects}}<a class="subject-card subject-{{.Family}}" href="{{.URL}}"><span class="subject-symbol" aria-hidden="true">{{.Monogram}}</span><span><strong>{{.Name}}</strong><small>{{if .Kind}}{{.Kind}} · {{end}}Shared by {{.Member}}</small>{{if .Summary}}<small class="home-named-summary">{{.Summary}}</small>{{end}}<small>{{if .Latest}}{{.Latest}}{{else}}No entries in this period{{end}}</small></span><span aria-hidden="true">›</span></a>{{end}}</div>{{else}}<div class="home-no-items"><p>No named items have been shared yet.</p><a href="{{index .HomeLinks "add"}}">See how to add something →</a></div>{{end}}</section>
+{{end}}
+{{if $h.LatestUnavailable}}<p class="notice" role="status">Some latest recorded values could not be read in full.</p>{{end}}
+{{if $h.LatestFacts}}<section class="metrics-section"><div class="section-heading"><h2>Latest recorded</h2><span class="muted">Independent of the selected period</span></div><div class="insight-grid">{{range $h.LatestFacts}}<article class="insight-card"><a class="insight-main" href="{{.URL}}"><span class="metric-label">{{.Name}}</span><strong>{{.Value}}</strong><span class="metric-detail">{{.Detail}}</span><span class="metric-open">View history →</span></a></article>{{end}}</div></section>{{end}}
+{{if and $h.Metrics (ne $h.Section "subjects") (ne $h.Section "directory") (ne $h.Section "timeline")}}
+<section class="metrics-section"><div class="section-heading"><h2>At a glance</h2></div><div class="insight-grid">{{range $h.Metrics}}<article class="insight-card"><a class="insight-main" href="{{.URL}}"><span class="metric-label">{{.Name}}</span><strong>{{.Value}}</strong><span class="metric-detail">{{.Detail}}</span>{{if .Comparison}}<span class="metric-comparison">{{.Comparison}}</span>{{end}}<span class="metric-open">View entries →</span></a></article>{{end}}</div></section>
+{{end}}
+{{if eq $h.Section "directory"}}<section class="surface directory-section"><h2>Browse activities</h2><p>Open an activity to see its recorded values and history.</p><div class="track-directory">{{range $h.Tracks}}<a class="directory-row" href="{{.URL}}"><span><strong>{{.Name}}</strong>{{if .Incomplete}}<small>Some information unavailable</small>{{end}}</span><span>{{.Records}} entries in this period</span><span aria-hidden="true">›</span></a>{{else}}<p>No shared activities are available.</p>{{end}}</div></section>{{else if or (ne $h.Section "overview") $h.FilterSubject}}
+<section class="activity-section surface"><div class="section-heading"><div><h2 id="activity">{{if eq $h.Section "expenses"}}Expenses{{else if eq $h.Section "overview"}}Recently recorded{{else}}Activity{{end}}</h2><p class="activity-count" role="status">{{$h.RecordsLabel}}{{if $h.Selection}} · {{$h.Selection}} · <a href="{{$h.BucketClearURL}}#activity">Show whole period</a>{{end}}</p></div>{{if eq $h.Section "overview"}}<a href="{{$h.ActivityURL}}">All activity →</a>{{end}}</div>
+{{if $h.Rows}}<div class="transaction-head" aria-hidden="true"><span>Entry</span><span>About / category</span><span>Recorded by</span><span>Value</span></div><div class="transaction-list">{{range $h.Rows}}<a class="transaction-row tone-{{.Tone}}" href="{{.URL}}"><div class="transaction-description"><span class="transaction-icon" aria-hidden="true">·</span><span><strong>{{.Title}}</strong><small>{{.Date}} · {{.TrackName}}<span class="mobile-member"> · {{.Member}}</span></small>{{if .Badge}}<span class="record-attachment-badge">{{.Badge}}</span>{{end}}</span></div><span class="transaction-category">{{if eq .Family "expenses"}}<span class="category-chip">{{.Category}}</span>{{end}}{{if .Subject}}<small>{{.Subject}}</small>{{end}}</span><span class="transaction-member">{{.Member}}</span><strong class="transaction-value">{{.Value}} <span aria-hidden="true">›</span></strong></a>{{end}}</div>{{else}}<div class="dashboard-empty"><h3>{{if $h.SubjectUnavailable}}Details unavailable{{else if $h.Filtered}}No matching entries{{else}}No activity in this period{{end}}</h3><p>{{if $h.SubjectUnavailable}}Return to Home to see what is currently shared.{{else if $h.Filtered}}Try another date range, person or search.{{else}}Choose another period to see earlier shared entries.{{end}}</p>{{if or $h.Controls.Member $h.Controls.Subject $h.Controls.Spending}}<a href="{{$h.ClearURL}}">Clear filters</a>{{end}}</div>{{end}}
+<nav class="dashboard-pagination" aria-label="Activity pages">{{if $h.Previous}}<a href="{{$h.Previous}}">← Previous</a>{{end}}{{if $h.Next}}<a href="{{$h.Next}}">Next entries →</a>{{end}}</nav></section>
+{{end}}
+{{end}}
+<p class="dashboard-privacy">Only shared information is shown. Personal information stays private.</p><p class="computed-at">View computed {{$h.ComputedAt}} · This does not indicate phone sync status.</p>
+</section>
+{{end}}
+
+{{define "expense_dashboard"}}
+{{$h:=.Data.Household}}
+<section class="expense-summary" aria-label="Spending for the selected dates"><div><p>Total spending</p><strong class="spend-total">{{$h.Current}}</strong>{{if $h.ExpenseComparison}}<p class="expense-comparison">{{$h.ExpenseComparison}}</p>{{end}}</div><div class="expense-scope"><span>{{$h.ExpenseScope}}</span><nav class="currency-tabs" aria-label="Currency">{{range $h.Currencies}}<a href="{{.URL}}" {{if .Selected}}aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav><span>{{$h.ExpenseCount}} {{if eq $h.ExpenseCount 1}}expense{{else}}expenses{{end}}{{if $h.Incomplete}} read{{end}}</span></div></section>
+<div class="expense-board"><section class="expense-trend surface" aria-labelledby="expense-trend-title"><div class="section-heading"><h2 id="expense-trend-title">{{$h.TrendTitle}}</h2><span>All bars add up to the total above</span></div>
+{{if not $h.Chart.Empty}}<div class="bank-chart"><div class="home-chart-wide">{{template "chart" $h.Chart}}</div><div class="home-chart-small">{{template "chart" $h.CompactChart}}</div></div>{{else}}<p class="quiet-empty">{{if $h.Controls.Query}}No expenses match this search in the selected period. Try another search or clear it above.{{else}}No shared expenses in these dates. Choose another month or adjust your filters.{{end}}</p>{{end}}
+<div class="expense-chart-footer">{{if $h.ChartRows}}<details class="chart-values"><summary>Chart values</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Spending chart values"><table class="data"><thead><tr><th scope="col">Date</th><th scope="col">{{$h.Currency}}</th></tr></thead><tbody>{{range $h.ChartRows}}<tr><th scope="row">{{.Label}}</th><td>{{.Value}}</td></tr>{{end}}</tbody></table></div></details>{{end}}<details class="expense-comparison-details"><summary>Comparison details</summary><p>{{$h.Controls.ComparisonLabel}}</p></details></div></section>
+<aside class="expense-breakdowns" aria-label="Breakdowns of the selected spending total"><section class="surface expense-category-card"><h2>{{if $h.ExpenseCount}}Where {{$h.Current}} went{{else}}Categories{{end}}</h2><p class="expense-card-caption">By category · same dates and members</p>
+{{if $h.AllUncategorized}}<div class="uncategorized-state"><strong>{{$h.UncategorizedCount}} {{if eq $h.UncategorizedCount 1}}expense has{{else}}expenses have{{end}} no category</strong><p>Category totals will appear when categories are assigned. These expenses are included in the total above.</p></div>{{else}}{{range $h.Spending}}<a class="spending-category tone-{{.Tone}}" href="{{.URL}}"><div><span class="category-label"><span class="category-dot" aria-hidden="true"></span>{{.Name}}</span><strong>{{.Value}}</strong></div><meter min="0" max="100" value="{{.Width}}" aria-label="{{.Name}} share of net spending">{{.Width}}%</meter></a>{{else}}<p class="quiet-empty">No category totals for these dates.</p>{{end}}{{end}}</section>
+<section class="surface expense-member-card"><h2>Recorded by</h2><p class="expense-card-caption">The same total, split by member</p><div class="member-parts">{{range $h.ExpenseParts}}<a href="{{.URL}}"><span>{{.Name}}</span><strong>{{if .State}}{{.State}}{{else}}{{.Value}}{{end}}</strong></a>{{else}}<p class="quiet-empty">No member values for these dates.</p>{{end}}</div></section></aside></div>
+{{end}}

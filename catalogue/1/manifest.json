@@ -1,0 +1,1055 @@
+{
+  "catalogueVersion" : 1,
+  "documents" : [
+    {
+      "kind" : "trackRoot",
+      "path" : "types/com.voptrack.track.json",
+      "sha256" : "9c3679a28f399ec9d48ff7c6a04731a992ecfb52b21cf72c5428872372541657",
+      "typeID" : "com.voptrack.track"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.running.json",
+      "sha256" : "1eab340802c78077a637be6acaf8c19197fc10e1409685aa5ebdc04ea0ff1a0f",
+      "typeID" : "com.voptrack.track.running"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.distance.json",
+      "sha256" : "477dec5b3d6e959a750941fd03ca2eaa5edb5e36190e37cddeee158ca5ca1c0e",
+      "typeID" : "com.voptrack.track.distance"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.gps_position.json",
+      "sha256" : "d3ee4185140616e5990bad249644ef21ecd3c73cc501086903278049c26dadb7",
+      "typeID" : "com.voptrack.track.gps_position"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.step_total.json",
+      "sha256" : "cb58ce87b496f3b8015ce73c2320506abbc067d587da4828c4ffdd54c2e6d9f8",
+      "typeID" : "com.voptrack.track.step_total"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.step_counter.json",
+      "sha256" : "4b89b2e3c6022711b830c485664ba9f8a66a5e8a21690bbe83b15ff4b99bb936",
+      "typeID" : "com.voptrack.track.step_counter"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.walking.json",
+      "sha256" : "6221cb6290b7c08cac385d813372d0d1773ff470665ffbeda3a930fc3ec1802a",
+      "typeID" : "com.voptrack.track.walking"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.cycling.json",
+      "sha256" : "17fb7baec83d0981ba11aa7e92d8c22989a3560b5a3d88a046e65e8afe7d2c18",
+      "typeID" : "com.voptrack.track.cycling"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.workout_session.json",
+      "sha256" : "f38684eb96c6862bd13be5e10b0f907469989143fc6b0d9d839d25cbc18b11cb",
+      "typeID" : "com.voptrack.track.workout_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.swimming.json",
+      "sha256" : "18a6ca88c6af041ac4a33dc9e32ceb674b3c4f3df253489328f17f5c805a00f0",
+      "typeID" : "com.voptrack.track.swimming"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.hiking.json",
+      "sha256" : "79eab15a2208f8727601d16bf91ba39c52ef918467bb74c0402ea8ffdf2689ec",
+      "typeID" : "com.voptrack.track.hiking"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.rowing.json",
+      "sha256" : "3994c7fcba48403ba31ec9ca68923afedfbcfc1ba554cd857ead5ef3fdfa30f8",
+      "typeID" : "com.voptrack.track.rowing"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.mobility_session.json",
+      "sha256" : "aeeffa5bbc4b8442ff9cc5efa97ae0fc40f135af7d7a437f228b9e6738ea23ae",
+      "typeID" : "com.voptrack.track.mobility_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.mind_body_session.json",
+      "sha256" : "ee28e89293d9bd824cf62973582a7480003281f9a3792fbb01d5b1dbc6e78dac",
+      "typeID" : "com.voptrack.track.mind_body_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.sport_session.json",
+      "sha256" : "c6aec370a85c82ed9cbb0e1278d38adc7fdbd435b064f9aa71c5007c042e1105",
+      "typeID" : "com.voptrack.track.sport_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.workout_effort.json",
+      "sha256" : "5451669f165f547b30811d57ff440fe577c8146f41ecae161c994b41832232ff",
+      "typeID" : "com.voptrack.track.workout_effort"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.active_energy.json",
+      "sha256" : "d65ddb753a5ca9fc3e665b8725dc2854258adbaa31bb1cc9400267e061e20f78",
+      "typeID" : "com.voptrack.track.active_energy"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.expense.json",
+      "sha256" : "2b0ed1a08258d91db4a18302caabab266d7d00afe0c64c004eb2fb8be85c93cf",
+      "typeID" : "com.voptrack.track.expense"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.income.json",
+      "sha256" : "8eab8f99675f5b9ff636af2905aac7afc0326cfa74d875e6103623aa97314d48",
+      "typeID" : "com.voptrack.track.income"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.balance.json",
+      "sha256" : "c4a9a251af0047e05295152a8987d776559d21e90a6d98835b158f7571b6ddb4",
+      "typeID" : "com.voptrack.track.balance"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.bill.json",
+      "sha256" : "fc0d1df1fb9dc2d915f8baaa0d8d0f255500d1d9269b5c103542bea0724bec15",
+      "typeID" : "com.voptrack.track.bill"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.reimbursement_claim.json",
+      "sha256" : "b7d4f0c9d5a4bfbcb2fadaeb56b11964fae1d3948566baff9461c7572e3c60bc",
+      "typeID" : "com.voptrack.track.reimbursement_claim"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.asset_value.json",
+      "sha256" : "8787c46cddb7d1e4342b20315425a2b58d1738c5d2cb132abf8a5a3fb8f28994",
+      "typeID" : "com.voptrack.track.asset_value"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.weight.json",
+      "sha256" : "c9bc450530c2e0e663b539ecb79d7333deca623be988d1923f681ae952a21589",
+      "typeID" : "com.voptrack.track.weight"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.blood_pressure.json",
+      "sha256" : "0554cc0a40747dcae1e8d5f7f49ef41837ac3a3b35e88f1a8099767f4f06e714",
+      "typeID" : "com.voptrack.track.blood_pressure"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pulse.json",
+      "sha256" : "d9ef2cee691d4c8585173fa597c1ef9e6a253f8046af2acd15ab94abfe989ff2",
+      "typeID" : "com.voptrack.track.pulse"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.sleep.json",
+      "sha256" : "039e1d08a1143ec92a5b0732df99c5f3233990f0db10bce337211e62f752b790",
+      "typeID" : "com.voptrack.track.sleep"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.check_in.json",
+      "sha256" : "a62b45e994e2b73a623f4465bf6f1b8ae10b3017b089c12fed05c7c7c9011e1b",
+      "typeID" : "com.voptrack.track.check_in"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.body_measurement.json",
+      "sha256" : "6155503eac898040599673cd9e07771a854928ca6eae8169c7b25d19c7593ba3",
+      "typeID" : "com.voptrack.track.body_measurement"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.wellbeing.json",
+      "sha256" : "ca102d23540d587604f46fa337a4fa4be24848837de88fbf2890bc7b322a20a0",
+      "typeID" : "com.voptrack.track.wellbeing"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.condition_observation.json",
+      "sha256" : "74c5010f27f860f9da6f4258f8cccde6d24dea1fd94510c083a03ddefb585d8d",
+      "typeID" : "com.voptrack.track.condition_observation"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.visit.json",
+      "sha256" : "4bf2373dfe5f2abefb2a9600049bca17b4e357220bfa62d3b8c51d894e87fde8",
+      "typeID" : "com.voptrack.track.visit"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.meal.json",
+      "sha256" : "68d31287f950fc676fb95cdfcb32acfda16abd243ecb73846567a9501aee2207",
+      "typeID" : "com.voptrack.track.meal"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.fluid_intake.json",
+      "sha256" : "fe56019f830b86cb002fd23dbde7ccbefee60e5d44ab5a9ee4642b0ceb8dec4f",
+      "typeID" : "com.voptrack.track.fluid_intake"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.medication_administration.json",
+      "sha256" : "2e625aa8aff5b7cb3c849ddefddbd00973f52f3adc9a20f8e31b381b792fcf16",
+      "typeID" : "com.voptrack.track.medication_administration"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.lab_result.json",
+      "sha256" : "9455ef11ab6625f499667d4a90d289b2e4c834eab6472f2d967d50d27ac31a1c",
+      "typeID" : "com.voptrack.track.lab_result"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.symptom_episode.json",
+      "sha256" : "0ec6bbf6c0ad0bf8d7dab7705bafa548f4c0e7c20fa700d69aa704182eb5b070",
+      "typeID" : "com.voptrack.track.symptom_episode"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pain_observation.json",
+      "sha256" : "fe4b075a0b13b3dfc86fcf5adeb9f1fde36f44c35e8cf8b9c3cb2a5d10d881de",
+      "typeID" : "com.voptrack.track.pain_observation"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.temperature.json",
+      "sha256" : "99bd41675abec8004f4421b69d05a45bebb6d2a2a4bc05d0f65aa1567ad6e2f8",
+      "typeID" : "com.voptrack.track.temperature"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.blood_glucose.json",
+      "sha256" : "38426297355297887f45c978f19320531448a91123eac0ca1c3f8a02c6586232",
+      "typeID" : "com.voptrack.track.blood_glucose"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.cycle_observation.json",
+      "sha256" : "e17bfa2c0652f265dcf2ae8cb0ac1a8be8564d165732fade81d53c87ae4c3bbc",
+      "typeID" : "com.voptrack.track.cycle_observation"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.vaccination.json",
+      "sha256" : "3ff562be286ddf48539817150b801ffdba52638f93ecf22a02cf962d96d1d4e9",
+      "typeID" : "com.voptrack.track.vaccination"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.allergy_reaction.json",
+      "sha256" : "104e81fad9e20d33ed6182b8e20b0d4a207136d8cd48cf6951320773a9b7de8d",
+      "typeID" : "com.voptrack.track.allergy_reaction"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.oxygen_saturation.json",
+      "sha256" : "25285c6271a6297654c3798f153b3d64797547fbc76ddbd4be3dc121c0d292ae",
+      "typeID" : "com.voptrack.track.oxygen_saturation"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.bowel_observation.json",
+      "sha256" : "f5a6f07e6b4792cf34d83afadbea5950825604874bcf44c1534d690100b08055",
+      "typeID" : "com.voptrack.track.bowel_observation"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.respiratory_rate.json",
+      "sha256" : "b07c5d8be3a8e06c5057bece452ab2d4f14f0ae6124ccc873ffc405992217e0a",
+      "typeID" : "com.voptrack.track.respiratory_rate"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.peak_expiratory_flow.json",
+      "sha256" : "b706d1f93d581d2e6c3dfa7888d4e450c700381a2b72910f6164845caf5013a2",
+      "typeID" : "com.voptrack.track.peak_expiratory_flow"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.height.json",
+      "sha256" : "f96475f9fee52a54968f386bc4a16d041f2dd1d5602e20dd56c28ca919c9d696",
+      "typeID" : "com.voptrack.track.height"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.body_composition.json",
+      "sha256" : "8845cfa10f1ac5d465a1b55637a17357aea92951b6fa5e663836423095a34a53",
+      "typeID" : "com.voptrack.track.body_composition"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.meter_reading.json",
+      "sha256" : "888ec523cb2233951ea1dbdab072a1b0857086801b2aa20e03ff098de4c1b68b",
+      "typeID" : "com.voptrack.track.meter_reading"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.inventory_level.json",
+      "sha256" : "dfe431deb3f9bcca7fd72927bb163b66433fcdf35d504490a9c5dcf64cb92544",
+      "typeID" : "com.voptrack.track.inventory_level"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.maintenance_event.json",
+      "sha256" : "029b91b36cf9b4cb294d226a90eace09d6e0dff98fd3d6e57156dc9f749ab65e",
+      "typeID" : "com.voptrack.track.maintenance_event"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.inventory_adjustment.json",
+      "sha256" : "67ba0cfd56505ed4ca2a251684a767bc2291dd527ef90410a2d84033b1b51b5b",
+      "typeID" : "com.voptrack.track.inventory_adjustment"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.chore_completion.json",
+      "sha256" : "e54ed2d9fbf09d5e9b865fa7872ea9b7bf0b9f7fb044d40806f32ede279b94f6",
+      "typeID" : "com.voptrack.track.chore_completion"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.electricity_meter_reading.json",
+      "sha256" : "be16014855bc6e99027ed3aac33c0dc7c11959ce1c7020832c44db1a43fc33e8",
+      "typeID" : "com.voptrack.track.electricity_meter_reading"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.water_meter_reading.json",
+      "sha256" : "ac21eef99b3c35e7c50c1d6196bad93cc99354e99a388562f8ee6e624ef30415",
+      "typeID" : "com.voptrack.track.water_meter_reading"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.gas_meter_reading.json",
+      "sha256" : "1ce3282984ff429dfbb627ed9112242f09ccc4f454b85039d8b53ff053e0d305",
+      "typeID" : "com.voptrack.track.gas_meter_reading"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.refuelling_session.json",
+      "sha256" : "dc02f032b1547ee3f2a2c92709a8b51ef41913702a47bd9a273cbda9a46413ab",
+      "typeID" : "com.voptrack.track.refuelling_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.odometer_reading.json",
+      "sha256" : "585dca70434fad16d8ae4ae63b66db6e3b66ae3b5fc98d4ab201e53a7844d409",
+      "typeID" : "com.voptrack.track.odometer_reading"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.learning_session.json",
+      "sha256" : "0a132daa20ceb3077fd02ffe14feed0abe238cb2225c5e01e40678b26c5f3384",
+      "typeID" : "com.voptrack.track.learning_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.reading_progress.json",
+      "sha256" : "f538115bea367b9779eeffdd7705a8354cf68417040844fd0db85226e55a946a",
+      "typeID" : "com.voptrack.track.reading_progress"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_activity.json",
+      "sha256" : "82aad5bc46f1a8536163bdd524af7b4b06a4b38e84269accab8c796f73d5ff69",
+      "typeID" : "com.voptrack.track.pet_activity"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_feeding.json",
+      "sha256" : "57401e3d881e999a9ee8c360d6344102df69e10b70264fda69497e288196a021",
+      "typeID" : "com.voptrack.track.pet_feeding"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_toileting.json",
+      "sha256" : "e44830ea3cedb1247c62e18dbfe744138fa487c6ac85ee2495f610b0734a0ab3",
+      "typeID" : "com.voptrack.track.pet_toileting"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_grooming.json",
+      "sha256" : "f491d85f692c59b13be9da45780de17f8b1cd39a5a321dcf12a2544c8a992309",
+      "typeID" : "com.voptrack.track.pet_grooming"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_training.json",
+      "sha256" : "39b7b8b3a62fbb14624916312ee6441bb682fe7200ce04cca99b2bbed324c228",
+      "typeID" : "com.voptrack.track.pet_training"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_behaviour.json",
+      "sha256" : "00c85ae81d0c400eeeddbf77714c0c975f48fbbb8376e138bf73ea58a2d6a1c2",
+      "typeID" : "com.voptrack.track.pet_behaviour"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_appetite.json",
+      "sha256" : "b784d81ec655e8e0fc316ffbfaf853f1247eaad24534f3376150af57237fe45a",
+      "typeID" : "com.voptrack.track.pet_appetite"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_reproductive.json",
+      "sha256" : "35a6f8fbdbeb7f8427dca79ec2bcf12a8df79a39d1f6fa194e8a3cbaa0bf088d",
+      "typeID" : "com.voptrack.track.pet_reproductive"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.pet_vet_visit.json",
+      "sha256" : "153cefc2592ef8b78f50a7ac81f47468f576cb4066a461a254fa15160a7e143e",
+      "typeID" : "com.voptrack.track.pet_vet_visit"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.project_work_session.json",
+      "sha256" : "2518cad2ea6bbec786fbe597f683e4892c4e2b30b7138d2dc5696ea89da8c0b8",
+      "typeID" : "com.voptrack.track.project_work_session"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.event.json",
+      "sha256" : "f6252a8016e01f3c88f3662a151276a9c44baaf6d67b50b292b7057b7b38faa4",
+      "typeID" : "com.voptrack.track.event"
+    },
+    {
+      "kind" : "track",
+      "path" : "types/com.voptrack.track.note.json",
+      "sha256" : "16ad2e8e62657b190188a6f48a423e70323fab0f2d8b6c94cad078486964b933",
+      "typeID" : "com.voptrack.track.note"
+    },
+    {
+      "kind" : "part",
+      "path" : "types/com.voptrack.track.exercise_set.json",
+      "sha256" : "40411dc9c9a22b9c4412ecf3ed69d207f0a2f0bc4b8ccf6d43926095e25476e0",
+      "typeID" : "com.voptrack.track.exercise_set"
+    },
+    {
+      "kind" : "part",
+      "path" : "types/com.voptrack.track.run_split.json",
+      "sha256" : "105229beb4c635622ca23e25b3a908ab7071b46ef62db560224530690acdbee8",
+      "typeID" : "com.voptrack.track.run_split"
+    },
+    {
+      "kind" : "part",
+      "path" : "types/com.voptrack.track.activity_segment.json",
+      "sha256" : "09814af126793e74acf5e540a2d8e75987b7da64faa60e9d04609eee8fe0d826",
+      "typeID" : "com.voptrack.track.activity_segment"
+    },
+    {
+      "kind" : "reference",
+      "path" : "types/com.voptrack.subject.json",
+      "sha256" : "9ea58c8f99ac43ebdccd3f9878485fb4c56de2dc32961be744bf471c84f83da9",
+      "typeID" : "com.voptrack.subject"
+    },
+    {
+      "kind" : "reference",
+      "path" : "types/com.voptrack.source.json",
+      "sha256" : "6c82e1e76ca0abd2a53e23aa3922e635748e678e926d24d45740f4bed2bc6457",
+      "typeID" : "com.voptrack.source"
+    },
+    {
+      "kind" : "reference",
+      "path" : "types/com.voptrack.subject_plan.json",
+      "sha256" : "e8015dc2b73b0238ee8feadbed141e6baccf87c0acdf1d4b0fb7c18fbd7e7ca7",
+      "typeID" : "com.voptrack.subject_plan"
+    },
+    {
+      "kind" : "reference",
+      "path" : "types/com.voptrack.category.json",
+      "sha256" : "35c8b30c3e6dfd38c07853f754c649a572795a3d15e3c5e48ed2ea40d9d482e5",
+      "typeID" : "com.voptrack.category"
+    }
+  ],
+  "generator" : "Packages/VoptrackCore/Sources/VoptrackTestSupport/TrackCatalogueExport.swift",
+  "internalTypes" : [
+    {
+      "id" : "com.voptrack.home_copy",
+      "reason" : "Marks a Track type copied into a Home; only the copying device writes it."
+    },
+    {
+      "id" : "com.voptrack.profile_track",
+      "reason" : "Registrations: a person's Track list, order and settings, kept by the app."
+    },
+    {
+      "id" : "com.voptrack.track_definition",
+      "reason" : "A made Track's definition, an app-encoded payload written by its composer."
+    },
+    {
+      "id" : "com.voptrack.kept_definitions",
+      "reason" : "This device's copy of a Home's Track definitions."
+    },
+    {
+      "id" : "com.voptrack.kept_photo",
+      "reason" : "Photos waiting on this device for their Home to answer."
+    },
+    {
+      "id" : "com.voptrack.outbox_entry",
+      "reason" : "This device's outbox of writes waiting for a Home."
+    },
+    {
+      "id" : "com.voptrack.pending_home_write",
+      "reason" : "Copies and moves waiting on this device for a Home."
+    },
+    {
+      "id" : "com.voptrack.place_answer",
+      "reason" : "When a store last answered: this device's bookkeeping about a place."
+    },
+    {
+      "id" : "com.voptrack.study_copy_link",
+      "reason" : "This device's map of records copied to a study."
+    },
+    {
+      "id" : "com.voptrack.expense_allocation",
+      "reason" : "Profile-local split of an expense, in local configuration only."
+    },
+    {
+      "id" : "com.voptrack.plan_template",
+      "reason" : "Plan templates the app installs and versions itself."
+    },
+    {
+      "id" : "com.voptrack.plan_occurrence_settings",
+      "reason" : "Skip and reminder settings for a plan occurrence, with a stale-edit token."
+    },
+    {
+      "id" : "com.voptrack.workout_routine",
+      "reason" : "My Workouts routines, one app-encoded JSON payload each."
+    },
+    {
+      "id" : "com.voptrack.exercise",
+      "reason" : "Exercises a person made, kept in this device's store."
+    },
+    {
+      "id" : "com.voptrack.record_note",
+      "reason" : "A record's note and its attachment order, kept consistent by the app."
+    },
+    {
+      "id" : "com.voptrack.media_attachment",
+      "reason" : "Ordered media uses whose content the app uploads and erases with them."
+    },
+    {
+      "id" : "com.voptrack.media",
+      "reason" : "Media metadata tied to content the app uploads and erases."
+    },
+    {
+      "id" : "com.voptrack.media.image",
+      "reason" : "Media metadata tied to content the app uploads and erases."
+    },
+    {
+      "id" : "com.voptrack.media.document",
+      "reason" : "Media metadata tied to content the app uploads and erases."
+    },
+    {
+      "id" : "com.voptrack.media.video",
+      "reason" : "Media metadata tied to content the app uploads and erases."
+    },
+    {
+      "id" : "com.voptrack.media.audio",
+      "reason" : "Media metadata tied to content the app uploads and erases."
+    },
+    {
+      "id" : "com.voptrack.tag",
+      "reason" : "Tags organise a profile's own objects; not part of a Track record."
+    },
+    {
+      "id" : "com.voptrack.tag_assignment",
+      "reason" : "Tag assignments organise a profile's own objects."
+    },
+    {
+      "id" : "com.voptrack.category_assignment",
+      "reason" : "Category assignments organise a profile's own objects."
+    },
+    {
+      "id" : "com.voptrack.project",
+      "reason" : "Projects organise a profile's own Tracks and plans."
+    },
+    {
+      "id" : "com.voptrack.track_folder",
+      "reason" : "Folders organise a profile's own registrations."
+    },
+    {
+      "id" : "com.voptrack.organization_membership",
+      "reason" : "Project and folder membership of a profile's own objects."
+    }
+  ],
+  "internalTypesNote" : "Profile preferences are device-local (SwiftData), not a dataset type, so no type id names them. The root's writeToken field is internal: only the app's outbox writes it.",
+  "partTypeIDs" : [
+    "com.voptrack.track.exercise_set",
+    "com.voptrack.track.run_split",
+    "com.voptrack.track.activity_segment"
+  ],
+  "rootTypeID" : "com.voptrack.track",
+  "sourceRevision" : "04a035cbf2067bb4a8960d6626e6439979a62d64",
+  "trackTypeIDs" : [
+    "com.voptrack.track.running",
+    "com.voptrack.track.distance",
+    "com.voptrack.track.gps_position",
+    "com.voptrack.track.step_total",
+    "com.voptrack.track.step_counter",
+    "com.voptrack.track.walking",
+    "com.voptrack.track.cycling",
+    "com.voptrack.track.workout_session",
+    "com.voptrack.track.swimming",
+    "com.voptrack.track.hiking",
+    "com.voptrack.track.rowing",
+    "com.voptrack.track.mobility_session",
+    "com.voptrack.track.mind_body_session",
+    "com.voptrack.track.sport_session",
+    "com.voptrack.track.workout_effort",
+    "com.voptrack.track.active_energy",
+    "com.voptrack.track.expense",
+    "com.voptrack.track.income",
+    "com.voptrack.track.balance",
+    "com.voptrack.track.bill",
+    "com.voptrack.track.reimbursement_claim",
+    "com.voptrack.track.asset_value",
+    "com.voptrack.track.weight",
+    "com.voptrack.track.blood_pressure",
+    "com.voptrack.track.pulse",
+    "com.voptrack.track.sleep",
+    "com.voptrack.track.check_in",
+    "com.voptrack.track.body_measurement",
+    "com.voptrack.track.wellbeing",
+    "com.voptrack.track.condition_observation",
+    "com.voptrack.track.visit",
+    "com.voptrack.track.meal",
+    "com.voptrack.track.fluid_intake",
+    "com.voptrack.track.medication_administration",
+    "com.voptrack.track.lab_result",
+    "com.voptrack.track.symptom_episode",
+    "com.voptrack.track.pain_observation",
+    "com.voptrack.track.temperature",
+    "com.voptrack.track.blood_glucose",
+    "com.voptrack.track.cycle_observation",
+    "com.voptrack.track.vaccination",
+    "com.voptrack.track.allergy_reaction",
+    "com.voptrack.track.oxygen_saturation",
+    "com.voptrack.track.bowel_observation",
+    "com.voptrack.track.respiratory_rate",
+    "com.voptrack.track.peak_expiratory_flow",
+    "com.voptrack.track.height",
+    "com.voptrack.track.body_composition",
+    "com.voptrack.track.meter_reading",
+    "com.voptrack.track.inventory_level",
+    "com.voptrack.track.maintenance_event",
+    "com.voptrack.track.inventory_adjustment",
+    "com.voptrack.track.chore_completion",
+    "com.voptrack.track.electricity_meter_reading",
+    "com.voptrack.track.water_meter_reading",
+    "com.voptrack.track.gas_meter_reading",
+    "com.voptrack.track.refuelling_session",
+    "com.voptrack.track.odometer_reading",
+    "com.voptrack.track.learning_session",
+    "com.voptrack.track.reading_progress",
+    "com.voptrack.track.pet_activity",
+    "com.voptrack.track.pet_feeding",
+    "com.voptrack.track.pet_toileting",
+    "com.voptrack.track.pet_grooming",
+    "com.voptrack.track.pet_training",
+    "com.voptrack.track.pet_behaviour",
+    "com.voptrack.track.pet_appetite",
+    "com.voptrack.track.pet_reproductive",
+    "com.voptrack.track.pet_vet_visit",
+    "com.voptrack.track.project_work_session",
+    "com.voptrack.track.event",
+    "com.voptrack.track.note"
+  ],
+  "vectors" : [
+    {
+      "path" : "vectors/com.voptrack.track.running.json",
+      "sha256" : "d39f0f1cab443c601a44672ee738daa3ae564f55921219a92a309dfda6a01da5",
+      "typeID" : "com.voptrack.track.running"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.distance.json",
+      "sha256" : "b0f232f26c5589d7a99d940e2adfc036b8235b56c7b78d8d954775d5d8642e12",
+      "typeID" : "com.voptrack.track.distance"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.gps_position.json",
+      "sha256" : "f76cf4f663bd9b65a0ab886d727bcfa281deaa0701f0d6a0ea7b7e1b9ae4708c",
+      "typeID" : "com.voptrack.track.gps_position"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.step_total.json",
+      "sha256" : "de1d477602d2e6fe9e1b6aad6f98a6a29d9f2aeb03b64bd9cc231dc713e82dce",
+      "typeID" : "com.voptrack.track.step_total"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.step_counter.json",
+      "sha256" : "de1d477602d2e6fe9e1b6aad6f98a6a29d9f2aeb03b64bd9cc231dc713e82dce",
+      "typeID" : "com.voptrack.track.step_counter"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.walking.json",
+      "sha256" : "d39f0f1cab443c601a44672ee738daa3ae564f55921219a92a309dfda6a01da5",
+      "typeID" : "com.voptrack.track.walking"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.cycling.json",
+      "sha256" : "d39f0f1cab443c601a44672ee738daa3ae564f55921219a92a309dfda6a01da5",
+      "typeID" : "com.voptrack.track.cycling"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.workout_session.json",
+      "sha256" : "383c342aa8f0dea8c94d5efddb8e096d9b0c0431f4b1378ccd48bdca38ed13e9",
+      "typeID" : "com.voptrack.track.workout_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.swimming.json",
+      "sha256" : "932684a0c08683363dac960c139f8475d3e2ed5cba26b6abfc31abf503fd7285",
+      "typeID" : "com.voptrack.track.swimming"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.hiking.json",
+      "sha256" : "5928021a0d9562107f6ca95f347942ce69e8687467fb02789778573d0fe1380a",
+      "typeID" : "com.voptrack.track.hiking"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.rowing.json",
+      "sha256" : "6852fb000502d20c37825bb70ffe0dbc0397051b72c52747b2e47bb0de5556ce",
+      "typeID" : "com.voptrack.track.rowing"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.mobility_session.json",
+      "sha256" : "50d1a38502aadc0c35e48ae7eefcf1e48705fd6892eb702bfccfd90b2585478a",
+      "typeID" : "com.voptrack.track.mobility_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.mind_body_session.json",
+      "sha256" : "afbecba39f67e92d329ddf6512a813a01a2c24c155569b6e35926c9b0eb0d349",
+      "typeID" : "com.voptrack.track.mind_body_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.sport_session.json",
+      "sha256" : "156b411cd008f00fb181cae6daa5735e563bedf89a5054cf7797d4dd9dbbd280",
+      "typeID" : "com.voptrack.track.sport_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.workout_effort.json",
+      "sha256" : "df116dcca029e7764f8ed6dea9fa205f9c324e86345d36a01a07cd8e07897e14",
+      "typeID" : "com.voptrack.track.workout_effort"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.active_energy.json",
+      "sha256" : "ffca8cf7fbc93926ee8eb65c63179f3ccd7678c7db5a5bf5d97b29e530df07b3",
+      "typeID" : "com.voptrack.track.active_energy"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.expense.json",
+      "sha256" : "c6cd7579b32ca0ed971c29845350553c51e7c898ed5a21bd9b3a14fdd42b0e19",
+      "typeID" : "com.voptrack.track.expense"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.income.json",
+      "sha256" : "c6cd7579b32ca0ed971c29845350553c51e7c898ed5a21bd9b3a14fdd42b0e19",
+      "typeID" : "com.voptrack.track.income"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.balance.json",
+      "sha256" : "771c44a887037a773806c49433258a90cf19f53b1e34da9d6da0e869ef16b3d5",
+      "typeID" : "com.voptrack.track.balance"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.bill.json",
+      "sha256" : "9cd40e9322e43962eb91689e31ae5b4bda832deb770b76fec9c4ce388e81e63a",
+      "typeID" : "com.voptrack.track.bill"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.reimbursement_claim.json",
+      "sha256" : "8a905b16464c81dbd713cb0e6a502927695302ac05b0cb9884f6180bb270fe25",
+      "typeID" : "com.voptrack.track.reimbursement_claim"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.asset_value.json",
+      "sha256" : "61eae109d97a5ec4cbbff2463f92cf50f03305a1cb6805c7d598f307a05b1499",
+      "typeID" : "com.voptrack.track.asset_value"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.weight.json",
+      "sha256" : "24aa65abd64609fb78c27c265c76b2e71f4af83a59dcc712e6e35997073306e4",
+      "typeID" : "com.voptrack.track.weight"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.blood_pressure.json",
+      "sha256" : "8a3a67d976ae54e4b7f1e0940ec772850a7b74660be82010634197ac6aa33f88",
+      "typeID" : "com.voptrack.track.blood_pressure"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pulse.json",
+      "sha256" : "1a19650902740cf3059681cd61c898b0bcd73fd7831987b4e925da6b19e924d7",
+      "typeID" : "com.voptrack.track.pulse"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.sleep.json",
+      "sha256" : "c90ce22b94ecce1c8411a4abac8aca24caa9b359e18a3ab8105706a29abfd9b3",
+      "typeID" : "com.voptrack.track.sleep"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.check_in.json",
+      "sha256" : "483a3cde3d8ae47f288bb03f4deda6d8e79ef58f0365cbc194894b5374fcfc3a",
+      "typeID" : "com.voptrack.track.check_in"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.body_measurement.json",
+      "sha256" : "14417ebddf67a23971f5daed74c5b568d9304135b340dfe46e6c99ce887ce3e2",
+      "typeID" : "com.voptrack.track.body_measurement"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.wellbeing.json",
+      "sha256" : "77b2222bfaaefe3f79a4f0474f857917721d7b82db996ce6a7f9af764f5ba180",
+      "typeID" : "com.voptrack.track.wellbeing"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.condition_observation.json",
+      "sha256" : "e936bd4ebb85c27f47df7ec442fe19f83465a0332c88ff513e2dfdcdb581f421",
+      "typeID" : "com.voptrack.track.condition_observation"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.visit.json",
+      "sha256" : "36f7e036f2e199b8084c49dbe5c33d0adb457da81718ce326a1f3ded993837f9",
+      "typeID" : "com.voptrack.track.visit"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.meal.json",
+      "sha256" : "ea019dec0026c01e5e00cc0fe855bccc47d7756bf57481b88a2c393de1aeecbb",
+      "typeID" : "com.voptrack.track.meal"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.fluid_intake.json",
+      "sha256" : "9bb5c1b8c1e50230783090db61aa5336077dd64981b5ea246d3c65462ae3bc3e",
+      "typeID" : "com.voptrack.track.fluid_intake"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.medication_administration.json",
+      "sha256" : "8a8f7212f42db44ac31a40889ea366f824921a1e43540d3e95db3ddcf8cc73e2",
+      "typeID" : "com.voptrack.track.medication_administration"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.lab_result.json",
+      "sha256" : "ef7d2bd853b18ad2d47c124bb0d16765dde981ecf6b64c0ba2418620ca1610d0",
+      "typeID" : "com.voptrack.track.lab_result"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.symptom_episode.json",
+      "sha256" : "415222e44b7619dcb9685be2f83734e857a33ea1d07d28205c03aaed13e7a674",
+      "typeID" : "com.voptrack.track.symptom_episode"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pain_observation.json",
+      "sha256" : "95ee1f21b20cbb65c9a96d5262670895f5c3cfb66749423ab82ece880aa6f9e4",
+      "typeID" : "com.voptrack.track.pain_observation"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.temperature.json",
+      "sha256" : "6bb0f2866f331e03120176cf1625fd4816d245d8c21f808f60f1b0e92dd713b2",
+      "typeID" : "com.voptrack.track.temperature"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.blood_glucose.json",
+      "sha256" : "66cd5b695cd7f09f8184993a283fc55a8d05aae6dc8a60b891c1794286204f01",
+      "typeID" : "com.voptrack.track.blood_glucose"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.cycle_observation.json",
+      "sha256" : "4669d0d4be8e35f7a3536536062e6e5b3deac4a74b61dae2f29ab90fc49c5f11",
+      "typeID" : "com.voptrack.track.cycle_observation"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.vaccination.json",
+      "sha256" : "478a82f6f0f48bd97527ce59424556a8e653b9033428741fc73e00adfb51fcc9",
+      "typeID" : "com.voptrack.track.vaccination"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.allergy_reaction.json",
+      "sha256" : "9c0f8f0e8bd34500efd02754315c696b78bda851bf488e08f305d11d9e397d7e",
+      "typeID" : "com.voptrack.track.allergy_reaction"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.oxygen_saturation.json",
+      "sha256" : "6dd37cd418a6f673749a12724292f9aaf7c8ffd9b0a6100dd1434356ba92c514",
+      "typeID" : "com.voptrack.track.oxygen_saturation"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.bowel_observation.json",
+      "sha256" : "55028df64d8db7e39f73219216d89d779b23c082b529f067e27205f8173f07dd",
+      "typeID" : "com.voptrack.track.bowel_observation"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.respiratory_rate.json",
+      "sha256" : "fdf253b4e901af09c9b326f7ed3f6b426731ca91981d1846cc64d7de79aa5a43",
+      "typeID" : "com.voptrack.track.respiratory_rate"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.peak_expiratory_flow.json",
+      "sha256" : "799a670b1c1b237ef2327dc32b52b7976d63e042a64b862f927de4bfe45b5274",
+      "typeID" : "com.voptrack.track.peak_expiratory_flow"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.height.json",
+      "sha256" : "e341e32538183064d0a721927b7cc07b485a49da22d149c21688f1a6bd2d6d85",
+      "typeID" : "com.voptrack.track.height"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.body_composition.json",
+      "sha256" : "ce975cab3ad8c652eae2a23f3e145afb7cd26897d50e565e32b802ee0570fdea",
+      "typeID" : "com.voptrack.track.body_composition"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.meter_reading.json",
+      "sha256" : "65451ee333abcb6b9214eeeb093a667f6f96b8a0667b08364305b64e31a84664",
+      "typeID" : "com.voptrack.track.meter_reading"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.inventory_level.json",
+      "sha256" : "765a7cc363ee798ee03a6391492d8375b7f75f94997bb927992b004c25bc323b",
+      "typeID" : "com.voptrack.track.inventory_level"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.maintenance_event.json",
+      "sha256" : "36f7e036f2e199b8084c49dbe5c33d0adb457da81718ce326a1f3ded993837f9",
+      "typeID" : "com.voptrack.track.maintenance_event"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.inventory_adjustment.json",
+      "sha256" : "0e93ea427032c660588be7db898e7919c5bde12dc661823d51b7931f1c99366a",
+      "typeID" : "com.voptrack.track.inventory_adjustment"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.chore_completion.json",
+      "sha256" : "d13c0c7594d30ddece2187096d6298491ff27a41a43f49e57d4e2c5681c11e39",
+      "typeID" : "com.voptrack.track.chore_completion"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.electricity_meter_reading.json",
+      "sha256" : "5f1e42011e01105b9012d09101ea2a3b17020f9cf6aedf81077af4ea8940072c",
+      "typeID" : "com.voptrack.track.electricity_meter_reading"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.water_meter_reading.json",
+      "sha256" : "7e8f746cc3a64adedb0068a0977b6dfa0c0fb9ba78dde578e2af285049710e88",
+      "typeID" : "com.voptrack.track.water_meter_reading"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.gas_meter_reading.json",
+      "sha256" : "1722ec1bf2ed90195f8a4b3e6c2443337c20106aeb5ac462e6274a3bf3a1a64c",
+      "typeID" : "com.voptrack.track.gas_meter_reading"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.refuelling_session.json",
+      "sha256" : "9c5d69e87bd9db3e4c039a7786ec17d44c3341c3ba86e34b6595f3a8e67cae3d",
+      "typeID" : "com.voptrack.track.refuelling_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.odometer_reading.json",
+      "sha256" : "c3d23e174518b8f5d85650503610130aaf9b5c1ed0403fb1cbd95161703291e7",
+      "typeID" : "com.voptrack.track.odometer_reading"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.learning_session.json",
+      "sha256" : "518e915f45dcd1a3b9f09aa2cb79b23cd5fc20eaf32a04b592242f497efd7005",
+      "typeID" : "com.voptrack.track.learning_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.reading_progress.json",
+      "sha256" : "79e3700bc5aac88b9a2b95e8a505b29eacc9422e241ba4a21dfee7214579d990",
+      "typeID" : "com.voptrack.track.reading_progress"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_activity.json",
+      "sha256" : "27d23d429f435e7cca0e30cbd2ff36e5c27887248c6480db4e46c6f69861fe7a",
+      "typeID" : "com.voptrack.track.pet_activity"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_feeding.json",
+      "sha256" : "e03e9544d9dc0dd95f6adf10fb47a3d20f783eb4f8e2302e13e2e2e18c4cbdb1",
+      "typeID" : "com.voptrack.track.pet_feeding"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_toileting.json",
+      "sha256" : "efc887c8bf0c2daf40e9e8b42cb269ff2747f980adb290ba1c70345bf03702e8",
+      "typeID" : "com.voptrack.track.pet_toileting"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_grooming.json",
+      "sha256" : "e4961abf3b9a5814260213879f8fbab28c6f9c0b57ff76bc0c7d70e162aeea95",
+      "typeID" : "com.voptrack.track.pet_grooming"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_training.json",
+      "sha256" : "2fdcb6d30cb411d97e7b71b62f7abb9f26af1693de12408dfced4141e9e362b1",
+      "typeID" : "com.voptrack.track.pet_training"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_behaviour.json",
+      "sha256" : "5f61a244e47a336e61bfc4a305ed05a70448774363c536cdab347e7649143829",
+      "typeID" : "com.voptrack.track.pet_behaviour"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_appetite.json",
+      "sha256" : "d9a296f26ae1707d0669d1e6cb5f466198ce4e736410ffcdee344fe68d93d191",
+      "typeID" : "com.voptrack.track.pet_appetite"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_reproductive.json",
+      "sha256" : "a4df84e9da33f86fc1ab86efb805fd8324fa98b4c4529c0145611abadd93b2c6",
+      "typeID" : "com.voptrack.track.pet_reproductive"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.pet_vet_visit.json",
+      "sha256" : "6b3be61a61643910ff117ddb85c0c7b2799abd71fb6726dce2129d4a8bb8fa94",
+      "typeID" : "com.voptrack.track.pet_vet_visit"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.project_work_session.json",
+      "sha256" : "36f7e036f2e199b8084c49dbe5c33d0adb457da81718ce326a1f3ded993837f9",
+      "typeID" : "com.voptrack.track.project_work_session"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.event.json",
+      "sha256" : "c27464f5cd21a154419e535d1464a795e5157c3a3abf2dad7c7748d7af037974",
+      "typeID" : "com.voptrack.track.event"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.note.json",
+      "sha256" : "6ab5daff5f74ca794d144f4ef412a3baed7de277db72d4d0d1131aebd9300b08",
+      "typeID" : "com.voptrack.track.note"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.exercise_set.json",
+      "sha256" : "b0a27de227036181aebee626b5963dcd767e900d9407fb73945b1e777ea58700",
+      "typeID" : "com.voptrack.track.exercise_set"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.run_split.json",
+      "sha256" : "ba222a437420cb61d44dfb0001543d294003bfdf4afa06c0e8d9407a434b97e8",
+      "typeID" : "com.voptrack.track.run_split"
+    },
+    {
+      "path" : "vectors/com.voptrack.track.activity_segment.json",
+      "sha256" : "f026dc0d75f41095de6167ee29306de92a00abbb628fd5f648c7a4eef3d32ef3",
+      "typeID" : "com.voptrack.track.activity_segment"
+    }
+  ]
+}

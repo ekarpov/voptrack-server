@@ -1,0 +1,869 @@
+{
+  "catalogueVersion" : 2,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.name"
+        }
+      },
+      "id" : "name",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : true
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.energy"
+        }
+      },
+      "id" : "energy",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "energy",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "kcal",
+              "fieldID" : "energyUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "kJ",
+                "kcal"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "kJ"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 4.1840000000000002
+            },
+            "id" : "kcal"
+          }
+        ],
+        "canonicalUnit" : "kJ",
+        "defaultUnit" : "kcal",
+        "dimension" : "energy",
+        "unitField" : "energyUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "kJ",
+              "kcal"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.energyUnit"
+        }
+      },
+      "id" : "energyUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.protein"
+        }
+      },
+      "id" : "protein",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "mass",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "g",
+              "fieldID" : "nutrientMassUnit",
+              "sharing" : "uniform"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "g",
+                "mg"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "g" : 0,
+              "mg" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.001
+            },
+            "id" : "g"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 9.9999999999999995e-07
+            },
+            "id" : "mg"
+          }
+        ],
+        "canonicalUnit" : "kg",
+        "defaultUnit" : "g",
+        "dimension" : "mass",
+        "unitField" : "nutrientMassUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "g",
+              "mg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.carbohydrate"
+        }
+      },
+      "id" : "carbohydrate",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "mass",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "g",
+              "fieldID" : "nutrientMassUnit",
+              "sharing" : "uniform"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "g",
+                "mg"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "g" : 0,
+              "mg" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.001
+            },
+            "id" : "g"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 9.9999999999999995e-07
+            },
+            "id" : "mg"
+          }
+        ],
+        "canonicalUnit" : "kg",
+        "defaultUnit" : "g",
+        "dimension" : "mass",
+        "unitField" : "nutrientMassUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "g",
+              "mg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.fat"
+        }
+      },
+      "id" : "fat",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "mass",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "g",
+              "fieldID" : "nutrientMassUnit",
+              "sharing" : "uniform"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "g",
+                "mg"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "g" : 0,
+              "mg" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.001
+            },
+            "id" : "g"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 9.9999999999999995e-07
+            },
+            "id" : "mg"
+          }
+        ],
+        "canonicalUnit" : "kg",
+        "defaultUnit" : "g",
+        "dimension" : "mass",
+        "unitField" : "nutrientMassUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "g",
+              "mg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.meal.field.nutrientMassUnit"
+        }
+      },
+      "id" : "nutrientMassUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.meal",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.meal",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"name\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.name\",\"type\":\"text\"},{\"id\":\"energy\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.energy\",\"type\":\"float\"},{\"id\":\"energyUnit\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.energyUnit\",\"type\":\"text\"},{\"id\":\"protein\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.protein\",\"type\":\"float\"},{\"id\":\"carbohydrate\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.carbohydrate\",\"type\":\"float\"},{\"id\":\"fat\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.fat\",\"type\":\"float\"},{\"id\":\"nutrientMassUnit\",\"meta_id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal.field.nutrientMassUnit\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.meal\",\"name\":\"model.health.meal\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "name",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.name",
+          "type" : "text"
+        },
+        {
+          "id" : "energy",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.energy",
+          "type" : "float"
+        },
+        {
+          "id" : "energyUnit",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.energyUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "protein",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.protein",
+          "type" : "float"
+        },
+        {
+          "id" : "carbohydrate",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.carbohydrate",
+          "type" : "float"
+        },
+        {
+          "id" : "fat",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.fat",
+          "type" : "float"
+        },
+        {
+          "id" : "nutrientMassUnit",
+          "meta_id" : "com.voptrack.track.meal",
+          "name" : "model.health.meal.field.nutrientMassUnit",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.meal",
+      "name" : "model.health.meal",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.health.meal"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "meal.dailyCount",
+        "label" : {
+          "bundled" : {
+            "key" : "model.health.metric.dailyMeals"
+          }
+        },
+        "operation" : {
+          "count" : {
+
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "day"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R2"
+      ],
+      "appearance" : {
+        "color" : "health.meal",
+        "symbol" : "fork.knife"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.pulse",
+          "symbol" : "heart.fill"
+        },
+        "id" : "com.voptrack.category.health",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.health"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "meal.dailyCount",
+          "label" : {
+            "bundled" : {
+              "key" : "model.health.metric.dailyMeals"
+            }
+          },
+          "operation" : {
+            "count" : {
+
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "day"
+            }
+          }
+        }
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar",
+      "spans" : [
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          },
+          "span" : "week"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          },
+          "span" : "month"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "year"
+            }
+          },
+          "span" : "year"
+        },
+        {
+          "policy" : {
+            "allHistory" : {
+
+            }
+          },
+          "span" : "all"
+        }
+      ]
+    },
+    "reads" : "count",
+    "readsAsLevel" : false,
+    "readsReason" : null,
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "name",
+      "energy",
+      "energyUnit",
+      "protein",
+      "carbohydrate",
+      "fat",
+      "nutrientMassUnit"
+    ]
+  }
+}

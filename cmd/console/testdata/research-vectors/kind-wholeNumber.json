@@ -1,0 +1,26 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "kind" : "wholeNumber",
+        "name" : "Value"
+      }
+    ],
+    "name" : "wholeNumber",
+    "typeID" : "study.s2027_vectors.wholenumber"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "meta_id" : "study.s2027_vectors.wholenumber",
+        "name" : "Value",
+        "type" : "integer"
+      }
+    ],
+    "id" : "study.s2027_vectors.wholenumber",
+    "name" : "wholeNumber",
+    "parent_id" : "com.voptrack.track"
+  }
+}

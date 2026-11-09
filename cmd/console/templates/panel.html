@@ -1,0 +1,71 @@
+{{define "page_title"}}{{localizeName .Data.Type.Name .T}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<p><a href="{{$d.Back}}">← {{call .T "back"}}</a></p>
+<h1>{{localizeName $d.Type.Name .T}}</h1><p class="filter-context">{{if eq $d.Scope "home"}}Household shared data{{else if eq $d.Scope "mine"}}Data connected to your sign-in{{end}}</p>
+{{if $d.StudyTitle}}<p>{{call .T "study_dashboard"}}: {{$d.StudyTitle}}</p>{{end}}
+{{if $d.Result.Research}}<p><a href="/studies/{{slice $d.Scope 6}}/policy">{{call .T "policy_title"}}</a></p><p class="muted">{{call .T "policy_limits"}}</p>
+{{if eq $d.Spec.Group "cohort"}}<p>{{call .T "policy_cohort"}}</p>{{end}}
+{{if eq $d.Result.Status "unavailable"}}<p><a href="{{$d.CSV | printf "%s"}}">{{call .T "export_csv"}}</a> · <a href="/studies/{{slice $d.Scope 6}}/dashboard">{{call .T "policy_retry"}}</a></p>{{end}}
+{{if ne $d.Result.Status "released"}}<p class="notice" data-release="{{$d.Result.Status}}">{{call .T (printf "policy_result_%s" $d.Result.Status)}} {{if $d.Result.K}}(K = {{$d.Result.K}}){{end}}</p>{{end}}{{end}}
+{{if $d.Result.Unsupported}}<p class="notice" role="status">This question cannot safely combine these values. Open Track history to view them in their currency or unit, or use a record-count chart here.</p><p><a class="button" href="/tracks?scope={{$d.Scope}}&amp;type={{$d.Type.ID}}&amp;period=month">Open Track history</a></p>{{end}}
+<details class="panel-options"><summary>Customize chart</summary>
+<form class="spec" method="get" action="/panel">
+  <input type="hidden" name="scope" value="{{$d.Scope}}">
+  <input type="hidden" name="type" value="{{$d.Type.ID}}">
+  {{if $d.StudyTitle}}<input type="hidden" name="date" value="{{$d.Spec.Date}}">{{end}}
+  <label>{{call .T "field"}}
+    <select name="field">
+      <option value="" {{if eq $d.Spec.Field ""}}selected{{end}}>{{call .T "records_only"}}</option>
+      {{if or $.Research $d.NumericAllowed}}{{range $d.Type.Numeric}}<option value="{{.ID}}" {{if eq .ID $d.Spec.Field}}selected{{end}}>{{if .Name}}{{localizeName .Name $.T}}{{else}}{{.ID}}{{end}}</option>{{end}}{{end}}
+    </select></label>
+  <label>{{call .T "measure"}}
+    <select name="measure">
+      {{range $d.Measures}}<option value="{{.}}" {{if eq . (printf "%s" $d.Spec.Measure)}}selected{{end}}>{{call $.T (printf "m_%s" .)}}</option>{{end}}
+    </select></label>
+  <label>{{call .T "group"}}
+    <select name="group">
+      <option value="store" {{if eq $d.Spec.Group "store"}}selected{{end}}>{{call .T "g_store"}}</option>
+      {{if hasPrefix $d.Scope "study:"}}<option value="cohort" {{if eq $d.Spec.Group "cohort"}}selected{{end}}>{{call .T "g_cohort"}}</option>{{end}}
+      {{if $d.Type.Dates}}<option value="period" {{if eq $d.Spec.Group "period"}}selected{{end}}>{{call .T "g_period"}}</option>{{end}}
+      {{if $d.Spec.Field}}<option value="spread" {{if eq $d.Spec.Group "spread"}}selected{{end}}>{{call .T "g_spread"}}</option>{{end}}
+      {{range $d.Type.Groups}}<option value="field:{{.ID}}" {{if eq (printf "field:%s" .ID) $d.Spec.Group}}selected{{end}}>{{if .Name}}{{localizeName .Name $.T}}{{else}}{{.ID}}{{end}}</option>{{end}}
+      <option value="none" {{if eq $d.Spec.Group "none"}}selected{{end}}>{{call .T "g_none"}}</option>
+    </select></label>
+  <label>{{call .T "period"}}
+    <select name="period">
+      <option value="day" {{if eq $d.Spec.Period "day"}}selected{{end}}>{{call .T "p_day"}}</option>
+      <option value="week" {{if eq $d.Spec.Period "week"}}selected{{end}}>{{call .T "p_week"}}</option>
+      <option value="month" {{if eq $d.Spec.Period "month"}}selected{{end}}>{{call .T "p_month"}}</option>
+    </select></label>
+  <label>{{call .T "from"}} <input type="date" name="from" value="{{$d.FromText}}"></label>
+  <label>{{call .T "to"}} <input type="date" name="to" value="{{$d.ToText}}"></label>
+  <label>{{call .T "timezone"}} <input name="tz" value="{{$d.TZ}}" size="16"></label>
+  <button class="button">{{call .T "show"}}</button>
+</form></details>
+<p class="panel-caption">{{localizeName $d.Type.Name .T}} · {{call .T (printf "m_%s" $d.Spec.Measure)}}{{if $d.Spec.Field}} · {{range $d.Type.Numeric}}{{if eq .ID $d.Spec.Field}}{{localizeName .Name $.T}}{{end}}{{end}}{{end}}</p>
+{{if $d.Result.Skipped}}<p class="notice">{{call .T "skipped"}} {{range $d.Result.Skipped}}<span class="chip">{{.}}</span>{{end}}</p>{{end}}
+{{if $d.Result.Truncated}}<p class="notice">{{call .T "truncated"}}</p>{{end}}
+{{if $d.Rows}}
+  {{if $d.Chart.TooMany}}<p class="muted" data-too-many>{{call $.T "chart_too_many"}}</p>{{else if not $d.Chart.Empty}}<div class="panel-visualization"><div class="home-chart-wide">{{template "chart" $d.Chart}}</div><div class="home-chart-small">{{template "chart" $d.CompactChart}}</div></div>{{end}}
+  <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "records"}}">
+<table class="data">
+    <thead><tr><th scope="col">{{call .T "group"}}</th><th scope="col">{{call .T (printf "m_%s" $d.Spec.Measure)}}</th>{{if not $d.Result.Research}}<th scope="col">{{call .T "records"}}</th>{{end}}</tr></thead>
+    <tbody>{{range $d.Rows}}<tr><td>{{if .Label}}{{.Label}}{{else if and .Status (ne .Status "released")}}—{{else}}{{call $.T "total"}}{{end}}</td>{{if and .Status (ne .Status "released")}}<td class="num">{{call $.T (printf "policy_cell_%s" .Status)}}</td>{{else}}<td class="num" data-value>{{.Value}}</td>{{end}}{{if not $d.Result.Research}}<td class="num">{{.Count}}</td>{{end}}</tr>{{end}}</tbody>
+  </table>
+</div>
+  <p><a class="button" href="{{$d.CSV}}">{{call .T "export_csv"}}</a></p>
+  {{if $d.SavedError}}<p class="notice" role="alert">{{call .T "dashboard_load_failed"}}</p>{{end}}
+  {{if $d.CanSave}}
+  <form class="spec" method="post" action="/dashboards/add">
+    <input type="hidden" name="csrf" value="{{.CSRF}}">
+    <input type="hidden" name="panel" value="{{$d.Query}}">
+    <label>{{call .T "add_to_dashboard"}}
+      <input name="name" list="dashboards" maxlength="80" required placeholder="{{call .T "dashboard_name"}}">
+      <datalist id="dashboards">{{range $d.Saved}}<option value="{{.Name}}">{{end}}</datalist>
+    </label>
+    <button class="button">{{call .T "save"}}</button>
+  </form>
+  {{end}}
+{{else}}{{if not $d.Result.Unsupported}}<p class="muted">{{call .T "no_data"}}</p>{{end}}{{end}}
+{{end}}

@@ -1,0 +1,88 @@
+{
+  "catalog": "voptrack.bundled_tracks",
+  "version": 1,
+  "status": "sketch — shape only. Not generated from BundledTrackCatalog yet; type and field ids below are illustrative.",
+  "vocabulary": "voptrack-vocabulary-v1.json",
+
+  "notes": {
+    "identical_across_platforms": "type ids, field ids, field storage types, roles and annotations. These are written into datasets, so iOS and Android differing here means one user ends up with two incompatible types for the same concept.",
+    "localized_per_platform": "name and field names are localization keys, resolved by each platform from its own catalogue.",
+    "not_carried": "platform assets. An SF Symbol name means nothing on Android, so this file carries a neutral icon name and each platform maps it.",
+    "evolution": "additive only. A field's meaning is never changed in place; add a field with the new annotation and mark the old one deprecated, so records written under the old meaning keep it."
+  },
+
+  "types": [
+    {
+      "id": "com.voptrack.observation",
+      "parent": null,
+      "name_key": "track.observation",
+      "roles": ["track"],
+      "abstract": true,
+      "fields": [
+        { "id": "recorded_at", "storage_type": "date_time", "name_key": "track.field.recordedAt",
+          "roles": ["timestamp"] },
+        { "id": "subject", "storage_type": "reference", "name_key": "track.field.subject",
+          "roles": ["subject"] },
+        { "id": "source", "storage_type": "text", "name_key": "track.field.source",
+          "roles": ["source"] }
+      ]
+    },
+
+    {
+      "id": "com.voptrack.observation.weight",
+      "parent": "com.voptrack.observation",
+      "name_key": "track.weight",
+      "roles": ["track"],
+      "category": "health",
+      "icon": "scale",
+      "fields": [
+        { "id": "weight", "storage_type": "float", "name_key": "track.weight.field.value",
+          "roles": ["value"],
+          "annotations": {
+            "dimension": "mass",
+            "meaning": "sample",
+            "unit_source": "record",
+            "unit_field": "unit",
+            "allowed_units": ["kg", "lb", "g"]
+          } },
+        { "id": "unit", "storage_type": "text", "name_key": "track.weight.field.unit",
+          "roles": ["unit"] }
+      ]
+    },
+
+    {
+      "id": "com.voptrack.observation.blood_pressure",
+      "parent": "com.voptrack.observation",
+      "name_key": "track.bloodPressure",
+      "roles": ["track"],
+      "category": "health",
+      "icon": "heart",
+      "fields": [
+        { "id": "systolic", "storage_type": "float", "name_key": "track.bloodPressure.field.systolic",
+          "roles": ["value"],
+          "annotations": { "dimension": "pressure", "meaning": "sample",
+                           "unit_source": "record", "unit_field": "unit",
+                           "allowed_units": ["mmHg", "kPa"] } },
+        { "id": "diastolic", "storage_type": "float", "name_key": "track.bloodPressure.field.diastolic",
+          "roles": ["value"],
+          "annotations": { "dimension": "pressure", "meaning": "sample",
+                           "unit_source": "record", "unit_field": "unit",
+                           "allowed_units": ["mmHg", "kPa"] } },
+        { "id": "unit", "storage_type": "text", "name_key": "track.bloodPressure.field.unit",
+          "roles": ["unit"],
+          "annotations": { "unit_sharing": "uniform" } },
+        { "id": "pulse", "storage_type": "float", "name_key": "track.bloodPressure.field.pulse",
+          "roles": ["value"],
+          "annotations": { "dimension": "frequency", "meaning": "sample",
+                           "unit_source": "fixed", "unit": "bpm" } }
+      ]
+    }
+  ],
+
+  "open": [
+    "Constraints — numeric ranges, required fields — are app-side validation today. They are identical across platforms and arguably belong here.",
+    "Whether `abstract` is a real concept or just a type nobody offers in the library.",
+    "How a platform reports that it shipped an older catalog version than the one that created a type in a dataset.",
+    "Whether allowed_units belongs here or in the vocabulary — it is a product choice about a track, not a fact about units. Neither it nor unit_sharing is registered in the vocabulary's annotation_keys, so check-tracks.py reports both until that is settled."
+  ]
+}

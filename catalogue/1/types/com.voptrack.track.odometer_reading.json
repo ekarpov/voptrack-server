@@ -1,0 +1,765 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.mode"
+        }
+      },
+      "id" : "mode",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "distance"
+            },
+            {
+              "type" : "text",
+              "value" : "hours"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "distance" : {
+              "bundled" : {
+                "key" : "model.household.option.distance"
+              }
+            },
+            "hours" : {
+              "bundled" : {
+                "key" : "model.household.option.hours"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.meterID"
+        }
+      },
+      "id" : "meterID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.epochID"
+        }
+      },
+      "id" : "epochID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.meterEpochID"
+        }
+      },
+      "id" : "meterEpochID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.distance"
+        }
+      },
+      "id" : "distance",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "meterEpochID"
+        },
+        "collectionMeaning" : "counter",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "length",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "km",
+              "fieldID" : "distanceUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : true,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "m",
+                "km",
+                "mi"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "m"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1000
+            },
+            "id" : "km"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1609.3440000000001
+            },
+            "id" : "mi"
+          }
+        ],
+        "canonicalUnit" : "m",
+        "defaultUnit" : "km",
+        "dimension" : "length",
+        "unitField" : "distanceUnit",
+        "usesRegionalDefault" : true,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "m",
+              "km",
+              "mi"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.distanceUnit"
+        }
+      },
+      "id" : "distanceUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.hours"
+        }
+      },
+      "id" : "hours",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "meterEpochID"
+        },
+        "collectionMeaning" : "counter",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "time",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "h",
+              "fieldID" : "hoursUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "h",
+                "s"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "h" : 1,
+              "s" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 3600
+            },
+            "id" : "h"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "s"
+          }
+        ],
+        "canonicalUnit" : "s",
+        "defaultUnit" : "h",
+        "dimension" : "time",
+        "unitField" : "hoursUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "h",
+              "s"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.odometerReading.field.hoursUnit"
+        }
+      },
+      "id" : "hoursUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.odometer_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.odometer_reading",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"mode\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.mode\",\"type\":\"text\"},{\"id\":\"meterID\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.meterID\",\"type\":\"text\"},{\"id\":\"epochID\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.epochID\",\"type\":\"text\"},{\"id\":\"meterEpochID\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.meterEpochID\",\"type\":\"text\"},{\"id\":\"distance\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.distance\",\"type\":\"float\"},{\"id\":\"distanceUnit\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.distanceUnit\",\"type\":\"text\"},{\"id\":\"hours\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.hours\",\"type\":\"float\"},{\"id\":\"hoursUnit\",\"meta_id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading.field.hoursUnit\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.odometer_reading\",\"name\":\"model.household.odometerReading\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "mode",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.mode",
+          "type" : "text"
+        },
+        {
+          "id" : "meterID",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.meterID",
+          "type" : "text"
+        },
+        {
+          "id" : "epochID",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.epochID",
+          "type" : "text"
+        },
+        {
+          "id" : "meterEpochID",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.meterEpochID",
+          "type" : "text"
+        },
+        {
+          "id" : "distance",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.distance",
+          "type" : "float"
+        },
+        {
+          "id" : "distanceUnit",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.distanceUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "hours",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.hours",
+          "type" : "float"
+        },
+        {
+          "id" : "hoursUnit",
+          "meta_id" : "com.voptrack.track.odometer_reading",
+          "name" : "model.household.odometerReading.field.hoursUnit",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.odometer_reading",
+      "name" : "model.household.odometerReading",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.household.odometerReading"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : "meterUse",
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "household.odometer",
+        "symbol" : "speedometer"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "household.maintenance",
+          "symbol" : "house.fill"
+        },
+        "id" : "com.voptrack.category.household",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.household"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ],
+        "sum" : "meterUse"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+        {
+          "presence" : {
+            "_0" : "exactlyOne",
+            "fields" : [
+              "distance",
+              "hours"
+            ]
+          }
+        }
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+      {
+        "category" : "thing",
+        "kindText" : "car",
+        "position" : 1
+      },
+      {
+        "category" : "thing",
+        "kindText" : "motorbike",
+        "position" : 1
+      },
+      {
+        "category" : "thing",
+        "kindText" : "boat",
+        "position" : 1
+      }
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "mode",
+      "meterID",
+      "epochID",
+      "meterEpochID",
+      "distance",
+      "distanceUnit",
+      "hours",
+      "hoursUnit"
+    ]
+  }
+}

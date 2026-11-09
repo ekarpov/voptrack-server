@@ -1,0 +1,538 @@
+{
+  "catalogueVersion" : 2,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.height.field.value"
+        }
+      },
+      "id" : "value",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.height",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "methodID",
+          "discriminatorMeaning" : "qualifier",
+          "observationContinuity" : "continuous"
+        },
+        "collectionMeaning" : "sample",
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : false,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "length",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "cm",
+              "fieldID" : "unit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : true,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "cm",
+                "in"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.01
+            },
+            "id" : "cm"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.025399999999999999
+            },
+            "id" : "in"
+          }
+        ],
+        "canonicalUnit" : "m",
+        "defaultUnit" : "cm",
+        "dimension" : "length",
+        "unitField" : "unit",
+        "usesRegionalDefault" : true,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "cm",
+              "in"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.height.field.unit"
+        }
+      },
+      "id" : "unit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.height",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.height.field.methodID"
+        }
+      },
+      "id" : "methodID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.height",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.height",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"value\",\"meta_id\":\"com.voptrack.track.height\",\"name\":\"model.health.height.field.value\",\"type\":\"float\"},{\"id\":\"unit\",\"meta_id\":\"com.voptrack.track.height\",\"name\":\"model.health.height.field.unit\",\"type\":\"text\"},{\"id\":\"methodID\",\"meta_id\":\"com.voptrack.track.height\",\"name\":\"model.health.height.field.methodID\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.height\",\"name\":\"model.health.height\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "value",
+          "meta_id" : "com.voptrack.track.height",
+          "name" : "model.health.height.field.value",
+          "type" : "float"
+        },
+        {
+          "id" : "unit",
+          "meta_id" : "com.voptrack.track.height",
+          "name" : "model.health.height.field.unit",
+          "type" : "text"
+        },
+        {
+          "id" : "methodID",
+          "meta_id" : "com.voptrack.track.height",
+          "name" : "model.health.height.field.methodID",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.height",
+      "name" : "model.health.height",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.health.height"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "height.latest",
+        "label" : {
+          "bundled" : {
+            "key" : "model.health.metric.latestHeight"
+          }
+        },
+        "operation" : {
+          "numeric" : {
+            "_0" : "latest",
+            "fieldID" : "value"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R1"
+      ],
+      "appearance" : {
+        "color" : "health.height",
+        "symbol" : "ruler.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.pulse",
+          "symbol" : "heart.fill"
+        },
+        "id" : "com.voptrack.category.health",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.health"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "height.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.health.metric.latestHeight"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "latest",
+              "fieldID" : "value"
+            }
+          }
+        }
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ]
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar",
+      "spans" : [
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          },
+          "span" : "week"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          },
+          "span" : "month"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "year"
+            }
+          },
+          "span" : "year"
+        },
+        {
+          "policy" : {
+            "allHistory" : {
+
+            }
+          },
+          "span" : "all"
+        }
+      ]
+    },
+    "reads" : "latest",
+    "readsAsLevel" : true,
+    "readsReason" : null,
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "value",
+      "unit",
+      "methodID"
+    ]
+  }
+}

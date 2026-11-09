@@ -1,0 +1,418 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.further.inventoryAdjustment.field.quantity"
+        }
+      },
+      "id" : "quantity",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.inventory_adjustment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.further.inventoryAdjustment.field.reason"
+        }
+      },
+      "id" : "reason",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.inventory_adjustment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "multilineText",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.inventory_adjustment",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"quantity\",\"meta_id\":\"com.voptrack.track.inventory_adjustment\",\"name\":\"model.further.inventoryAdjustment.field.quantity\",\"type\":\"integer\"},{\"id\":\"reason\",\"meta_id\":\"com.voptrack.track.inventory_adjustment\",\"name\":\"model.further.inventoryAdjustment.field.reason\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.inventory_adjustment\",\"name\":\"model.further.inventoryAdjustment\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "quantity",
+          "meta_id" : "com.voptrack.track.inventory_adjustment",
+          "name" : "model.further.inventoryAdjustment.field.quantity",
+          "type" : "integer"
+        },
+        {
+          "id" : "reason",
+          "meta_id" : "com.voptrack.track.inventory_adjustment",
+          "name" : "model.further.inventoryAdjustment.field.reason",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.inventory_adjustment",
+      "name" : "model.further.inventoryAdjustment",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.further.inventoryAdjustment"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "adjustment.monthlyNet",
+        "label" : {
+          "bundled" : {
+            "key" : "model.further.metric.monthlyNetQuantity"
+          }
+        },
+        "operation" : {
+          "numeric" : {
+            "_0" : "sum",
+            "fieldID" : "quantity"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "month"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R2"
+      ],
+      "appearance" : {
+        "color" : "household.adjustment",
+        "symbol" : "plus.forwardslash.minus"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "household.maintenance",
+          "symbol" : "house.fill"
+        },
+        "id" : "com.voptrack.category.household",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.household"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "adjustment.monthlyNet",
+          "label" : {
+            "bundled" : {
+              "key" : "model.further.metric.monthlyNetQuantity"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "sum",
+              "fieldID" : "quantity"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          }
+        },
+        {
+          "id" : "adjustment.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.further.metric.latestAdjustment"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "latest",
+              "fieldID" : "quantity"
+            }
+          }
+        }
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "quantity",
+      "reason"
+    ]
+  }
+}

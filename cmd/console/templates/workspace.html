@@ -1,0 +1,11 @@
+{{define "page_title"}}{{.Data.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d:=.Data}}
+<section class="home-reading data-workspace">
+<header class="dashboard-heading"><div><h1>{{$d.Title}}</h1><p class="dashboard-subtitle">{{$d.Subtitle}}</p></div></header>
+<section class="connection-summary surface"><div><h2>Connected data</h2><p>These are the datasets this sign-in can access. Their ownership and sharing may differ.</p><div class="stores">{{range $d.Connected}}<span class="chip">{{.DisplayName}}</span>{{else}}<span>No connected datasets</span>{{end}}</div></div><form method="post" action="/connect"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">Connect data</button></form></section>
+{{if $d.Skipped}}<p class="notice" role="status">Some connected datasets could not be read. <a href="/mine">Try again</a>.</p>{{end}}
+<section class="surface"><div class="section-heading"><h2>Available Track types</h2><span>{{len $d.Tracks}} types</span></div><div class="track-directory">{{range $d.Tracks}}<a class="directory-row" href="{{.URL}}"><span><strong>{{.Name}}</strong><small>{{.Family}}</small></span><span>{{.Stores}} connected {{if eq .Stores 1}}dataset{{else}}datasets{{end}}</span><span aria-hidden="true">→</span></a>{{else}}<div class="dashboard-empty"><h2>No Tracks available</h2><p>Connect data above or add records through the Voptrack app.</p></div>{{end}}</div></section>
+<p class="dashboard-privacy">The household dashboard shows the Tracks shared with Home. My data uses the permissions granted to this sign-in.</p>
+</section>
+{{end}}

@@ -1,0 +1,26 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "kind" : "number",
+        "name" : "Value"
+      }
+    ],
+    "name" : "number",
+    "typeID" : "study.s2027_vectors.number"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "meta_id" : "study.s2027_vectors.number",
+        "name" : "Value",
+        "type" : "float"
+      }
+    ],
+    "id" : "study.s2027_vectors.number",
+    "name" : "number",
+    "parent_id" : "com.voptrack.track"
+  }
+}

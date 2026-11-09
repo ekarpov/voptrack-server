@@ -1,0 +1,26 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "kind" : "yesNo",
+        "name" : "Value"
+      }
+    ],
+    "name" : "yesNo",
+    "typeID" : "study.s2027_vectors.yesno"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "meta_id" : "study.s2027_vectors.yesno",
+        "name" : "Value",
+        "type" : "boolean"
+      }
+    ],
+    "id" : "study.s2027_vectors.yesno",
+    "name" : "yesNo",
+    "parent_id" : "com.voptrack.track"
+  }
+}

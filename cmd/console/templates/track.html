@@ -1,0 +1,27 @@
+{{define "page_title"}}{{.Data.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+{{$home := eq $d.Scope "home"}}
+<section class="track-workspace">
+<a class="track-back" href="{{$d.Back}}">← {{if .Research}}Back to dashboard{{else if eq $d.Scope "mine"}}My data{{else if $d.ContextName}}{{$d.ContextName}}{{else if $home}}Activity{{else}}Tracks{{end}}</a>
+<header class="track-title"><div><h1>{{$d.Title}}</h1>{{if $d.ContextName}}<p>{{$d.ContextName}} · Shared by {{$d.ContextMember}}</p>{{end}}{{if $d.ChartLabel}}<p>{{$d.ChartLabel}}</p>{{end}}</div>{{if .Research}}<a class="track-saved-link" href="{{$d.Advanced}}">Build a saved view →</a>{{end}}</header>
+{{if $d.ContextUnavailable}}<p class="notice" role="status">Related details are unavailable with your current access.</p>{{end}}
+{{if $d.Incomplete}}<p class="notice" role="status">Some records could not be read, or this view reached its reading limit. Values may be incomplete. Narrow the dates to see a complete view.</p>{{end}}
+{{template "track_controls" $d.Controls}}
+{{if $d.Series}}<nav class="track-series" aria-label="Values and units">{{range $d.Series}}<a href="{{.URL}}" {{if .Selected}}aria-current="page"{{end}}>{{.Name}}</a>{{end}}</nav>{{end}}
+<section class="track-summary surface" aria-label="{{if $home}}Recorded values{{else}}Track summary{{end}}">
+<div class="track-summary-heading"><div>{{if $d.Headline}}<strong class="track-summary-value">{{$d.Headline}}</strong>{{end}}<span class="track-range">{{$d.Controls.Range}}</span></div>{{if $d.Comparison}}<p>{{$d.Comparison}}</p>{{end}}</div>
+{{if not $d.Chart.Empty}}<div class="track-plot"><div class="track-chart-wide">{{template "chart" $d.Chart}}</div><div class="track-chart-small">{{template "chart" $d.CompactChart}}</div></div>{{else}}<p class="track-chart-empty">{{if $d.SummaryUnavailable}}{{if $home}}This activity has no supported summary. Its recorded entries are available below.{{else}}This Track has no supported summary yet. Its individual records are available below.{{end}}{{else}}No chart values for this selection.{{end}}</p>{{end}}
+<div class="track-chart-footer"><p>{{$d.Controls.ComparisonLabel}}</p>{{if $d.Rows}}<details class="track-data"><summary>Chart values</summary><div class="table-scroll" role="region" tabindex="0" aria-label="Chart values"><table class="data"><thead><tr><th scope="col">Period</th><th scope="col">Value</th></tr></thead><tbody>{{range $d.Rows}}<tr><th scope="row">{{if .URL}}<a href="{{.URL}}">{{.Label}}</a>{{else}}{{.Label}}{{end}}</th><td>{{.Value}}</td></tr>{{end}}</tbody></table></div></details>{{end}}</div>
+</section>
+<section class="track-history surface" aria-labelledby="records">
+<div class="track-history-heading"><h2 id="records">{{if $home}}Entries{{else}}Individual records{{end}}</h2><p role="status">{{$d.Count}}{{if $d.Selection}} · {{$d.Selection}} · <a href="{{$d.ClearBucket}}">Show whole period</a>{{end}}</p></div>
+{{if $d.Entries}}<p class="track-table-hint">Scroll for description and attachments →</p><div class="track-table-scroll" tabindex="0" role="region" aria-label="Scrollable record table"><table class="track-record-table"><thead><tr><th scope="col">Date</th><th scope="col">Member</th><th scope="col" class="track-value">Value</th><th scope="col">Description</th><th scope="col">Attachments</th><th scope="col"><span class="sr-only">Record details</span></th></tr></thead><tbody>
+{{range $d.Entries}}<tr><td class="track-date-cell"><a href="{{.URL}}">{{.When}}</a></td><td>{{.Member}}</td><td class="track-value">{{.Value}}</td><td class="track-description">{{.Detail}}</td><td>{{if .Badge}}<a class="track-attachment" href="{{.URL}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 12 6-6a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l8-8"/></svg>{{.Badge}}</a>{{else}}<span class="track-no-attachment" aria-label="No readable attachments">—</span>{{end}}</td><td><a class="track-record-open" href="{{.URL}}"><span class="sr-only">Details &amp; attachments: {{.When}} · {{.Member}} · {{.Summary}}</span><span aria-hidden="true">↗</span></a></td></tr>{{end}}
+</tbody></table></div>{{else}}<p class="track-no-records">{{if $d.Controls.Query}}No entries match this search in the selected period. Try another search or clear it above.{{else if $home}}No entries in this date range. Try another period or adjust the filters.{{else}}No readable records in this date range. Try another period or adjust the filters.{{end}}</p>{{end}}
+<nav class="track-pagination" aria-label="Record pages">{{if $d.Previous}}<a href="{{$d.Previous}}">← Previous records</a>{{end}}{{if $d.Next}}<a href="{{$d.Next}}">Next records →</a>{{end}}</nav>
+</section>
+</section>
+{{end}}
+
+{{define "track_controls"}}{{template "selection_controls" .}}{{end}}

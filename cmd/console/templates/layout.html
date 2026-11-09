@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="{{.Lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f7f9">
+<title>{{block "page_title" .}}{{call .T "title"}}{{end}}</title>
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon-180.png">
+<link rel="stylesheet" href="/static/console.css">
+</head>
+<body class="{{if .SignedIn}}app-shell{{else}}public-shell{{end}}{{if .SignedIn}} home-product{{if .Research}} research-product{{end}}{{end}}">
+<a class="skip-link" href="#main">{{call .T "skip_content"}}</a>
+{{if .SignedIn}}
+<aside class="sidebar">
+ <a class="brand" href="/"><picture class="product-mark"><source media="(prefers-color-scheme: dark)" srcset="/static/brand-mark-dark.svg"><img src="/static/brand-mark-light.svg" width="36" height="36" alt=""></picture>Voptrack</a>
+ {{if .Research}}<div class="workspace-name">Research{{if .ServerName}}<strong>{{.ServerName}}</strong>{{end}}</div>{{end}}
+ <nav class="desktop-nav" aria-label="{{call .T "navigation"}}">{{template "navigation_links" .}}</nav>
+ <div class="sidebar-foot">{{if .Research}}Monitor collection and manage participation.{{else}}Only information shared with your household is shown.{{end}}</div>
+</aside>
+{{end}}
+<header class="bar{{if .SignedIn}} signed-in{{end}}">
+ <a class="brand header-brand" href="/"><picture class="product-mark"><source media="(prefers-color-scheme: dark)" srcset="/static/brand-mark-dark.svg"><img src="/static/brand-mark-light.svg" width="32" height="32" alt=""></picture>Voptrack</a>
+
+ <div class="tools">
+ {{if .SignedIn}}
+ <a class="quiet account-link" href="/leave">Account &amp; data</a>
+ <form method="post" action="/logout"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="link">{{call .T "sign_out"}}</button></form>
+ {{end}}
+ </div>
+ {{if .SignedIn}}<details class="mobile-nav"><summary>{{call .T "navigation"}}</summary><nav aria-label="{{call .T "navigation"}}">{{template "navigation_links" .}}</nav></details>{{end}}
+</header>
+<main id="main" tabindex="-1">
+{{if .StudyContext}}{{template "research_study_nav" .}}{{end}}
+{{if .PasswordSetBy}}<p class="notice" data-password-set-by>{{call .T "password_set_by"}} <a href="/account/password">{{call .T "account_password"}}</a></p>{{end}}
+{{template "content" .}}
+</main>
+</body>
+</html>
+{{define "navigation_links"}}
+{{if not .Research}}
+ <a href="{{index .HomeLinks "overview"}}" {{if and (eq .HomeSection "overview") (or (not .HomeHousehold) (not .HomeHousehold.SelectedSubject))}}aria-current="page"{{end}}>Home</a>
+ {{if or (not .HomeHousehold) .HomeHousehold.HasExpenses}}<a href="{{index .HomeLinks "expenses"}}" {{if eq .HomeSection "expenses"}}aria-current="page"{{end}}>Spending</a>{{end}}
+ {{if .HomeHousehold}}{{if .HomeHousehold.Subjects}}<span class="nav-group-label">Your household</span>{{range .HomeHousehold.Subjects}}<a class="home-named-link" href="{{.URL}}" {{if and .Key (eq $.HomeHousehold.FilterSubject .Key) (ne $.HomeSection "expenses") (ne $.HomeSection "directory")}}aria-current="page"{{end}}><span class="nav-monogram" aria-hidden="true">{{.Monogram}}</span><span>{{.Name}}</span></a>{{end}}{{end}}{{end}}
+ <a class="nav-add" href="{{index .HomeLinks "add"}}" {{if eq .HomeSection "add"}}aria-current="page"{{end}}>＋ Add to household</a>
+ <span class="nav-divider" aria-hidden="true"></span>
+ <a href="{{index .HomeLinks "directory"}}" {{if eq .HomeSection "directory"}}aria-current="page"{{end}}>Browse records</a>
+{{end}}
+{{if and (not .Research) .HasPersonal}}
+ <a href="{{if .Research}}/{{else}}/mine{{end}}" {{if or (eq .Path "/mine") (and .Research (eq .Path "/")) (hasPrefix .Path "/dashboards/mine/")}}aria-current="page"{{end}}><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>{{if .Research}}{{call .T "my_dashboards"}}{{else}}My data{{end}}</span></a>
+{{end}}
+{{if and (not .Research) .HasPersonal}}
+ <a href="/sharing" {{if eq .Path "/sharing"}}aria-current="page"{{end}}><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="5" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4M9 14l6 4"/></svg><span>Sharing</span></a>
+{{end}}
+{{if and .Research (not .IsOwner)}}<a href="/my-studies" {{if or (eq .Path "/my-studies") (hasPrefix .Path "/study/")}}aria-current="page"{{end}}>{{call .T "participant_studies"}}</a>{{end}}
+ {{if or (not .Research) (not .IsOwner)}}<a href="/connect-app" {{if eq .Path "/connect-app"}}aria-current="page"{{end}}><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></svg><span>{{call .T "connect_title"}}</span></a>{{end}}
+{{if and .IsOwner .Research}}<a href="/studies" {{if eq .Path "/studies"}}aria-current="page"{{end}}>{{call .T "studies"}}</a><a href="/backups" {{if eq .Path "/backups"}}aria-current="page"{{end}}>Server and backups</a>{{end}}
+{{if and .IsOwner (not .Research)}}
+ <a class="manage-nav-link" href="/manage" {{if .Managing}}aria-current="page"{{end}}>Manage Home</a>
+{{end}}
+{{end}}
+
+{{define "explore_controls"}}{{template "selection_controls" .}}<p class="filter-context">{{.ComparisonLabel}}</p>{{end}}
+
+{{define "selection_controls"}}
+<div class="entry-search">
+<form method="get" class="entry-search-form" role="search" aria-label="Search entries">
+{{if .Type}}<input type="hidden" name="type" value="{{.Type}}">{{end}}{{if .Scope}}<input type="hidden" name="scope" value="{{.Scope}}">{{end}}{{if .Series}}<input type="hidden" name="series" value="{{.Series}}">{{end}}{{if .Category}}<input type="hidden" name="category" value="{{.Category}}">{{end}}{{if .View}}<input type="hidden" name="view" value="{{.View}}">{{end}}
+<input type="hidden" name="period" value="{{.Period}}">
+{{if eq .Period "custom"}}{{if .From}}<input type="hidden" name="from" value="{{.From}}">{{end}}{{if .To}}<input type="hidden" name="to" value="{{.To}}">{{end}}{{else if .Month}}<input type="hidden" name="month" value="{{.Month}}">{{end}}
+{{if .Member}}<input type="hidden" name="member" value="{{.Member}}">{{end}}{{if .Subject}}<input type="hidden" name="subject" value="{{.Subject}}">{{end}}{{if .Currency}}<input type="hidden" name="currency" value="{{.Currency}}">{{end}}{{if .Spending}}<input type="hidden" name="spend" value="{{.Spending}}">{{end}}
+<label class="entry-search-field"><span class="sr-only">Search entries</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input name="q" type="search" value="{{.Query}}" maxlength="200" placeholder="Search entries"></label><button class="button secondary" type="submit">Search</button>
+</form>
+{{if .Query}}<p class="entry-search-status" role="status"><span>Searching for “<strong>{{.Query}}</strong>”</span>{{if .SearchClearURL}}<a href="{{.SearchClearURL}}">Clear search</a>{{end}}</p>{{end}}
+</div>
+<details class="selection-panel">
+<summary><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18"/></svg><span>{{if .Range}}{{.Range}}{{else}}Choose period{{end}}{{if or .Member .Subject .Spending}}<span class="selection-active"> · Filtered</span>{{end}}</span><span class="selection-edit">Change selection</span></summary>
+<form method="get" class="selection-form">
+{{if .Query}}<input type="hidden" name="q" value="{{.Query}}">{{end}}
+{{if .Type}}<input type="hidden" name="type" value="{{.Type}}">{{end}}{{if .Scope}}<input type="hidden" name="scope" value="{{.Scope}}">{{end}}{{if .Series}}<input type="hidden" name="series" value="{{.Series}}">{{end}}{{if .Category}}<input type="hidden" name="category" value="{{.Category}}">{{end}}{{if .View}}<input type="hidden" name="view" value="{{.View}}">{{end}}
+{{if and .Subject (not .Subjects)}}<input type="hidden" name="subject" value="{{.Subject}}">{{end}}{{if .Currency}}<input type="hidden" name="currency" value="{{.Currency}}">{{end}}
+<div class="selection-fields">
+<label class="selection-period">Period<select name="selection">{{range .Periods}}<option value="{{.ID}}" {{if .Selected}}selected{{end}}>{{.Name}}</option>{{end}}<option value="calendar" {{if and .Month (ne .Period "custom")}}selected{{end}}>A particular month</option><option value="custom" {{if eq .Period "custom"}}selected{{end}}>Custom dates</option></select></label>
+<label class="selection-month">Month<input type="month" name="month" value="{{.Month}}"><span class="field-hint">Used with “A particular month”</span></label>
+<label class="selection-from">From<input type="date" name="from" value="{{.From}}"><span class="field-hint">Used with “Custom dates”</span></label>
+<label class="selection-to">To<input type="date" name="to" value="{{.To}}"><span class="field-hint">Includes this day</span></label>
+{{if .Subjects}}<label>About<select name="subject">{{range .Subjects}}<option value="{{.ID}}" {{if .Selected}}selected{{end}}>{{.Name}}</option>{{end}}</select></label>{{end}}
+<label>Recorded by<select name="member">{{range .Members}}<option value="{{.ID}}" {{if .Selected}}selected{{end}}>{{.Name}}</option>{{end}}</select></label>
+{{if .Categories}}<label>Category<select name="spend">{{range .Categories}}<option value="{{.ID}}" {{if .Selected}}selected{{end}}>{{.Name}}</option>{{end}}</select></label>{{end}}
+</div><div class="selection-actions"><button class="button" type="submit">Apply selection</button>{{if and .ClearURL (or .Member .Subject .Spending)}}<a href="{{.ClearURL}}">Reset filters</a>{{end}}</div>
+</form></details>
+{{end}}
+
+{{define "research_study_nav"}}
+{{$s:=.StudyContext}}<div class="study-context"><a href="/studies">← Studies</a>{{if ne $s.Tab "overview"}}<span>{{$s.Title}}</span>{{end}}</div>
+<nav class="study-navigation" aria-label="Study"><a href="/studies/{{$s.Slug}}/dashboard{{$s.Query}}" {{if eq $s.Tab "overview"}}aria-current="page"{{end}}>Overview</a><a href="/studies/{{$s.Slug}}/participants{{$s.Query}}" {{if eq $s.Tab "participants"}}aria-current="page"{{end}}>Participants</a><a href="/studies/{{$s.Slug}}/exports" {{if eq $s.Tab "exports"}}aria-current="page"{{end}}>Exports</a><a href="/studies/{{$s.Slug}}/edit" {{if eq $s.Tab "settings"}}aria-current="page"{{end}}>Study settings</a></nav>
+{{end}}

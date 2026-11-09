@@ -1,0 +1,727 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.category"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.amount"
+        }
+      },
+      "id" : "amount",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "currencyFieldID" : "currency",
+          "moneyScale" : 2
+        },
+        "collectionMeaning" : "money",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.currency"
+        }
+      },
+      "id" : "currency",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.purpose"
+        }
+      },
+      "id" : "purpose",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 256
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.category"
+        }
+      },
+      "id" : "category",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.category"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.category"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.categorySource"
+        }
+      },
+      "id" : "categorySource",
+      "internal" : true,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "chosen"
+            },
+            {
+              "type" : "text",
+              "value" : "accepted"
+            },
+            {
+              "type" : "text",
+              "value" : "corrected"
+            },
+            {
+              "type" : "text",
+              "value" : "dismissed"
+            }
+          ],
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 16
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "accepted" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.accepted"
+              }
+            },
+            "chosen" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.chosen"
+              }
+            },
+            "corrected" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.corrected"
+              }
+            },
+            "dismissed" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.dismissed"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.expense.field.bankReference"
+        }
+      },
+      "id" : "bankReference",
+      "internal" : true,
+      "meta_id" : "com.voptrack.track.expense",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 128
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.expense",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"amount\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.amount\",\"type\":\"integer\"},{\"id\":\"currency\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.currency\",\"type\":\"text\"},{\"id\":\"purpose\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.purpose\",\"type\":\"text\"},{\"id\":\"category\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.category\",\"type\":\"reference\"},{\"id\":\"categorySource\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.categorySource\",\"type\":\"text\"},{\"id\":\"bankReference\",\"meta_id\":\"com.voptrack.track.expense\",\"name\":\"model.expense.field.bankReference\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.expense\",\"name\":\"model.expense\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "amount",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.amount",
+          "type" : "integer"
+        },
+        {
+          "id" : "currency",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.currency",
+          "type" : "text"
+        },
+        {
+          "id" : "purpose",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.purpose",
+          "type" : "text"
+        },
+        {
+          "id" : "category",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.category",
+          "type" : "reference"
+        },
+        {
+          "id" : "categorySource",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.categorySource",
+          "type" : "text"
+        },
+        {
+          "id" : "bankReference",
+          "meta_id" : "com.voptrack.track.expense",
+          "name" : "model.expense.field.bankReference",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.expense",
+      "name" : "model.expense",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.expense"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "expense.monthlyNet",
+        "label" : {
+          "bundled" : {
+            "key" : "model.finance.metric.monthlyExpense"
+          }
+        },
+        "operation" : {
+          "money" : {
+            "aggregation" : "sum",
+            "fieldID" : "amount"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "month"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R3",
+        "R6"
+      ],
+      "appearance" : {
+        "color" : "finance.expense",
+        "symbol" : "creditcard.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "finance.expense",
+          "symbol" : "creditcard.fill"
+        },
+        "id" : "com.voptrack.category.finance",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.finance"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "expense.monthlyNet",
+          "label" : {
+            "bundled" : {
+              "key" : "model.finance.metric.monthlyExpense"
+            }
+          },
+          "operation" : {
+            "money" : {
+              "aggregation" : "sum",
+              "fieldID" : "amount"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          }
+        },
+        {
+          "id" : "expense.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.finance.metric.latestExpense"
+            }
+          },
+          "operation" : {
+            "money" : {
+              "aggregation" : "latest",
+              "fieldID" : "amount"
+            }
+          }
+        }
+      ],
+      "glanceResolution" : {
+        "month" : {
+
+        }
+      },
+      "internalFieldIDs" : [
+        "categorySource",
+        "bankReference"
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P4"
+      ],
+      "recordCategorySuggestions" : [
+        {
+          "appearance" : {
+            "color" : "health.meal",
+            "symbol" : "fork.knife"
+          },
+          "id" : "com.voptrack.category.finance.food",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.food"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "activity.distance",
+            "symbol" : "car.fill"
+          },
+          "id" : "com.voptrack.category.finance.transport",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.transport"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "household.maintenance",
+            "symbol" : "house.fill"
+          },
+          "id" : "com.voptrack.category.finance.home",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.home"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "health.visit",
+            "symbol" : "cross.case.fill"
+          },
+          "id" : "com.voptrack.category.finance.health",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.health"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "activity.sport",
+            "symbol" : "ticket.fill"
+          },
+          "id" : "com.voptrack.category.finance.leisure",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.leisure"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "finance.expense",
+            "symbol" : "bag.fill"
+          },
+          "id" : "com.voptrack.category.finance.shopping",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.shopping"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "finance.bill",
+            "symbol" : "doc.text.fill"
+          },
+          "id" : "com.voptrack.category.finance.bills",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.bills"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "general.note",
+            "symbol" : "ellipsis"
+          },
+          "id" : "com.voptrack.category.finance.other",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.other"
+            }
+          }
+        }
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : true
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : true,
+      "spendingCapPlanKey" : "P4"
+    },
+    "subjectSuggestions" : [
+      {
+        "category" : "thing",
+        "kindText" : null,
+        "position" : 1
+      },
+      {
+        "category" : "thing",
+        "kindText" : "bike",
+        "position" : 1
+      },
+      {
+        "category" : "thing",
+        "kindText" : "home",
+        "position" : 1
+      },
+      {
+        "category" : "thing",
+        "kindText" : "plant",
+        "position" : 1
+      }
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "amount",
+      "currency",
+      "purpose",
+      "category",
+      "categorySource",
+      "bankReference"
+    ]
+  }
+}

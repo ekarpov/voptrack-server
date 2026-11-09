@@ -1,0 +1,10 @@
+{
+  "body": {
+    "types": [
+      "com.voptrack.home_copy_label",
+      "com.voptrack.shared_subject",
+      "com.voptrack.track.weight"
+    ]
+  },
+  "request": "PUT /admin/api/v1/datasets/member-store-a/readers/issuer:home-members"
+}

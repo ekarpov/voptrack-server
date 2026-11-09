@@ -1,0 +1,42 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+
+    ]
+  },
+  "fields" : [
+    {
+      "id" : "name",
+      "internal" : false,
+      "meta_id" : "com.voptrack.source",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "blob"
+    }
+  ],
+  "id" : "com.voptrack.source",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"name\",\"meta_id\":\"com.voptrack.source\",\"name\":\"model.source.field.name\",\"type\":\"blob\"}],\"id\":\"com.voptrack.source\",\"name\":\"model.source\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "name",
+          "meta_id" : "com.voptrack.source",
+          "name" : "model.source.field.name",
+          "type" : "blob"
+        }
+      ],
+      "id" : "com.voptrack.source",
+      "name" : "model.source"
+    }
+  },
+  "kind" : "reference"
+}

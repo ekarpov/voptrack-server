@@ -1,0 +1,80 @@
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Code coverage profiles and other test artifacts
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+.env
+
+# Editor/IDE
+# .idea/
+# .vscode/
+
+# macOS
+.DS_Store
+
+# Local synthetic development state
+.tessera-dev/
+
+# This deployment's own configuration: issuer, TLS key path, data directory.
+# The example is committed; a real one is not, because a committed configuration
+# is one somebody runs unchanged.
+deploy/server.json
+
+# Generated per deployment, never committed: a configuration in git is one
+# somebody runs unchanged, and the internal key is a private key.
+scenarios/*/server.json
+scenarios/*/tls/
+
+# Compiled output of cmd/verify, if built in place rather than `go run`.
+/verify
+
+# Gate credentials, generated per deployment.
+scenarios/*/.gate/
+scenarios/*/.try/
+scenarios/*/.state/
+
+# Python bytecode from the gates
+__pycache__/
+
+# The Research development server's credentials and CA, for the app.
+.voptrack-research-dev/
+
+# The Home development server's credentials and CA, for the app.
+.voptrack-home-dev/
+
+# Local CI logs, the last five runs (ci/run.sh).
+.ci/
+
+# The shared test host: address and key, kept out of the repository.
+ci/remote.local.env
+
+# Home in the release shape (no web interface), for the app.
+.voptrack-home-app-dev/
+
+# Home with a 2 MiB storage quota, for the app's limited-storage row.
+.voptrack-home-quota-dev/
+
+# The Console built in place by go build ./cmd/console.
+/console

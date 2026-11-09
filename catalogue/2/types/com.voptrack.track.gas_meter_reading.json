@@ -1,0 +1,609 @@
+{
+  "catalogueVersion" : 2,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.value"
+        }
+      },
+      "id" : "value",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "meterEpochID"
+        },
+        "collectionMeaning" : "counter",
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "volume",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "m3",
+              "fieldID" : "unit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "m3",
+                "ft3"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 3,
+            "minimumFractionDigits" : 3
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1000
+            },
+            "id" : "m3"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 28.316846592000001
+            },
+            "id" : "ft3"
+          }
+        ],
+        "canonicalUnit" : "L",
+        "defaultUnit" : "m3",
+        "dimension" : "volume",
+        "unitField" : "unit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "m3",
+              "ft3"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.unit"
+        }
+      },
+      "id" : "unit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.meterID"
+        }
+      },
+      "id" : "meterID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.epochID"
+        }
+      },
+      "id" : "epochID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.meterEpochID"
+        }
+      },
+      "id" : "meterEpochID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.gasMeterReading.field.volumeBasis"
+        }
+      },
+      "id" : "volumeBasis",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.gas_meter_reading",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.gas_meter_reading",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"value\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.value\",\"type\":\"float\"},{\"id\":\"unit\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.unit\",\"type\":\"text\"},{\"id\":\"meterID\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.meterID\",\"type\":\"text\"},{\"id\":\"epochID\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.epochID\",\"type\":\"text\"},{\"id\":\"meterEpochID\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.meterEpochID\",\"type\":\"text\"},{\"id\":\"volumeBasis\",\"meta_id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading.field.volumeBasis\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.gas_meter_reading\",\"name\":\"model.household.gasMeterReading\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "value",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.value",
+          "type" : "float"
+        },
+        {
+          "id" : "unit",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.unit",
+          "type" : "text"
+        },
+        {
+          "id" : "meterID",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.meterID",
+          "type" : "text"
+        },
+        {
+          "id" : "epochID",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.epochID",
+          "type" : "text"
+        },
+        {
+          "id" : "meterEpochID",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.meterEpochID",
+          "type" : "text"
+        },
+        {
+          "id" : "volumeBasis",
+          "meta_id" : "com.voptrack.track.gas_meter_reading",
+          "name" : "model.household.gasMeterReading.field.volumeBasis",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.gas_meter_reading",
+      "name" : "model.household.gasMeterReading",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.household.gasMeterReading"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : "meterUse",
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "household.gas",
+        "symbol" : "flame.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "household.maintenance",
+          "symbol" : "house.fill"
+        },
+        "id" : "com.voptrack.category.household",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.household"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ],
+        "sum" : "meterUse"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar",
+      "spans" : [
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          },
+          "span" : "week"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          },
+          "span" : "month"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "year"
+            }
+          },
+          "span" : "year"
+        },
+        {
+          "policy" : {
+            "allHistory" : {
+
+            }
+          },
+          "span" : "all"
+        }
+      ]
+    },
+    "reads" : "latest",
+    "readsAsLevel" : false,
+    "readsReason" : null,
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "value",
+      "unit",
+      "meterID",
+      "epochID",
+      "meterEpochID",
+      "volumeBasis"
+    ]
+  }
+}

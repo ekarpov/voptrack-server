@@ -1,0 +1,471 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "endFieldID" : "endTimestamp"
+        },
+        "collectionMeaning" : "interval",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.mobilitySession.field.programmeID"
+        }
+      },
+      "id" : "programmeID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.mobility_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "identifiesKind" : true
+        },
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.mobilitySession.field.name"
+        }
+      },
+      "id" : "name",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.mobility_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.mobilitySession.field.painObservation"
+        }
+      },
+      "id" : "painObservation",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.mobility_session",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.mobility_session",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"programmeID\",\"meta_id\":\"com.voptrack.track.mobility_session\",\"name\":\"model.activity.mobilitySession.field.programmeID\",\"type\":\"text\"},{\"id\":\"name\",\"meta_id\":\"com.voptrack.track.mobility_session\",\"name\":\"model.activity.mobilitySession.field.name\",\"type\":\"text\"},{\"id\":\"painObservation\",\"meta_id\":\"com.voptrack.track.mobility_session\",\"name\":\"model.activity.mobilitySession.field.painObservation\",\"type\":\"reference\"}],\"id\":\"com.voptrack.track.mobility_session\",\"name\":\"model.activity.mobilitySession\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "programmeID",
+          "meta_id" : "com.voptrack.track.mobility_session",
+          "name" : "model.activity.mobilitySession.field.programmeID",
+          "type" : "text"
+        },
+        {
+          "id" : "name",
+          "meta_id" : "com.voptrack.track.mobility_session",
+          "name" : "model.activity.mobilitySession.field.name",
+          "type" : "text"
+        },
+        {
+          "id" : "painObservation",
+          "meta_id" : "com.voptrack.track.mobility_session",
+          "name" : "model.activity.mobilitySession.field.painObservation",
+          "type" : "reference"
+        }
+      ],
+      "id" : "com.voptrack.track.mobility_session",
+      "name" : "model.activity.mobilitySession",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.mobilitySession"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "sessions.weeklyDuration",
+        "label" : {
+          "bundled" : {
+            "key" : "model.activity.metric.weeklyDuration"
+          }
+        },
+        "operation" : {
+          "duration" : {
+            "fieldID" : "timestamp",
+            "open" : "reject",
+            "overlap" : "sum"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "week"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R1",
+        "R2",
+        "R6"
+      ],
+      "appearance" : {
+        "color" : "activity.mobility",
+        "symbol" : "figure.flexibility"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "activity.walking",
+          "symbol" : "figure.walk"
+        },
+        "id" : "com.voptrack.category.activity",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.activity"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "sessions.weeklyDuration",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.metric.weeklyDuration"
+            }
+          },
+          "operation" : {
+            "duration" : {
+              "fieldID" : "timestamp",
+              "open" : "reject",
+              "overlap" : "sum"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          }
+        },
+        {
+          "id" : "sessions.weeklyCount",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.metric.weeklySessions"
+            }
+          },
+          "operation" : {
+            "count" : {
+
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          }
+        }
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P1",
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "recordNoun" : {
+        "bundled" : {
+          "key" : "model.track.recordNoun.session"
+        }
+      },
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "programmeID",
+      "name",
+      "painObservation"
+    ]
+  }
+}

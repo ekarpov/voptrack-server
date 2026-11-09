@@ -1,0 +1,30 @@
+{
+  "fields" : [
+    {
+      "id" : "name",
+      "meta_id" : "com.voptrack.subject",
+      "name" : "model.subject.field.name",
+      "type" : "blob"
+    },
+    {
+      "id" : "avatar",
+      "meta_id" : "com.voptrack.subject",
+      "name" : "model.subject.field.avatar",
+      "type" : "reference"
+    },
+    {
+      "id" : "details",
+      "meta_id" : "com.voptrack.subject",
+      "name" : "model.subject.field.details",
+      "type" : "blob"
+    },
+    {
+      "id" : "avatarStyle",
+      "meta_id" : "com.voptrack.subject",
+      "name" : "model.subject.field.avatar",
+      "type" : "blob"
+    }
+  ],
+  "id" : "com.voptrack.subject",
+  "name" : "model.subject"
+}

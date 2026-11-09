@@ -1,0 +1,30 @@
+{{define "page_title"}}{{call .T "moderation_title"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<div class="moderation">
+<h1>{{call .T "moderation_title"}}</h1>
+<p>{{call .T "moderation_explained"}}</p>
+<p class="muted">{{call .T "moderation_scope"}}</p>
+{{if $d.Message}}<p class="notice" role="status" data-moderation-state="{{$d.Message}}">{{call .T $d.Message}}</p>{{end}}
+{{if $d.Target.Dataset}}
+<dl><dt>{{call .T "moderation_store"}}</dt><dd><code>{{$d.Target.Dataset}}</code></dd><dt>{{call .T "track"}}</dt><dd>{{if $d.Target.Name}}{{localizeName $d.Target.Name .T}}{{end}} <code>{{$d.Target.Type}}</code></dd></dl>
+{{end}}
+{{if $d.Impact}}
+<h2>{{call .T "moderation_impact"}}</h2>
+<p>{{call .T "moderation_all"}}</p>
+<dl><dt>{{call .T "moderation_groups"}}</dt><dd>{{range $d.Impact.Groups}}<div><code>{{.}}</code></div>{{else}}—{{end}}</dd><dt>{{call .T "moderation_readers"}}</dt><dd>{{range $d.Impact.Readers}}<div><code>{{.}}</code></div>{{else}}—{{end}}</dd></dl>
+{{if $d.Impact.Whole}}<p class="notice">{{call .T "moderation_whole"}}</p><ul>{{range $d.Impact.Whole}}<li><code>{{.}}</code></li>{{end}}</ul>{{end}}
+{{end}}
+{{if $d.Current}}<section><h2>{{call .T "moderation_current"}}</h2>
+{{if or $d.Current.Groups $d.Current.Readers}}<p>{{call .T "moderation_remaining"}}</p><ul>{{range $d.Current.Groups}}<li><code>{{.}}</code></li>{{end}}{{range $d.Current.Readers}}<li><code>{{.}}</code></li>{{end}}</ul>{{else}}<p>{{call .T "moderation_none_remaining"}}</p>{{end}}</section>{{end}}
+{{if $d.Confirm}}
+<p>{{call .T "moderation_race"}}</p>
+<form method="post" action="/home/moderation/confirm"><input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="confirmation" value="{{$d.Nonce}}"><button class="button danger">{{call .T "moderation_stop"}}</button></form>
+{{end}}
+{{range $d.Candidates}}
+<section class="card"><h2>{{if .Name}}{{localizeName .Name $.T}}{{else}}{{.Type}}{{end}}</h2><p>{{call $.T "moderation_store"}}: <code>{{.Dataset}}</code><br><code>{{.Type}}</code></p>
+<form method="post" action="/home/moderation/preview"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="dataset" value="{{.Dataset}}"><input type="hidden" name="track" value="{{.Type}}"><button class="button secondary">{{call $.T "moderation_review"}}</button></form></section>
+{{else}}{{if and (not $d.Message) (not $d.Target.Dataset)}}<p>{{call .T "moderation_empty"}}</p>{{end}}{{end}}
+<p><a href="/home/moderation">{{call .T "moderation_reload"}}</a> · <a href="/members">{{call .T "members"}}</a></p>
+</div>
+{{end}}

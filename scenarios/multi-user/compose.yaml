@@ -1,0 +1,71 @@
+# Many people, one server, one dataset each, nobody sharing. The ordinary
+# self-hosted shape: an owner runs it and adds people as they arrive.
+#
+#   make scenario-multi-user-up        stands it up and provisions the owner
+#   make scenario-multi-user-add-user NAME
+#   make scenario-multi-user-verify    conformance, administration, isolation
+#
+# Set VOPTRACK_DOMAIN to a real hostname to get a real certificate. Left
+# unset it is localhost and Caddy issues from its own CA, which is what the
+# verification gate runs against.
+name: voptrack-multi-user
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "${VOPTRACK_PUBLISH_PREFIX:-}${VOPTRACK_HTTP_PORT:-80}:80"
+      - "${VOPTRACK_PUBLISH_PREFIX:-}${VOPTRACK_HTTPS_PORT:-443}:443"
+    environment:
+      VOPTRACK_DOMAIN: ${VOPTRACK_DOMAIN:-localhost}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - tesserad
+
+  tesserad:
+    # Pull the published image, or build it yourself -- see the README. The
+    # dependencies are public; no SSH key is passed into a build.
+    image: ${VOPTRACK_IMAGE:-voptrack-server:latest}
+    restart: unless-stopped
+    # Run as whoever invoked this, not as the image's own uid. Every file
+    # the server must read (its key, a password file) or write (a token) is
+    # bind-mounted from the host and owned by that person, and a container
+    # running as a different uid cannot read a 0600 file or write into their
+    # directory. Docker Desktop hides this by virtualising bind-mount
+    # ownership; Linux does not.
+    user: "${VOPTRACK_UID:-10001}:${VOPTRACK_GID:-10001}"
+    volumes:
+      - ./.state/data:/var/lib/tessera
+      - ./server.json:/etc/tessera/server.json:ro
+      - ./tls:/etc/tessera/tls:ro
+    # Configuration and TLS material are read-only to the server: a
+    # compromised process must not be able to rewrite what it is told to be
+    # on the next restart.
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    expose:
+      - "8443"
+    # Without this, `docker compose up --wait` reports Healthy for a container
+    # that is crash-looping: absent a healthcheck, running is treated as
+    # healthy. It verifies against the server's own certificate rather than
+    # skipping verification, so a broken TLS configuration fails the check.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "--cacert", "/etc/tessera/tls/server.crt",
+             "https://127.0.0.1:8443/.well-known/tessera"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+volumes:
+  caddy_data:
+  caddy_config:

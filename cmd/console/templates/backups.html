@@ -1,0 +1,117 @@
+{{define "page_title"}}{{call .T "server_status"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<div class="backup-status">
+<header class="settings-heading"><div><h1>{{call .T "server_status"}}</h1><p class="muted">{{call .T "backup_observed"}}: {{$d.Observed.Format "2 Jan 2006, 15:04 MST"}}</p></div><a class="quiet" href="/backups">{{call .T "off_machine_refresh"}}</a></header>
+<div class="backup-overview">
+<section class="surface backup-summary"><h2>{{call .T "backup_latest"}}</h2><p class="backup-summary-value">{{if $d.Overview}}{{if $d.Latest}}<strong data-latest>{{$d.Latest.Format "2006-01-02 15:04:05 MST"}}</strong>{{else}}{{call .T "backup_unknown_value"}}{{end}}{{else}}{{call .T "backup_unavailable"}}{{end}}</p>
+<form method="post" action="/backups/now"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "backup_now"}}</button></form>
+</section>
+{{with $d.OffMachine}}
+<section class="surface backup-summary" aria-labelledby="off-machine-title" data-off-machine-state="{{.State}}">
+<h2 id="off-machine-title">{{call $.T "off_machine_title"}}</h2>
+<p role="status">{{call $.T (printf "off_machine_%s" .State)}}</p>
+<details class="backup-evidence"><summary>Copy details</summary>{{if .Label}}<dl><dt>{{call $.T "off_machine_destination"}}</dt><dd>{{.Label}}</dd>
+<dt>{{call $.T "off_machine_observed"}}</dt><dd>{{.Observed.Format "2006-01-02 15:04:05 MST"}}</dd>
+<dt>{{call $.T "off_machine_last_backup"}}</dt><dd>{{if not .LastBackup.IsZero}}{{.LastBackup.Format "2006-01-02 15:04:05 MST"}}{{else}}—{{end}}</dd>
+<dt>{{call $.T "off_machine_last_evidence"}}</dt><dd>{{if not .LastEvidence.IsZero}}{{.LastEvidence.Format "2006-01-02 15:04:05 MST"}}{{else}}—{{end}}</dd>
+<dt>{{call $.T "off_machine_backlog"}}</dt><dd>{{.Pending}} · {{.PendingBytes}} / {{.Budget}}</dd>
+{{if not .OldestPending.IsZero}}<dt>{{call $.T "off_machine_oldest"}}</dt><dd>{{.OldestPending.Format "2006-01-02 15:04:05 MST"}}</dd>{{end}}</dl>{{end}}
+<p>{{if .IndependentDestination}}{{call $.T "off_machine_independent"}}{{else}}{{call $.T "off_machine_independence_unknown"}}{{end}}</p>
+{{if not .SettingsAvailable}}<p class="notice">{{call $.T "off_machine_settings_missing"}}</p>{{end}}
+<p>{{call $.T "off_machine_material"}}</p><p class="muted">{{call $.T "off_machine_scope"}}</p>
+</details>
+</section>
+{{end}}
+</div>
+<details class="backup-disclosure" {{if $d.Native}}{{if or $d.Native.Confirm $d.Native.Command (and $d.Native.Message (ne .Path "/backups"))}}open{{end}}{{end}}><summary>Backup schedule &amp; retention</summary><div><h2>{{call .T "native_title"}}</h2>
+{{with $d.Native}}
+{{if .Message}}<p role="status">{{call $.T .Message}}</p>{{end}}
+{{with .Observation}}
+<dl data-native-instance="{{.InstanceID}}"><dt>{{call $.T "runtime_instance"}}</dt><dd><code>{{.InstanceID}}</code></dd><dt>{{call $.T "backup_observed"}}</dt><dd>{{.ObservedAt.Format "2006-01-02 15:04:05 MST"}}</dd><dt>{{call $.T "native_state"}}</dt><dd data-native-state="{{.Reason}}">{{call $.T (printf "native_code_%s" .Reason)}}{{if .Settings}} · {{if .Enabled}}{{call $.T "native_code_enabled"}}{{else}}{{call $.T "native_code_disabled"}}{{end}}{{end}}</dd>
+{{with .Settings}}<dt>{{call $.T "native_effective"}}</dt><dd data-effective-revision="{{.Revision}}">{{.EveryHours}} h · {{.Keep}} · <code>{{.Revision}}</code></dd>{{end}}
+<dt>{{call $.T "native_attempt"}}</dt><dd>{{with .Last}}{{.StartedAt.Format "2006-01-02 15:04:05 MST"}} · {{call $.T (printf "native_code_%s" .Outcome)}}{{with .FinishedAt}} · {{.Format "2006-01-02 15:04:05 MST"}}{{end}}{{else}}{{call $.T "backup_unknown_value"}}{{end}}</dd>
+<dt>{{call $.T "native_active"}}</dt><dd>{{with .Active}}<code>{{.ID}}</code> · {{.StartedAt.Format "2006-01-02 15:04:05 MST"}}{{else}}—{{end}}</dd>
+<dt>{{call $.T "native_next"}}</dt><dd>{{with .Next}}{{.Format "2006-01-02 15:04:05 MST"}}{{else}}—{{end}} · {{call $.T (printf "native_code_%s" .NextReason)}}</dd>
+<dt>{{call $.T "native_retention"}}</dt><dd>{{with .Retention}}{{.Retained}} / {{.Target}} · {{call $.T (printf "native_code_%s" .State)}} / {{call $.T (printf "native_code_%s" .Reason)}}{{else}}{{call $.T "backup_unknown_value"}}{{end}}</dd></dl>
+{{end}}
+<p>{{call $.T "native_scope"}}</p><p>{{call $.T "native_cadence"}}</p><p class="notice">{{call $.T "native_code_recovery_limit"}}</p>
+{{with .Command}}<p data-live-state="{{.State}}">{{call $.T "native_command"}}: <code>{{.ID}}</code> · {{.Payload.EveryHours}} h · {{.Payload.Keep}} · {{call $.T (printf "native_code_%s" .State)}}{{if .Reason}} · {{call $.T (printf "native_code_%s" .Reason)}}{{end}}</p>{{if not .Terminal}}<form method="post" action="/backups/live/reconcile"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="request" value="{{.ID}}"><button class="button">{{call $.T "native_reconcile"}}</button></form>{{end}}{{end}}
+{{if .Confirm}}<p>{{call $.T "native_review"}}</p><p>{{.Every}} h · {{.Keep}}</p><form method="post" action="/backups/live/confirm"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="confirmation" value="{{.Nonce}}"><button class="button">{{call $.T "native_apply"}}</button></form>
+{{else}}{{with .Observation}}{{if and .Available .Settings}}
+<form class="backup-settings-form" method="post" action="/backups/live/preview"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="effective_revision" value="{{.Settings.Revision}}"><input type="hidden" name="journal" value="{{$d.Native.Journal}}">
+<label for="live-every">{{call $.T "backup_interval"}}</label><input id="live-every" name="every" inputmode="numeric" value="{{.Settings.EveryHours}}" required>
+<label for="live-keep">{{call $.T "native_code_producer_keep"}}</label><input id="live-keep" name="keep" inputmode="numeric" value="{{.Settings.Keep}}" required><button class="button">{{call $.T "backup_settings_review"}}</button></form>
+{{end}}{{end}}{{end}}
+{{end}}
+</div></details><details class="backup-disclosure"><summary>Technical server details</summary><div><h2>{{call .T "runtime_title"}}</h2><dl><dt>{{call .T "backup_version"}}</dt><dd data-server-version>{{if $d.Version}}{{$d.Version}}{{else}}{{call .T "backup_unavailable"}}{{end}}</dd></dl><p class="muted">{{call .T "backup_host_status"}}</p><p>{{call .T "backup_usage"}}</p>
+{{if $d.Overview}}<ul>{{range $d.Overview.Datasets}}<li><code>{{.ID}}</code>: {{if .Usage}}{{.Usage.Bytes}} / {{.Usage.Records}}{{if .Usage.MaxBytes}} ({{call $.T "size"}} ≤ {{.Usage.MaxBytes}}){{end}}{{else}}{{call $.T "backup_unavailable"}}{{end}}</li>{{else}}<li>{{call .T "backup_none_administered"}}</li>{{end}}</ul>{{else}}<p role="status">{{call .T "backup_unavailable"}}</p>{{end}}
+
+{{with $d.Runtime}}<dl data-runtime-state="{{.State}}"><dt>{{call $.T "runtime_process"}}</dt><dd>{{call $.T (printf "runtime_%s" .State)}}</dd><dt>{{call $.T "backup_observed"}}</dt><dd>{{.Observed.Format "2006-01-02 15:04:05 MST"}}</dd><dt>{{call $.T "runtime_instance"}}</dt><dd><code>{{.Instance}}</code></dd><dt>{{call $.T "runtime_launched"}}</dt><dd><code>{{.ConfigSHA256}}</code> · {{call $.T (printf "backup_destination_%s" .Values.Destination)}} / {{.Values.EveryHours}} / {{.Values.Keep}}</dd></dl>{{else}}<p>{{call .T "backup_unknown_value"}}</p>{{end}}<p>{{call .T "runtime_scope"}}</p>
+</div></details>{{if $d.KitEnabled}}<details class="backup-disclosure" {{if or $d.KitMessage $d.KitIntent}}open{{end}}><summary>Recovery kit</summary><div><h2>{{call .T "kit_title"}}</h2><p>{{call .T "kit_scope"}}</p>
+{{with $d.Kit}}<dl data-kit-state="{{.State}}"><dt>{{call $.T "kit_readiness"}}</dt><dd>{{call $.T (printf "kit_%s" .State)}}</dd>{{if .Revision}}<dt>{{call $.T "kit_revision"}}</dt><dd><code>{{.Revision}}</code></dd><dt>{{call $.T "kit_compatibility"}}</dt><dd><code>{{.Compatibility}}</code></dd>{{end}}</dl>{{end}}
+{{if $d.KitMessage}}<p role="alert">{{call .T $d.KitMessage}}</p>{{end}}
+<form method="post" action="/backups/kit/prepare"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "kit_prepare"}}</button></form>
+<form method="post" action="/backups/kit/request"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "kit_request"}}</button></form>
+{{with $d.KitIntent}}<p>{{call $.T "kit_approval"}}</p><pre tabindex="0" role="region" aria-label="{{call $.T "backup_host_commands"}}"><code>docker compose run --rm -T kit-admin approve {{.ID}} {{.Revision}}</code></pre><p>{{call $.T "kit_expires"}}: {{.Expires.Format "2006-01-02 15:04:05 MST"}}</p><form method="post" action="/backups/kit/download"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="request" value="{{.ID}}"><button class="button">{{call $.T "kit_download"}}</button></form>{{end}}
+</div></details>{{end}}
+<details class="backup-disclosure backup-downloads"><summary>{{call .T "backups"}}</summary><div>{{if $d.Online}}
+
+{{if $d.CollectorState}}<p role="status">{{call .T $d.CollectorState}}</p>{{end}}
+<p role="status" data-bundle-state>{{call .T $d.BundleState}}</p>
+{{if $d.ManualState}}<p role="status">{{call .T $d.ManualState}}</p>{{end}}
+<p>{{call .T "backup_online_custody"}}</p>
+{{range $d.Bundles}}<p data-bundle>{{.Collected.Format "2006-01-02 15:04 MST"}} · <a class="button" href="/backups/bundle/{{.Operation.ID}}">{{call $.T "backup_download"}}</a></p>{{end}}
+{{if $d.Evidence}}<details><summary>{{call .T "backup_evidence_details"}}</summary><p>{{call .T "backup_evidence_unknown"}}</p>{{range $d.Evidence}}<p>{{.Collected.Format "2006-01-02 15:04 MST"}} · <a href="/backups/bundle/{{.Operation.ID}}">{{call $.T "backup_download"}}</a></p>{{end}}</details>{{end}}
+<p>{{call .T "backup_legacy_only"}}</p>
+{{end}}
+
+<p role="status">{{if $d.Storage}}{{call .T $d.Storage}}{{else}}{{call .T "backup_unavailable"}}{{end}}</p>
+<p><a href="/backups?slot=local">{{call .T "backup_destination_local"}}</a> · <a href="/backups?slot=reserve">{{call .T "backup_destination_reserve"}}</a></p>
+{{if $d.Archives}}<div class="table-scroll" role="region" tabindex="0" aria-label="{{call .T "backups"}}">
+<table class="data"><thead><tr><th scope="col">{{call .T "archive"}}</th><th scope="col">{{call .T "backup_modified"}}</th><th scope="col">{{call .T "size"}}</th><th scope="col">{{call .T "backup_download"}}</th></tr></thead><tbody>{{range $d.Archives}}<tr><td data-archive><code>{{.Name}}</code></td><td>{{.Modified.Format "2006-01-02 15:04 MST"}}</td><td>{{.Size}}</td><td><a class="button" href="/backups/archive/{{.Name}}?slot={{$d.ArchiveSlot}}&amp;version={{.Version}}">{{call $.T "backup_download"}}</a></td></tr>{{end}}</tbody></table></div>{{end}}
+</div></details>
+<details class="backup-disclosure" {{with $d.Settings}}{{if or .Confirm .Message .Pending}}open{{end}}{{end}}><summary>Advanced host settings</summary><div><h2>{{call .T "backup_settings"}}</h2><p>{{call .T "native_maintenance"}}</p>
+{{if $d.Online}}<p>{{call .T "backup_online_retention"}}</p>{{end}}
+{{with $d.Settings}}{{if .Ready}}
+<p>{{call $.T "backup_generated"}}: {{.Generated.At.Format "2006-01-02 15:04:05 MST"}} · {{call $.T (printf "backup_destination_%s" .Generated.Destination)}} · {{.Generated.EveryHours}} h · {{.Generated.Keep}}</p>
+<p>{{call $.T "backup_effective_unknown"}}</p>
+{{if .Pending}}<p class="notice">{{call $.T "backup_settings_pending"}}</p>{{end}}
+{{if .Message}}<p role="alert" class="notice">{{call $.T .Message}}</p>{{end}}
+{{if .Confirm}}
+<p>{{call $.T "backup_settings_preview"}}</p>
+<dl><dt>{{call $.T "backup_destination"}}</dt><dd>{{call $.T (printf "backup_destination_%s" .Destination)}}</dd><dt>{{call $.T "backup_interval"}}</dt><dd>{{.Every}}</dd><dt>{{call $.T "backup_retention"}}</dt><dd>{{.Keep}}</dd></dl>
+{{if not $d.Online}}<p>{{call $.T "backup_retention_preview"}}</p><ul>{{range .Removed}}<li><code>{{.Name}}</code></li>{{else}}<li>{{call $.T "backup_retention_empty"}}</li>{{end}}</ul>{{else}}<p>{{call $.T "native_maintenance"}}</p>{{end}}
+<form method="post" action="/backups/settings/confirm"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="confirmation" value="{{.Nonce}}"><button class="button">{{call $.T "backup_settings_confirm"}}</button></form>
+{{else}}
+<form class="backup-settings-form" method="post" action="/backups/settings/preview">
+<input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="revision" value="{{.Revision}}"><input type="hidden" name="generation" value="{{.Generation}}">
+<label for="backup-destination">{{call $.T "backup_destination"}}</label><select id="backup-destination" name="destination"><option value="local" {{if eq .Destination "local"}}selected{{end}}>{{call $.T "backup_destination_local"}}</option><option value="reserve" {{if eq .Destination "reserve"}}selected{{end}}>{{call $.T "backup_destination_reserve"}}</option>{{if and (ne .Destination "local") (ne .Destination "reserve")}}<option selected value="{{.Destination}}">{{call $.T "backup_settings_invalid"}}</option>{{end}}</select>
+<label for="backup-every">{{call $.T "backup_interval"}}</label><input id="backup-every" name="every" inputmode="numeric" value="{{.Every}}" required>
+<label for="backup-keep">{{call $.T "backup_retention"}}</label><input id="backup-keep" name="keep" inputmode="numeric" value="{{.Keep}}" required>
+<button class="button">{{call $.T "backup_settings_review"}}</button></form>
+{{end}}
+<p>{{call $.T "backup_destination_scope"}}</p><p>{{call $.T "backup_settings_apply"}}</p>
+<pre tabindex="0" role="region" aria-label="{{call $.T "backup_host_commands"}}"><code>docker compose stop console tesserad
+VOPTRACK_BACKUP_REQUEST_REVISION={{.Revision}} docker compose run --rm -T init || exit 1
+docker compose up -d --wait</code></pre>
+{{else}}<p>{{call $.T "backup_settings_unavailable"}}</p>{{end}}{{end}}
+</div></details><details class="backup-disclosure"><summary>Host recovery instructions</summary><div><h2>{{call .T "backup_recovery"}}</h2><p>{{if $d.Online}}{{call .T "backup_online_recovery_help"}}{{else}}{{call .T "backup_recovery_help"}}{{end}}</p>
+{{if $d.Online}}<h3>{{call .T "backup_online_fallback"}}</h3>{{end}}<p>{{call .T "backup_host_commands"}}</p>
+<pre tabindex="0" role="region" aria-label="{{call $.T "backup_host_commands"}}"><code>umask 077
+set -C
+docker compose stop console tesserad
+if docker compose run --rm -T init take-backup &gt; backup.tar.partial; then
+  ln backup.tar.partial backup.tar &amp;&amp; rm backup.tar.partial || exit 1
+else
+  rm -f backup.tar.partial; exit 1
+fi
+if docker compose run --rm -T init recovery-kit &gt; recovery-kit.tar.partial; then
+  ln recovery-kit.tar.partial recovery-kit.tar &amp;&amp; rm recovery-kit.tar.partial || exit 1
+else
+  rm -f recovery-kit.tar.partial; exit 1
+fi
+docker compose up -d --wait</code></pre>
+</div></details>
+</div>
+{{end}}

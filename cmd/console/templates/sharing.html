@@ -1,0 +1,26 @@
+{{define "page_title"}}{{call .T "sharing_title"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<h1>{{call .T "sharing_title"}}</h1>
+{{if not $d.Enabled}}
+  <p class="muted">{{call .T "no_home"}}</p>
+{{else if not $d.Store.ID}}
+  <p>{{call .T "sharing_explained"}}</p>
+  <p class="notice">{{call .T "sharing_needs_admin"}}</p>
+  <form method="post" action="/connect"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "sharing_connect"}}</button></form>
+{{else}}
+  <p>{{call .T "sharing_explained"}}</p>
+  {{if $d.Error}}<p class="notice" role="alert">{{call .T $d.Error}}</p>{{end}}
+  {{if $d.Stopped}}<section class="moderation" aria-labelledby="stopped-title"><h2 id="stopped-title">{{call .T "moderation_notice"}}</h2><p>{{call .T "moderation_retained"}}</p>
+  {{range $d.Stopped}}<dl data-stopped><dt>{{call $.T "track"}}</dt><dd>{{if .Name}}{{localizeName .Name $.T}}{{end}} <code>{{.Type}}</code></dd><dt>{{call $.T "moderation_actor"}}</dt><dd>{{.By}}</dd><dt>{{call $.T "moderation_time"}}</dt><dd>{{.Time}}</dd></dl>{{end}}</section>{{end}}
+  {{if $d.Saved}}<p class="notice">{{call .T "sharing_saved"}}</p>{{end}}
+  <form method="post" action="/sharing" class="sharing">
+    <input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="dataset" value="{{$d.Store.ID}}">
+    <fieldset class="sharing-track-list"><legend>Tracks Home can read</legend>{{range $d.Tracks}}{{if not .Infrastructure}}<label class="track"><input type="checkbox" name="track" value="{{.ID}}" {{if .Shared}}checked{{end}}> {{if .Name}}{{localizeName .Name $.T}}{{else}}{{.ID}}{{end}}</label>{{end}}{{else}}<p class="muted">{{call $.T "no_tracks"}}</p>{{end}}</fieldset>
+<details class="sharing-advanced"><summary>Advanced data types</summary><p class="muted">These types may contain metadata or app internals. Changing them can affect dependent records. Existing selections are preserved unless you change them.</p>{{range $d.Tracks}}{{if .Infrastructure}}<label class="track"><input type="checkbox" name="track" value="{{.ID}}" {{if .Shared}}checked{{end}}> {{if .Name}}{{localizeName .Name $.T}}{{else}}{{.ID}}{{end}}</label>{{end}}{{end}}</details>
+    <button class="button">{{call .T "save"}}</button>
+  </form>
+  <p class="muted">{{call .T "sharing_how"}}</p>
+  {{if $d.HasUsage}}<p {{if $d.Full}}class="notice"{{else}}class="muted"{{end}} data-usage>{{call .T "store_usage"}} {{$d.UsageText}}{{if $d.Full}} — {{call .T "store_nearly_full"}}{{end}}</p>{{end}}
+{{end}}
+{{end}}

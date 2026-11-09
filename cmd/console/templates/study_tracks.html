@@ -1,0 +1,27 @@
+{{define "page_title"}}{{call .T "study_tracks"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<p><a href="/studies/{{$s.Slug}}/edit">← {{$s.Title}}</a></p>
+<p><a href="/studies/{{$s.Slug}}/setup/collection">{{call .T "setup_resume"}}</a></p>
+<h1>Collections</h1>
+{{if eq $d.Error "setup_stale"}}<p><a href="/studies/{{$s.Slug}}/tracks">{{call .T "setup_reload"}}</a></p>{{end}}
+{{if $d.Error}}<p class="notice" role="alert" data-error="{{formErrorKey $d.Error}}"><strong>{{call .T "form_errors"}}</strong><br>{{call .T (formErrorKey $d.Error)}}</p>{{end}}
+{{if $d.Locked}}
+  <p class="muted" data-state="locked">{{call .T "study_tracks_locked"}}</p>
+  {{range $d.Tracks}}{{if .Catalogue}}<h2 data-track>{{call $.T (catalogueLabel .Catalogue)}}</h2><p class="muted">{{call $.T "catalogue_track"}}</p>{{else}}
+  <h2 data-track>{{.Name}}</h2>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "study_tracks"}}">
+<table class="data"><thead><tr><th scope="col">{{call $.T "value_name"}}</th><th scope="col">{{call $.T "value_kind"}}</th><th scope="col">{{call $.T "value_unit"}}</th><th scope="col">{{call $.T "value_meaning"}}</th></tr></thead><tbody>{{range .Fields}}<tr><th scope="row">{{.Name}}</th><td>{{call $.T (printf "kind_%s" .Kind)}}</td><td>{{.Unit}}</td><td>{{if .Meaning}}{{call $.T (printf "meaning_%s" .Meaning)}}{{end}}</td></tr>{{end}}</tbody></table>
+</div>
+  {{end}}{{end}}
+{{else}}
+<p class="muted">{{call .T "study_tracks_note"}}</p>
+<p class="muted">{{call .T "designer_blank_rows"}}</p>
+<form class="designer" method="post" action="/studies/{{$s.Slug}}/tracks">
+  <input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="revision" value="{{$d.Revision}}">
+{{template "design_fields" .}}
+  <button class="button">{{call .T "save"}}</button>
+</form>
+{{end}}
+{{if $d.Schema}}<details><summary>{{call .T "show_schema"}}</summary><pre data-schema>{{$d.Schema}}</pre></details>{{end}}
+{{end}}

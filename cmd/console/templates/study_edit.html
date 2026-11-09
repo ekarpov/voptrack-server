@@ -1,0 +1,33 @@
+{{define "page_title"}}{{.Data.Study.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<header class="dashboard-heading"><div><h1>Study settings</h1><p class="dashboard-subtitle">Information, consent and recruitment for {{$s.Title}}.</p></div><a href="/study/{{$s.Slug}}">Public study page →</a></header>
+{{if eq $s.Status "draft"}}<p><a class="button" href="/studies/{{$s.Slug}}/setup/{{if $s.Setup}}{{$s.Setup.Stage}}{{else}}basics{{end}}">{{call .T "setup_resume"}}</a></p>{{end}}
+<p><a href="/studies/{{$s.Slug}}/tracks">Collection definitions →</a></p>
+{{if $d.Error}}<p class="notice" role="alert" data-error="{{formErrorKey $d.Error}}"><strong>{{call .T "form_errors"}}</strong><br>{{call .T (formErrorKey $d.Error)}}{{if or (eq $s.Status "draft") (eq $d.Error "setup_stale")}} <a href="/studies/{{$s.Slug}}/edit">{{call .T "setup_reload"}}</a>{{end}}</p>{{end}}
+<form class="study" method="post" action="/studies/{{$s.Slug}}/edit">
+  <input type="hidden" name="csrf" value="{{.CSRF}}">
+  <input type="hidden" name="revision" value="{{$d.Revision}}">
+  <label>{{call .T "study_title"}}<input name="title" id="field-title" {{if eq (formErrorKey $d.Error) "form_title_required"}}aria-invalid="true" aria-describedby="error-title"{{end}} value="{{$s.Title}}" required maxlength="200">{{if eq (formErrorKey $d.Error) "form_title_required"}}<span class="field-error" id="error-title">{{call .T "form_title_required"}}</span>{{end}}</label>
+  <label>{{call .T "study_run_by"}}<input name="run_by" id="field-run_by" {{if eq (formErrorKey $d.Error) "form_run_by_long"}}aria-invalid="true" aria-describedby="error-run_by"{{end}} value="{{$s.RunBy}}" maxlength="120">{{if eq (formErrorKey $d.Error) "form_run_by_long"}}<span class="field-error" id="error-run_by">{{call .T "form_run_by_long"}}</span>{{end}}</label>
+  <label>{{call .T "study_summary"}}<textarea name="summary" id="field-summary" {{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.Summary)}}aria-invalid="true" aria-describedby="error-summary"{{end}} rows="4">{{$s.Summary}}</textarea>{{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.Summary)}}<span class="field-error" id="error-summary">{{call .T "form_required"}}</span>{{end}}</label>
+  <label>{{call .T "study_collected"}}<textarea name="collected" id="field-collected" {{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.Collected)}}aria-invalid="true" aria-describedby="error-collected"{{end}} rows="4">{{$s.Collected}}</textarea>{{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.Collected)}}<span class="field-error" id="error-collected">{{call .T "form_required"}}</span>{{end}}</label>
+  <label>{{call .T "study_who_sees"}}<textarea name="who_sees" id="field-who_sees" {{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.WhoSees)}}aria-invalid="true" aria-describedby="error-who_sees"{{end}} rows="3">{{$s.WhoSees}}</textarea>{{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.WhoSees)}}<span class="field-error" id="error-who_sees">{{call .T "form_required"}}</span>{{end}}</label>
+  <label>{{call .T "study_how_to_leave"}}<textarea name="how_to_leave" id="field-how_to_leave" {{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.HowToLeave)}}aria-invalid="true" aria-describedby="error-how_to_leave"{{end}} rows="3">{{$s.HowToLeave}}</textarea>{{if and (eq (formErrorKey $d.Error) "form_content_required") (not $s.HowToLeave)}}<span class="field-error" id="error-how_to_leave">{{call .T "form_required"}}</span>{{end}}</label>
+  <label>{{call .T "study_consent"}} {{if $s.Consent}}<span class="muted">({{call .T "study_consent_version"}} {{$d.Current.Version}})</span>{{end}}<textarea name="consent" id="field-consent" {{if and (eq (formErrorKey $d.Error) "form_content_required") (not $d.Current.Text)}}aria-invalid="true" aria-describedby="error-consent"{{end}} rows="8">{{$d.Current.Text}}</textarea>{{if and (eq (formErrorKey $d.Error) "form_content_required") (not $d.Current.Text)}}<span class="field-error" id="error-consent">{{call .T "form_required"}}</span>{{end}}</label>
+  <p class="muted">{{if eq $s.Status "draft"}}{{call .T "setup_consent_draft"}}{{else}}{{call .T "study_consent_note"}}{{end}}</p>
+  <label><input type="checkbox" name="material" value="yes" {{if not $d.Editorial}}checked{{end}}> {{call .T "study_material"}}</label>
+  <p><strong>{{call .T "study_tracks"}}:</strong> {{range $i, $t := $s.Tracks}}{{if $i}}, {{end}}{{if $t.Catalogue}}{{call $.T (catalogueLabel $t.Catalogue)}}{{else}}{{$t.Name}}{{end}}{{else}}<span class="muted">{{call .T "no_tracks_yet"}}</span>{{end}}
+     · <a href="/studies/{{$s.Slug}}/tracks" data-design-tracks>{{if $s.IssuerID}}{{call .T "view_tracks"}}{{else}}{{call .T "design_tracks"}}{{end}}</a></p>
+  <label>{{call .T "study_join"}}<select name="join_mode">
+    <option value="invite" {{if ne $s.JoinMode "open"}}selected{{end}}>{{call .T "join_invite"}}</option>
+    <option value="open" {{if eq $s.JoinMode "open"}}selected{{end}}>{{call .T "join_open"}}</option></select></label>
+  {{if eq $s.Status "draft"}}<p>{{call .T "status_draft"}} · <a href="/studies/{{$s.Slug}}/setup/review">{{call .T "setup_review"}}</a></p>{{else}}
+  <label>{{call .T "study_status"}}<select name="status" id="field-status" {{if eq (formErrorKey $d.Error) "form_no_draft"}}aria-invalid="true" aria-describedby="error-status"{{end}}>
+    <option value="draft" {{if eq $s.Status "draft"}}selected{{end}}>{{call .T "status_draft"}}</option>
+    <option value="open" {{if eq $s.Status "open"}}selected{{end}}>{{call .T "status_open"}}</option>
+    <option value="closed" {{if eq $s.Status "closed"}}selected{{end}}>{{call .T "status_closed"}}</option></select>{{if eq (formErrorKey $d.Error) "form_no_draft"}}<span class="field-error" id="error-status">{{call .T "form_no_draft"}}</span>{{end}}</label>
+  {{end}}
+  <button class="button">{{call .T "save"}}</button>
+</form>
+{{end}}

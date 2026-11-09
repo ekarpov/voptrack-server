@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "ExpectedBucketOwner": "REPLACE_WITH_12_DIGIT_ACCOUNT",
+  "Label": "Approved off-machine destination",
+  "Region": "us-east-1",
+  "Bucket": "REPLACE_WITH_APPROVED_BUCKET",
+  "Prefix": "REPLACE_WITH_APPROVED_PREFIX/",
+  "Deployment": "REPLACE_WITH_32_HEX_PRODUCER_ID",
+  "CredentialFile": "/authorization/s3.json",
+  "Outbox": "/queue",
+  "State": "/var/lib/voptrack-replication",
+  "StatusFile": "/status/off-machine.json",
+  "SettingsFile": "",
+  "Budget": 5368709120,
+  "LocalFixture": false,
+  "IndependentDestination": false,
+  "Endpoint": "",
+  "CAFile": ""
+}

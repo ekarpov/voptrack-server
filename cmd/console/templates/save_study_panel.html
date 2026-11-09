@@ -1,0 +1,14 @@
+{{define "page_title"}}{{call .T "add_to_dashboard"}} · Voptrack{{end}}
+{{define "content"}}
+<p><a href="{{.Data.Back}}">← {{call .T "back"}}</a></p>
+<h1>{{call .T "add_to_dashboard"}}</h1>
+<p>{{call .T "study_dashboard"}}: {{.Data.StudyTitle}}</p>
+<p class="notice" role="alert" id="save-error" data-error="{{.Data.Error}}">{{call .T .Data.Error}}</p>
+<form class="spec" method="post" action="/dashboards/add">
+<input type="hidden" name="csrf" value="{{.CSRF}}">
+<input type="hidden" name="panel" value="{{.Data.Query}}">
+<label>{{call .T "dashboard_name"}}<input name="name" list="dashboards" maxlength="80" required value="{{.Data.Name}}" aria-describedby="save-error"></label>
+<datalist id="dashboards">{{range .Data.Saved}}<option value="{{.Name}}">{{end}}</datalist>
+<button class="button">{{call .T "save"}}</button>
+</form>
+{{end}}

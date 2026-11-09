@@ -1,0 +1,509 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "cueProtocolID",
+          "endFieldID" : "endTimestamp"
+        },
+        "collectionMeaning" : "interval",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petTraining.field.cueProtocolID"
+        }
+      },
+      "id" : "cueProtocolID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_training",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petTraining.field.attempts"
+        }
+      },
+      "id" : "attempts",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_training",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "cueProtocolID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petTraining.field.successes"
+        }
+      },
+      "id" : "successes",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_training",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "cueProtocolID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petTraining.field.environment"
+        }
+      },
+      "id" : "environment",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_training",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petTraining.field.reward"
+        }
+      },
+      "id" : "reward",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_training",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.pet_training",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"cueProtocolID\",\"meta_id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining.field.cueProtocolID\",\"type\":\"text\"},{\"id\":\"attempts\",\"meta_id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining.field.attempts\",\"type\":\"integer\"},{\"id\":\"successes\",\"meta_id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining.field.successes\",\"type\":\"integer\"},{\"id\":\"environment\",\"meta_id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining.field.environment\",\"type\":\"text\"},{\"id\":\"reward\",\"meta_id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining.field.reward\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.pet_training\",\"name\":\"model.pets.petTraining\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "cueProtocolID",
+          "meta_id" : "com.voptrack.track.pet_training",
+          "name" : "model.pets.petTraining.field.cueProtocolID",
+          "type" : "text"
+        },
+        {
+          "id" : "attempts",
+          "meta_id" : "com.voptrack.track.pet_training",
+          "name" : "model.pets.petTraining.field.attempts",
+          "type" : "integer"
+        },
+        {
+          "id" : "successes",
+          "meta_id" : "com.voptrack.track.pet_training",
+          "name" : "model.pets.petTraining.field.successes",
+          "type" : "integer"
+        },
+        {
+          "id" : "environment",
+          "meta_id" : "com.voptrack.track.pet_training",
+          "name" : "model.pets.petTraining.field.environment",
+          "type" : "text"
+        },
+        {
+          "id" : "reward",
+          "meta_id" : "com.voptrack.track.pet_training",
+          "name" : "model.pets.petTraining.field.reward",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.pet_training",
+      "name" : "model.pets.petTraining",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.pets.petTraining"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : "tries",
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "pets.training",
+        "symbol" : "checkmark.seal.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.weight",
+          "symbol" : "pawprint.fill"
+        },
+        "id" : "com.voptrack.category.pets",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.pets"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "homeCard" : {
+        "mark" : "line",
+        "qualifierFieldIDs" : [
+
+        ],
+        "sum" : "tries"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+        {
+          "comparison" : {
+            "_1" : "lessThanOrEqual",
+            "left" : "successes",
+            "right" : "attempts"
+          }
+        }
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "cueProtocolID",
+      "attempts",
+      "successes",
+      "environment",
+      "reward"
+    ]
+  }
+}

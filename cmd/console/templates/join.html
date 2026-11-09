@@ -1,0 +1,23 @@
+{{define "page_title"}}{{call .T "join_title"}}: {{.Data.Study.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<article class="study-page">
+<h1>{{call .T "join_title"}}: {{$s.Title}}</h1>
+<p class="lead">{{$s.Summary}}</p>
+{{if $d.AppLink}}<p><a class="button" href="{{$d.AppLink}}" data-app-link>{{call .T "join_with_app"}}</a></p>{{end}}
+<h2>{{call .T "study_collected"}}</h2><p>{{$s.Collected}}</p>
+{{if $s.RunBy}}<h2>{{call .T "study_run_by"}}</h2><p data-section="run_by">{{$s.RunBy}}</p>{{end}}
+<h2>{{call .T "study_who_sees"}}</h2><p>{{$s.WhoSees}}</p>
+<h2>{{call .T "study_how_to_leave"}}</h2><p>{{$s.HowToLeave}}</p>
+<h2>{{call .T "study_consent"}} <span class="muted">({{call .T "study_consent_version"}} {{$d.Current.Version}})</span></h2>
+<p class="consent" data-section="consent">{{$d.Current.Text}}</p>
+<form method="post" action="/study/{{$s.Slug}}/join" class="study">
+  <input type="hidden" name="csrf" value="{{.CSRF}}">
+  <input type="hidden" name="version" value="{{$d.Current.Version}}">
+  <input type="hidden" name="code" value="{{$d.Code}}">
+  <label class="track"><input type="checkbox" name="agree" value="yes" required> {{call .T "join_agree"}}</label>
+  <p class="muted">{{call .T "join_pseudonym_note"}}</p>
+  <button class="button">{{call .T "join_button"}}</button>
+</form>
+</article>
+{{end}}

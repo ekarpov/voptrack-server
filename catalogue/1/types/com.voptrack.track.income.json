@@ -1,0 +1,655 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.category"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.amount"
+        }
+      },
+      "id" : "amount",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "currencyFieldID" : "currency",
+          "moneyScale" : 2
+        },
+        "collectionMeaning" : "money",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 2
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.currency"
+        }
+      },
+      "id" : "currency",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.purpose"
+        }
+      },
+      "id" : "purpose",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 256
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.category"
+        }
+      },
+      "id" : "category",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.category"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.category"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.categorySource"
+        }
+      },
+      "id" : "categorySource",
+      "internal" : true,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "chosen"
+            },
+            {
+              "type" : "text",
+              "value" : "accepted"
+            },
+            {
+              "type" : "text",
+              "value" : "corrected"
+            },
+            {
+              "type" : "text",
+              "value" : "dismissed"
+            }
+          ],
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 16
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "accepted" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.accepted"
+              }
+            },
+            "chosen" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.chosen"
+              }
+            },
+            "corrected" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.corrected"
+              }
+            },
+            "dismissed" : {
+              "bundled" : {
+                "key" : "model.record.categorySource.dismissed"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.income.field.bankReference"
+        }
+      },
+      "id" : "bankReference",
+      "internal" : true,
+      "meta_id" : "com.voptrack.track.income",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 128
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.income",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"amount\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.amount\",\"type\":\"integer\"},{\"id\":\"currency\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.currency\",\"type\":\"text\"},{\"id\":\"purpose\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.purpose\",\"type\":\"text\"},{\"id\":\"category\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.category\",\"type\":\"reference\"},{\"id\":\"categorySource\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.categorySource\",\"type\":\"text\"},{\"id\":\"bankReference\",\"meta_id\":\"com.voptrack.track.income\",\"name\":\"model.income.field.bankReference\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.income\",\"name\":\"model.income\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "amount",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.amount",
+          "type" : "integer"
+        },
+        {
+          "id" : "currency",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.currency",
+          "type" : "text"
+        },
+        {
+          "id" : "purpose",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.purpose",
+          "type" : "text"
+        },
+        {
+          "id" : "category",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.category",
+          "type" : "reference"
+        },
+        {
+          "id" : "categorySource",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.categorySource",
+          "type" : "text"
+        },
+        {
+          "id" : "bankReference",
+          "meta_id" : "com.voptrack.track.income",
+          "name" : "model.income.field.bankReference",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.income",
+      "name" : "model.income",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.income"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "income.monthlyNet",
+        "label" : {
+          "bundled" : {
+            "key" : "model.finance.metric.monthlyIncome"
+          }
+        },
+        "operation" : {
+          "money" : {
+            "aggregation" : "sum",
+            "fieldID" : "amount"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "month"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R3",
+        "R6"
+      ],
+      "appearance" : {
+        "color" : "finance.income",
+        "symbol" : "banknote.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "finance.expense",
+          "symbol" : "creditcard.fill"
+        },
+        "id" : "com.voptrack.category.finance",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.finance"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "income.monthlyNet",
+          "label" : {
+            "bundled" : {
+              "key" : "model.finance.metric.monthlyIncome"
+            }
+          },
+          "operation" : {
+            "money" : {
+              "aggregation" : "sum",
+              "fieldID" : "amount"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          }
+        },
+        {
+          "id" : "income.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.finance.metric.latestIncome"
+            }
+          },
+          "operation" : {
+            "money" : {
+              "aggregation" : "latest",
+              "fieldID" : "amount"
+            }
+          }
+        }
+      ],
+      "internalFieldIDs" : [
+        "categorySource",
+        "bankReference"
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P2"
+      ],
+      "recordCategorySuggestions" : [
+        {
+          "appearance" : {
+            "color" : "finance.income",
+            "symbol" : "banknote.fill"
+          },
+          "id" : "com.voptrack.category.finance.salary",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.salary"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "projects.work",
+            "symbol" : "briefcase.fill"
+          },
+          "id" : "com.voptrack.category.finance.sideIncome",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.sideIncome"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "finance.claim",
+            "symbol" : "arrow.uturn.backward"
+          },
+          "id" : "com.voptrack.category.finance.refunds",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.refunds"
+            }
+          }
+        },
+        {
+          "appearance" : {
+            "color" : "general.note",
+            "symbol" : "ellipsis"
+          },
+          "id" : "com.voptrack.category.finance.incomeOther",
+          "name" : {
+            "bundled" : {
+              "key" : "model.category.suggestion.finance.incomeOther"
+            }
+          }
+        }
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "amount",
+      "currency",
+      "purpose",
+      "category",
+      "categorySource",
+      "bankReference"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{{define "page_title"}}{{.Data.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<p><a href="{{$d.Back}}">← {{$d.BackLabel}}</a></p><h1>{{$d.Title}}</h1><p class="muted">{{$d.When}} · {{$d.Member}}</p>
+{{if $d.HomeSubjectName}}<p class="named-context">About {{$d.HomeSubjectName}}{{if $d.HomeSubjectKind}} · {{$d.HomeSubjectKind}}{{end}}</p>{{else if $d.RelatedUnavailable}}<p class="muted">Related details are not available with this share.</p>{{end}}
+<dl class="record-fields">{{range $d.Fields}}<div><dt>{{.Name}}</dt><dd>{{.Value}}</dd></div>{{end}}</dl>
+{{if or $d.Attachments $d.AttachmentUnavailable}}<h2 class="records-heading">Attachments</h2>
+{{if $d.AttachmentUnavailable}}<p class="notice" role="status">Some attachments are unavailable with your current access. Their records are still shown.</p>{{end}}
+<div class="attachment-grid">{{range $d.Attachments}}<article class="attachment-card">{{if .Image}}<a href="{{.URL}}"><img src="{{.PreviewURL}}" alt="{{.Name}}" loading="lazy"></a>{{end}}<h3>{{.Name}}</h3><p class="muted">{{.MIME}}</p><a href="{{.URL}}">Download attachment →</a></article>{{else}}<p class="muted">No readable attachments are available for this record.</p>{{end}}</div>
+{{end}}{{end}}

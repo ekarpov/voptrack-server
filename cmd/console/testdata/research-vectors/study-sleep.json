@@ -1,0 +1,111 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "hours",
+        "kind" : "number",
+        "meaning" : "sample",
+        "name" : "Hours slept",
+        "unit" : "h"
+      },
+      {
+        "id" : "awakenings",
+        "kind" : "wholeNumber",
+        "meaning" : "additive",
+        "name" : "Awakenings"
+      },
+      {
+        "id" : "caffeine",
+        "kind" : "number",
+        "name" : "Caffeine",
+        "unit" : "cups"
+      },
+      {
+        "id" : "mood",
+        "kind" : "text",
+        "name" : "Mood"
+      },
+      {
+        "id" : "napped",
+        "kind" : "yesNo",
+        "name" : "Napped"
+      },
+      {
+        "id" : "bedtime",
+        "kind" : "dateTime",
+        "name" : "Bedtime"
+      }
+    ],
+    "name" : "Sleep",
+    "typeID" : "study.s2027_sleep.sleep"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "annotations" : {
+          "meaning" : "sample",
+          "unit" : "h",
+          "unit_field" : "hours_unit",
+          "unit_source" : "record"
+        },
+        "id" : "hours",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Hours slept",
+        "type" : "float"
+      },
+      {
+        "id" : "hours_unit",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Hours slept unit",
+        "type" : "text"
+      },
+      {
+        "annotations" : {
+          "meaning" : "additive"
+        },
+        "id" : "awakenings",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Awakenings",
+        "type" : "integer"
+      },
+      {
+        "annotations" : {
+          "unit" : "cups",
+          "unit_field" : "caffeine_unit",
+          "unit_source" : "record"
+        },
+        "id" : "caffeine",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Caffeine",
+        "type" : "float"
+      },
+      {
+        "id" : "caffeine_unit",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Caffeine unit",
+        "type" : "text"
+      },
+      {
+        "id" : "mood",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Mood",
+        "type" : "text"
+      },
+      {
+        "id" : "napped",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Napped",
+        "type" : "boolean"
+      },
+      {
+        "id" : "bedtime",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Bedtime",
+        "type" : "date_time"
+      }
+    ],
+    "id" : "study.s2027_sleep.sleep",
+    "name" : "Sleep",
+    "parent_id" : "com.voptrack.track"
+  }
+}

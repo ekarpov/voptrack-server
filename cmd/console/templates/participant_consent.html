@@ -1,0 +1,35 @@
+{{define "page_title"}}{{.Data.Study.Title}} · {{call .T "participant_status"}}{{end}}
+{{define "content"}}{{$d := .Data}}{{$s := $d.Study}}
+<article class="study-page">
+<p><a href="/my-studies">{{call .T "participant_studies"}}</a> · <a href="/study/{{$s.Slug}}">{{call .T "participant_public"}}</a></p>
+<h1>{{$s.Title}}</h1><p class="lead">{{call .T "participant_status"}}</p>
+{{if $s.RunBy}}<p>{{call .T "study_run_by"}}: {{$s.RunBy}}</p>{{end}}
+{{if $d.Error}}<p class="notice" role="alert" data-consent-error>{{call .T $d.Error}}</p>{{end}}
+{{if eq $s.Status "closed"}}<p class="notice">{{call .T "study_is_closed"}} {{if $s.ClosedAt}}<time datetime="{{$s.ClosedAt.Format "2006-01-02T15:04:05Z07:00"}}">{{$s.ClosedAt.Format "2006-01-02 15:04 MST"}}</time>{{end}}</p>{{end}}
+<dl><dt>{{call .T "participant_latest"}}</dt><dd data-latest-agreement>{{call .T "study_consent_version"}} {{$d.Latest.Version}} · <time datetime="{{$d.Latest.At.Format "2006-01-02T15:04:05Z07:00"}}">{{$d.Latest.At.Format "2006-01-02 15:04 MST"}}</time></dd>
+<dt>{{call .T "participant_status"}}</dt><dd data-consent-status>{{if $d.Status.Withdrawn}}{{call .T "participant_withdrawn"}} · <time datetime="{{$d.Status.Withdrawn.Format "2006-01-02T15:04:05Z07:00"}}">{{$d.Status.Withdrawn.Format "2006-01-02 15:04 MST"}}</time>{{else}}{{call .T "participant_not_withdrawn"}}{{end}}</dd>
+<dt>{{call .T "participant_renewal"}}</dt><dd data-renewal-needed="{{$d.Status.AgreementNeeded}}">{{if $d.Status.AgreementNeeded}}{{call .T "participant_needed"}}{{else}}{{call .T "participant_covered"}}{{end}}</dd></dl>
+<h2>{{call .T "study_consent"}} · {{call .T "study_consent_version"}} <span data-consent-version>{{$d.Current.Version}}</span></h2>
+<p>{{if $d.Current.Editorial}}{{call .T "participant_editorial"}}{{else}}{{call .T "participant_material"}}{{end}}</p>
+<p class="consent" data-section="consent">{{$d.Current.Text}}</p>
+<p>{{call .T "participant_withdraw_disclosure"}}</p>
+{{if $d.Status.Withdrawn}}<p class="notice" data-rejoin-disclosure>{{call .T "participant_rejoin_disclosure"}}</p><p>{{call .T "participant_erased_hint"}}</p>{{end}}
+{{if $d.Action}}
+<section class="card" aria-labelledby="confirmation-title"><h2 id="confirmation-title">{{call .T (printf "participant_%s" $d.Action)}}</h2>
+{{if eq $d.Action "rejoin"}}<p data-rejoin-confirmation>{{call .T "participant_rejoin_disclosure"}}</p>{{end}}
+{{if eq $d.Action "withdraw"}}<p>{{call .T "participant_withdraw_disclosure"}}</p>{{end}}
+{{if $d.Write}}<form method="post" action="/study/{{$s.Slug}}/consent/{{$d.Action}}">
+<input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="version" value="{{$d.Current.Version}}">
+<label class="inline"><input type="checkbox" name="confirm" value="yes" required> {{if eq $d.Action "withdraw"}}{{call .T "participant_confirm_withdraw"}}{{else}}{{call .T "join_agree"}}{{end}}</label>
+<button class="button">{{call .T (printf "participant_%s" $d.Action)}}</button></form>
+{{else}}<p>{{call .T "participant_write"}}</p><form method="post" action="/study/{{$s.Slug}}/consent/approve"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "participant_approve"}}</button></form>{{end}}
+<p><a href="/study/{{$s.Slug}}/consent">{{call .T "participant_back"}}</a></p></section>
+{{else}}<div class="actions">
+{{if and (ne $s.Status "closed") (ne $d.Error "participant_erased")}}{{if $d.Status.Withdrawn}}<a class="button" href="/study/{{$s.Slug}}/consent/rejoin">{{call .T "participant_rejoin"}}</a>{{else if $d.Status.AgreementNeeded}}<a class="button" href="/study/{{$s.Slug}}/consent/renew">{{call .T "participant_renew"}}</a>{{end}}{{end}}
+{{if not $d.Status.Withdrawn}}<a class="button" href="/study/{{$s.Slug}}/consent/withdraw">{{call .T "participant_withdraw"}}</a>{{end}}</div>{{end}}
+<h2>{{call .T "participant_history"}}</h2>
+{{range $d.Status.Consents}}{{$agreement := .}}<details class="card"><summary>{{call $.T "study_consent_version"}} {{.Version}} · {{.At.Format "2006-01-02 15:04 MST"}}</summary>
+{{range $s.Consent}}{{if eq .Version $agreement.Version}}<p>{{if .Editorial}}{{call $.T "participant_editorial"}}{{else}}{{call $.T "participant_material"}}{{end}}</p><p class="consent">{{.Text}}</p>{{end}}{{end}}</details>{{end}}
+<h2>{{call .T "participant_versions"}}</h2>{{range $s.Consent}}<details><summary>{{call $.T "study_consent_version"}} {{.Version}} · {{.Published.Format "2006-01-02 15:04 MST"}} · {{if .Editorial}}{{call $.T "participant_editorial"}}{{else}}{{call $.T "participant_material"}}{{end}}</summary><p class="consent">{{.Text}}</p></details>{{end}}
+<hr><p>{{call .T "participant_separate"}} <a href="/leave">{{call .T "leave_title"}}</a> · <a href="/account/delete">{{call .T "account_delete"}}</a></p>
+</article>{{end}}

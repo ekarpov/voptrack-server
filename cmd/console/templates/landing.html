@@ -1,0 +1,9 @@
+{{define "page_title"}}{{call .T "title"}}{{end}}
+{{define "content"}}
+<section class="hero">
+  <h1>{{if .Research}}Voptrack Research{{else}}A shared view of home.{{end}}</h1>
+  <p>{{if .Research}}{{call .T "welcome_research"}}{{else}}Bring together the tracks your household chooses to share. Your personal records stay yours.{{end}}</p>
+  <p><a class="button" href="/login">{{call .T "sign_in"}}</a></p>
+  <p><a href="/connect-app">{{call .T "connect_title"}}</a></p>
+</section>
+{{end}}

@@ -1,0 +1,38 @@
+{
+  "type": {
+    "fields": [
+      {
+        "id": "contract_version",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.contractVersion",
+        "type": "integer"
+      },
+      {
+        "id": "subject_id",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.subjectID",
+        "type": "text"
+      },
+      {
+        "id": "name",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.name",
+        "type": "text"
+      },
+      {
+        "id": "kind_text",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.kindText",
+        "type": "text"
+      },
+      {
+        "id": "category",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.category",
+        "type": "text"
+      }
+    ],
+    "id": "com.voptrack.shared_subject",
+    "name": "model.sharedSubject"
+  }
+}

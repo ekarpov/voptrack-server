@@ -1,0 +1,64 @@
+# Opt-in FIRST USE ONLY overlay for release/compose.yaml.
+# Existing/partial volumes are refused and preserved. Research uses its normal path.
+services:
+  setup:
+    image: ${VOPTRACK_IMAGE:-voptrack-server:latest}
+    entrypoint: ["/usr/local/bin/voptrack-setup"]
+    command: ["serve"]
+    user: "10001:10001"
+    restart: "no"
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      VOPTRACK_VARIANT: household
+      VOPTRACK_DOMAIN: ${VOPTRACK_DOMAIN:-localhost}
+      VOPTRACK_PUBLIC_URL: ${VOPTRACK_PUBLIC_URL:-}
+      VOPTRACK_SETUP_ORIGIN: ${VOPTRACK_SETUP_ORIGIN:-https://localhost:9673}
+      VOPTRACK_SETUP_LISTEN: ":9673"
+      VOPTRACK_CONSOLE_PORT: ${VOPTRACK_CONSOLE_PORT:-9443}
+      VOPTRACK_PROXY_ADDRESS: ${VOPTRACK_PROXY_ADDRESS:-10.117.47.2}
+      VOPTRACK_TLS: ${VOPTRACK_TLS:-auto}
+      VOPTRACK_BACKUP_EVERY_HOURS: ${VOPTRACK_BACKUP_EVERY_HOURS:-24}
+      VOPTRACK_BACKUP_KEEP: ${VOPTRACK_BACKUP_KEEP:-7}
+      VOPTRACK_STORE_LIMIT_MB: ${VOPTRACK_STORE_LIMIT_MB:-}
+    ports:
+      - "127.0.0.1:${VOPTRACK_SETUP_PORT:-9673}:9673"
+    tmpfs:
+      - /tmp:uid=10001,mode=0700
+    volumes:
+      - setup-state:/var/lib/voptrack-setup
+      - data:/var/lib/tessera
+      - config:/var/lib/voptrack-config
+      - bootstrap:/var/lib/voptrack-bootstrap
+      - public:/var/lib/voptrack-public
+      - ca:/var/lib/voptrack-ca
+      - console:/var/lib/voptrack-console
+      - backups:/var/lib/voptrack-backups
+  setup-admin:
+    logging:
+      driver: none
+    image: ${VOPTRACK_IMAGE:-voptrack-server:latest}
+    profiles: ["setup-admin"]
+    entrypoint: ["/usr/local/bin/voptrack-setup"]
+    command: ["access"]
+    user: "10001:10001"
+    network_mode: none
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /var/lib/tessera:uid=10001,mode=0700
+    volumes:
+      - setup-state:/var/lib/voptrack-setup
+  init:
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    environment:
+      VOPTRACK_VARIANT: household
+  console:
+    environment:
+      VOPTRACK_VARIANT: household
+volumes:
+  setup-state:

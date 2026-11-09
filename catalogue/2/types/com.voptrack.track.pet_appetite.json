@@ -1,0 +1,519 @@
+{
+  "catalogueVersion" : 2,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.track.pet_feeding"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petAppetite.field.context"
+        }
+      },
+      "id" : "context",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_appetite",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petAppetite.field.appetite"
+        }
+      },
+      "id" : "appetite",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_appetite",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "interested"
+            },
+            {
+              "type" : "text",
+              "value" : "reduced"
+            },
+            {
+              "type" : "text",
+              "value" : "refused"
+            },
+            {
+              "type" : "text",
+              "value" : "unknown"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "valueLabels" : {
+            "interested" : {
+              "bundled" : {
+                "key" : "model.pets.option.interested"
+              }
+            },
+            "reduced" : {
+              "bundled" : {
+                "key" : "model.pets.option.reduced"
+              }
+            },
+            "refused" : {
+              "bundled" : {
+                "key" : "model.pets.option.refused"
+              }
+            },
+            "unknown" : {
+              "bundled" : {
+                "key" : "model.pets.option.unknown"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petAppetite.field.feeding"
+        }
+      },
+      "id" : "feeding",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_appetite",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.track.pet_feeding"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.track.pet_feeding"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.pets.petAppetite.field.offeredFood"
+        }
+      },
+      "id" : "offeredFood",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.pet_appetite",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.pet_appetite",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"context\",\"meta_id\":\"com.voptrack.track.pet_appetite\",\"name\":\"model.pets.petAppetite.field.context\",\"type\":\"text\"},{\"id\":\"appetite\",\"meta_id\":\"com.voptrack.track.pet_appetite\",\"name\":\"model.pets.petAppetite.field.appetite\",\"type\":\"text\"},{\"id\":\"feeding\",\"meta_id\":\"com.voptrack.track.pet_appetite\",\"name\":\"model.pets.petAppetite.field.feeding\",\"type\":\"reference\"},{\"id\":\"offeredFood\",\"meta_id\":\"com.voptrack.track.pet_appetite\",\"name\":\"model.pets.petAppetite.field.offeredFood\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.pet_appetite\",\"name\":\"model.pets.petAppetite\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "context",
+          "meta_id" : "com.voptrack.track.pet_appetite",
+          "name" : "model.pets.petAppetite.field.context",
+          "type" : "text"
+        },
+        {
+          "id" : "appetite",
+          "meta_id" : "com.voptrack.track.pet_appetite",
+          "name" : "model.pets.petAppetite.field.appetite",
+          "type" : "text"
+        },
+        {
+          "id" : "feeding",
+          "meta_id" : "com.voptrack.track.pet_appetite",
+          "name" : "model.pets.petAppetite.field.feeding",
+          "type" : "reference"
+        },
+        {
+          "id" : "offeredFood",
+          "meta_id" : "com.voptrack.track.pet_appetite",
+          "name" : "model.pets.petAppetite.field.offeredFood",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.pet_appetite",
+      "name" : "model.pets.petAppetite",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.pets.petAppetite"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R4"
+      ],
+      "appearance" : {
+        "color" : "pets.appetite",
+        "symbol" : "fork.knife.circle.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.weight",
+          "symbol" : "pawprint.fill"
+        },
+        "id" : "com.voptrack.category.pets",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.pets"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar",
+      "spans" : [
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "week"
+            }
+          },
+          "span" : "week"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "month"
+            }
+          },
+          "span" : "month"
+        },
+        {
+          "policy" : {
+            "current" : {
+              "_0" : "year"
+            }
+          },
+          "span" : "year"
+        },
+        {
+          "policy" : {
+            "allHistory" : {
+
+            }
+          },
+          "span" : "all"
+        }
+      ]
+    },
+    "reads" : "count",
+    "readsAsLevel" : false,
+    "readsReason" : null,
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "context",
+      "appetite",
+      "feeding",
+      "offeredFood"
+    ]
+  }
+}

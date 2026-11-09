@@ -1,0 +1,10 @@
+{{define "page_title"}}{{call .T "leave_title"}} · Voptrack{{end}}
+{{define "content"}}
+<section class="home-reading account-workspace"><header class="dashboard-heading"><div><h1>Account &amp; data</h1><p class="dashboard-subtitle">Manage your sign-in and the data connected to it.</p></div></header>
+<section class="surface account-section"><h2>Sign-in</h2><p>Change the password you use to sign in to this server.</p><a class="button" href="/account/password" data-account-password>{{call .T "account_password"}}</a></section>
+<section class="surface account-section"><h2>{{call .T "download_title"}}</h2><p>{{call .T "download_explained"}}</p>
+{{range .Data}}<p><a href="/mine/{{.ID}}/export.json" data-download="{{.ID}}">{{call $.T "download_button"}}: {{.DisplayName}}</a></p>{{else}}<p>No connected datasets to download.</p>{{end}}</section>
+<details class="surface account-section account-danger"><summary>Delete data or account</summary><h2>{{call .T "leave_title"}}</h2><p>{{call .T "leave_explained"}}</p><p class="notice">{{call .T "leave_tick"}}</p>
+{{range .Data}}<form method="post" action="/leave/start" class="leave"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="dataset" value="{{.ID}}"><button class="button danger">{{call $.T "leave_button"}}: {{.DisplayName}}</button></form>{{end}}
+<h2>{{call .T "account_title"}}</h2><p>{{call .T "account_delete_explained"}}</p><a class="button danger" href="/account/delete" data-account-delete>{{call .T "account_delete"}}</a></details></section>
+{{end}}

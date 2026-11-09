@@ -1,0 +1,41 @@
+{{define "page_title"}}{{if .Research}}{{call .T "studies"}}{{else}}{{call .T "members"}}{{end}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+{{if .Research}}
+<h1>{{call .T "studies"}}</h1>
+<p>{{call .T "welcome_research"}}</p>
+<p><a class="button" href="/studies">{{call .T "studies"}} →</a></p>
+{{else}}
+<h1>{{call .T "members"}}</h1>
+<p class="muted">{{call .T "invite_explained"}}</p>
+<p class="muted">{{call .T "privacy_note"}}</p>
+{{if $d.Members}}
+  <h2 class="spaced">{{call .T "household"}}</h2>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "members"}}">
+<table class="data">
+<thead><tr><th scope="col">{{call .T "members"}}</th><th scope="col">{{call .T "state_col"}}</th><th scope="col">{{call .T "actions"}}</th></tr></thead><tbody>
+  {{range $d.Members}}<tr><td data-member>{{.Account}}</td><td data-state>{{if .Suspended}}{{call $.T "suspended"}}{{else}}{{call $.T "active"}}{{end}}</td>
+    <td><form method="post" action="/members/{{.Account}}/{{if .Suspended}}reinstate{{else}}suspend{{end}}"><input type="hidden" name="csrf" value="{{$.CSRF}}"><button class="link">{{if .Suspended}}{{call $.T "reinstate"}}{{else}}{{call $.T "suspend"}}{{end}}</button></form></td></tr>{{end}}
+  </tbody></table>
+</div>
+  <p class="muted">{{call .T "suspend_explained"}}</p>
+{{end}}
+{{if not $d.Enabled}}
+  <p class="notice">{{call .T "invitations_off"}}</p>
+{{else}}
+  {{if eq $d.Error "cap"}}<p class="notice">{{call .T "invite_cap"}}</p>{{end}}
+  <form method="post" action="/members/invite"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "invite_member"}}</button></form>
+  {{if $d.Invited}}
+  <h2 class="spaced">{{call .T "invite_links"}}</h2>
+  <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "members"}}">
+<table class="data">
+    <thead><tr><th scope="col">{{call .T "invite_link"}}</th><th scope="col">{{call .T "invite_expires"}}</th></tr></thead>
+    <tbody>{{range $d.Invited}}<tr><td><code class="link">{{.RedeemURL}}</code></td><td>{{.ExpiresAt.Format "2006-01-02 15:04 MST"}}</td></tr>{{end}}</tbody>
+  </table>
+</div>
+  <p class="muted">{{call .T "invite_once"}}</p>
+  <p data-moderated>{{call .T "invite_moderated"}}</p>
+  {{end}}
+{{end}}
+{{end}}
+{{end}}

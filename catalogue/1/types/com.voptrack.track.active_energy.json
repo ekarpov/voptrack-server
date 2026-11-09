@@ -1,0 +1,577 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activeEnergy.field.value"
+        }
+      },
+      "id" : "value",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.active_energy",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "daySourceFieldID" : "estimateLabel"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "energy",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "kcal",
+              "fieldID" : "unit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "kcal",
+                "kJ"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 4.1840000000000002
+            },
+            "id" : "kcal"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "kJ"
+          }
+        ],
+        "canonicalUnit" : "kJ",
+        "defaultUnit" : "kcal",
+        "dimension" : "energy",
+        "unitField" : "unit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "kcal",
+              "kJ"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activeEnergy.field.unit"
+        }
+      },
+      "id" : "unit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.active_energy",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activeEnergy.field.energyKind"
+        }
+      },
+      "id" : "energyKind",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.active_energy",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete",
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "active"
+              }
+            }
+          }
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "active"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "active" : {
+              "bundled" : {
+                "key" : "model.activity.option.active"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activeEnergy.field.estimateLabel"
+        }
+      },
+      "id" : "estimateLabel",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.active_energy",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.active_energy",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"value\",\"meta_id\":\"com.voptrack.track.active_energy\",\"name\":\"model.activity.activeEnergy.field.value\",\"type\":\"float\"},{\"id\":\"unit\",\"meta_id\":\"com.voptrack.track.active_energy\",\"name\":\"model.activity.activeEnergy.field.unit\",\"type\":\"text\"},{\"id\":\"energyKind\",\"meta_id\":\"com.voptrack.track.active_energy\",\"name\":\"model.activity.activeEnergy.field.energyKind\",\"type\":\"text\"},{\"id\":\"estimateLabel\",\"meta_id\":\"com.voptrack.track.active_energy\",\"name\":\"model.activity.activeEnergy.field.estimateLabel\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.active_energy\",\"name\":\"model.activity.activeEnergy\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "value",
+          "meta_id" : "com.voptrack.track.active_energy",
+          "name" : "model.activity.activeEnergy.field.value",
+          "type" : "float"
+        },
+        {
+          "id" : "unit",
+          "meta_id" : "com.voptrack.track.active_energy",
+          "name" : "model.activity.activeEnergy.field.unit",
+          "type" : "text"
+        },
+        {
+          "id" : "energyKind",
+          "meta_id" : "com.voptrack.track.active_energy",
+          "name" : "model.activity.activeEnergy.field.energyKind",
+          "type" : "text"
+        },
+        {
+          "id" : "estimateLabel",
+          "meta_id" : "com.voptrack.track.active_energy",
+          "name" : "model.activity.activeEnergy.field.estimateLabel",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.active_energy",
+      "name" : "model.activity.activeEnergy",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.activeEnergy"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "activeEnergy.dailySum",
+        "label" : {
+          "bundled" : {
+            "key" : "model.activity.activeEnergy.metric.dailySum"
+          }
+        },
+        "operation" : {
+          "numeric" : {
+            "_0" : "sum",
+            "fieldID" : "value"
+          }
+        },
+        "periodPolicy" : {
+          "current" : {
+            "_0" : "day"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R2",
+        "R1"
+      ],
+      "appearance" : {
+        "color" : "activity.energy",
+        "symbol" : "flame.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "activity.walking",
+          "symbol" : "figure.walk"
+        },
+        "id" : "com.voptrack.category.activity",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.activity"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "activeEnergy.dailySum",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.activeEnergy.metric.dailySum"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "sum",
+              "fieldID" : "value"
+            }
+          },
+          "periodPolicy" : {
+            "current" : {
+              "_0" : "day"
+            }
+          }
+        },
+        {
+          "id" : "activeEnergy.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.activity.activeEnergy.metric.latest"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "latest",
+              "fieldID" : "value"
+            }
+          }
+        }
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+        "P2",
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "value",
+      "unit",
+      "energyKind",
+      "estimateLabel"
+    ]
+  }
+}

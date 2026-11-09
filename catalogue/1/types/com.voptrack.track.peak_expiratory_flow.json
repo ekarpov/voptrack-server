@@ -1,0 +1,505 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.peakExpiratoryFlow.field.value"
+        }
+      },
+      "id" : "value",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "protocolDeviceID",
+          "discriminatorMeaning" : "qualifier",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "sample",
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1
+          }
+        }
+      },
+      "type" : "float",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.peakExpiratoryFlow.field.unit"
+        }
+      },
+      "id" : "unit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "L/min"
+              }
+            }
+          }
+        },
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "L/min"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.peakExpiratoryFlow.field.protocolDeviceID"
+        }
+      },
+      "id" : "protocolDeviceID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.peakExpiratoryFlow.field.attempt"
+        }
+      },
+      "id" : "attempt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+
+        },
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 1
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.peak_expiratory_flow",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"value\",\"meta_id\":\"com.voptrack.track.peak_expiratory_flow\",\"name\":\"model.health.peakExpiratoryFlow.field.value\",\"type\":\"float\"},{\"id\":\"unit\",\"meta_id\":\"com.voptrack.track.peak_expiratory_flow\",\"name\":\"model.health.peakExpiratoryFlow.field.unit\",\"type\":\"text\"},{\"id\":\"protocolDeviceID\",\"meta_id\":\"com.voptrack.track.peak_expiratory_flow\",\"name\":\"model.health.peakExpiratoryFlow.field.protocolDeviceID\",\"type\":\"text\"},{\"id\":\"attempt\",\"meta_id\":\"com.voptrack.track.peak_expiratory_flow\",\"name\":\"model.health.peakExpiratoryFlow.field.attempt\",\"type\":\"integer\"}],\"id\":\"com.voptrack.track.peak_expiratory_flow\",\"name\":\"model.health.peakExpiratoryFlow\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "value",
+          "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+          "name" : "model.health.peakExpiratoryFlow.field.value",
+          "type" : "float"
+        },
+        {
+          "id" : "unit",
+          "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+          "name" : "model.health.peakExpiratoryFlow.field.unit",
+          "type" : "text"
+        },
+        {
+          "id" : "protocolDeviceID",
+          "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+          "name" : "model.health.peakExpiratoryFlow.field.protocolDeviceID",
+          "type" : "text"
+        },
+        {
+          "id" : "attempt",
+          "meta_id" : "com.voptrack.track.peak_expiratory_flow",
+          "name" : "model.health.peakExpiratoryFlow.field.attempt",
+          "type" : "integer"
+        }
+      ],
+      "id" : "com.voptrack.track.peak_expiratory_flow",
+      "name" : "model.health.peakExpiratoryFlow",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.health.peakExpiratoryFlow"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : {
+        "id" : "peakExpiratoryFlow.latest",
+        "label" : {
+          "bundled" : {
+            "key" : "model.health.metric.latestPeakFlow"
+          }
+        },
+        "operation" : {
+          "numeric" : {
+            "_0" : "latest",
+            "fieldID" : "value"
+          }
+        }
+      }
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "health.flow",
+        "symbol" : "gauge.with.dots.needle.50percent"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.pulse",
+          "symbol" : "heart.fill"
+        },
+        "id" : "com.voptrack.category.health",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.health"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+        {
+          "id" : "peakExpiratoryFlow.latest",
+          "label" : {
+            "bundled" : {
+              "key" : "model.health.metric.latestPeakFlow"
+            }
+          },
+          "operation" : {
+            "numeric" : {
+              "_0" : "latest",
+              "fieldID" : "value"
+            }
+          }
+        }
+      ],
+      "homeCard" : {
+        "mark" : "dots",
+        "qualifierFieldIDs" : [
+          "protocolDeviceID"
+        ],
+        "unitFieldID" : "unit"
+      },
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "value",
+      "unit",
+      "protocolDeviceID",
+      "attempt"
+    ]
+  }
+}

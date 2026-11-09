@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RequireProtectedTransport",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": ["arn:aws:s3:::APPROVED_BUCKET", "arn:aws:s3:::APPROVED_BUCKET/*"],
+      "Condition": {"Bool": {"aws:SecureTransport": "false"}}
+    },
+    {
+      "Sid": "RequireConditionalCreatesForDedicatedWriter",
+      "Effect": "Deny",
+      "Principal": {"AWS": "arn:aws:iam::APPROVED_ACCOUNT:role/APPROVED_WRITER"},
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::APPROVED_BUCKET/APPROVED_PREFIX/*",
+      "Condition": {"Null": {"s3:if-none-match": "true"}}
+    }
+  ]
+}

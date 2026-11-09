@@ -1,0 +1,725 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.exerciseID"
+        }
+      },
+      "id" : "exerciseID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "identifiesKind" : true
+        },
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.exerciseName"
+        }
+      },
+      "id" : "exerciseName",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : true
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.sequence"
+        }
+      },
+      "id" : "sequence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 1,
+            "upperBound" : 1024
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.repetitions"
+        }
+      },
+      "id" : "repetitions",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 1
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.load"
+        }
+      },
+      "id" : "load",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "collectionMeaning" : "sample",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "mass",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "kg",
+              "fieldID" : "loadUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "kg",
+                "lb",
+                "g"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 2,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "g" : 0,
+              "lb" : 1
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "kg"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.45359237000000002
+            },
+            "id" : "lb"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 0.001
+            },
+            "id" : "g"
+          }
+        ],
+        "canonicalUnit" : "kg",
+        "defaultUnit" : "kg",
+        "dimension" : "mass",
+        "unitField" : "loadUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "kg",
+              "lb",
+              "g"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.loadUnit"
+        }
+      },
+      "id" : "loadUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.duration"
+        }
+      },
+      "id" : "duration",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : false,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 1
+          }
+        }
+      },
+      "type" : "float",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.restSeconds"
+        }
+      },
+      "id" : "restSeconds",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "float",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.exerciseSet.field.superset"
+        }
+      },
+      "id" : "superset",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.exercise_set",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 1,
+            "upperBound" : 50
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.exercise_set",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"exerciseID\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.exerciseID\",\"type\":\"text\"},{\"id\":\"exerciseName\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.exerciseName\",\"type\":\"text\"},{\"id\":\"sequence\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.sequence\",\"type\":\"integer\"},{\"id\":\"repetitions\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.repetitions\",\"type\":\"integer\"},{\"id\":\"load\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.load\",\"type\":\"float\"},{\"id\":\"loadUnit\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.loadUnit\",\"type\":\"text\"},{\"id\":\"duration\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.duration\",\"type\":\"float\"},{\"id\":\"restSeconds\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.restSeconds\",\"type\":\"float\"},{\"id\":\"superset\",\"meta_id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet.field.superset\",\"type\":\"integer\"}],\"id\":\"com.voptrack.track.exercise_set\",\"name\":\"model.activity.exerciseSet\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "exerciseID",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.exerciseID",
+          "type" : "text"
+        },
+        {
+          "id" : "exerciseName",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.exerciseName",
+          "type" : "text"
+        },
+        {
+          "id" : "sequence",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.sequence",
+          "type" : "integer"
+        },
+        {
+          "id" : "repetitions",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.repetitions",
+          "type" : "integer"
+        },
+        {
+          "id" : "load",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.load",
+          "type" : "float"
+        },
+        {
+          "id" : "loadUnit",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.loadUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "duration",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.duration",
+          "type" : "float"
+        },
+        {
+          "id" : "restSeconds",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.restSeconds",
+          "type" : "float"
+        },
+        {
+          "id" : "superset",
+          "meta_id" : "com.voptrack.track.exercise_set",
+          "name" : "model.activity.exerciseSet.field.superset",
+          "type" : "integer"
+        }
+      ],
+      "id" : "com.voptrack.track.exercise_set",
+      "name" : "model.activity.exerciseSet",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "part",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.exerciseSet"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R2"
+      ],
+      "appearance" : {
+        "color" : "activity.exerciseSet",
+        "symbol" : "dumbbell.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "activity.walking",
+          "symbol" : "figure.walk"
+        },
+        "id" : "com.voptrack.category.activity",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.activity"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+        {
+          "presence" : {
+            "_0" : "atLeastOne",
+            "fields" : [
+              "repetitions",
+              "duration"
+            ]
+          }
+        }
+      ],
+      "specialization" : {
+        "exerciseSet" : {
+          "_0" : {
+            "durationFieldID" : "duration",
+            "exerciseIDFieldID" : "exerciseID",
+            "exerciseNameFieldID" : "exerciseName",
+            "loadFieldID" : "load",
+            "parentTypeID" : "com.voptrack.track.workout_session",
+            "repetitionsFieldID" : "repetitions",
+            "sequenceFieldID" : "sequence"
+          }
+        }
+      },
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "exerciseID",
+      "exerciseName",
+      "sequence",
+      "repetitions",
+      "load",
+      "loadUnit",
+      "duration",
+      "restSeconds",
+      "superset"
+    ]
+  }
+}

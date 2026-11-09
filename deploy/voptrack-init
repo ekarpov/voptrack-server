@@ -1,0 +1,517 @@
+#!/bin/sh
+# First-run bootstrap for the pull-and-start image. Runs as a one-shot service
+# before the server, so the server never needs write access to its own
+# configuration: this writes it, the server mounts it read-only.
+#
+#   voptrack-init            prepare configuration, certificate and the owner
+#   voptrack-init password   print the owner's initial password
+#
+# Idempotent. The configuration is regenerated on every run, because it is
+# derived entirely from the environment and a changed hostname must take
+# effect. The certificate, the owner and the data are made once and never
+# touched again.
+set -eu
+
+CONF=/var/lib/voptrack-config
+# The internal certificate, alone, for the containers that talk to the server:
+# Caddy verifies the hop with it and the Console trusts it. It is copied here
+# rather than those containers mounting CONF, because CONF also holds the
+# server's private key and every container here runs as the same user.
+PUBLIC=/var/lib/voptrack-public
+# The Console's private state. init writes the member-invitation issuer's
+# secret here, and nothing else can read it: only the Console mounts it.
+CONSOLE=/var/lib/voptrack-console
+DATA=/var/lib/tessera
+# The initial password lives in a volume the server does not mount, so a
+# compromised server process cannot read the owner's credential back.
+BOOT=/var/lib/voptrack-bootstrap
+# The deployment's own certificate authority, for a server on a local network
+# with no public certificate. Caddy issues from it; only init writes it.
+CA=/var/lib/voptrack-ca
+
+fail() { echo "voptrack-init: $*" >&2; exit 1; }
+umask 077
+
+# Opt-in browser setup fixes Home choices before any native initialization.
+# Normal/Research deployments have no such file and retain their existing flow.
+case "${1:-init}" in
+  init|restore)
+    if [ -f "$BOOT/home-setup.json" ] && [ "${VOPTRACK_SETUP_APPLIED:-}" != yes ]; then
+      exec /usr/local/bin/voptrack-setup apply "${1:-init}"
+    fi ;;
+esac
+
+# A household's members join by invitation, each into a store of their own
+# that ONLY they can read -- the owner's decision, 2026-09-27. Tessera needs an
+# administrator account to hold every store an invitation creates, so that is
+# a sealed custodian: its password is generated here and never written down, so
+# nobody can sign in as it. The owner holds no member store and cannot add
+# themselves to one (verified on alpha.13).
+#
+# The issuer is what the Console asks for invitations. Its cap bounds how many
+# it can ever issue and cannot be raised later, so it is generous: a household
+# is a few people, and unused or expired invitations may count against it.
+household_members() {
+  # With the Console, it issues invitations and keeps the issuer's secret; with
+  # it off, nothing on the server does, so the secret waits in the bootstrap
+  # volume -- which neither the server nor anything else mounts -- for the
+  # owner's "init invite" on the host, until the owner's app can invite with
+  # its own sign-in (Tessera alpha.23).
+  if [ "$console" = on ]; then
+    [ -d "$CONSOLE" ] || fail "the Console's volume is not mounted; cannot set up invitations"
+    issuer_secret="$CONSOLE/issuer-home-members.secret"
+  else
+    issuer_secret="$BOOT/issuer-home-members.secret"
+  fi
+  openssl rand -base64 32 | tr -d '\n' > /tmp/custodian
+  /usr/local/bin/tesserad -config "$CONF/server.json" -add-person custodian -may-create-datasets \
+    -password-file /tmp/custodian >/dev/null || { rm -f /tmp/custodian; fail "could not create the custodian"; }
+  rm -f /tmp/custodian
+  # Each member's store is named after them ({account}), so Home's dashboards
+  # say "Sara" and "Ben", not "Member" twice. erase_with_account: deleting a
+  # member's account erases their store, although the custodian co-holds it --
+  # without it, a member who left would leave their records behind.
+  # device_redemption (Tessera alpha.32; the owner's decision, 2026-10-11): the
+  # app redeems an invitation itself for a credential on the device -- no
+  # browser, no password -- which is how a Home on a local network is joined.
+  # A member who never sets a password can be moved to a new phone by a rebind
+  # invitation, which reaches their store; invitations say so. Fixed at creation.
+  # moderate_sharing (Tessera alpha.27; the owner's decision, 2026-09-28): the
+  # server's administrator -- the Home's owner -- may stop what a member shares
+  # with the household, one track at a time, never read or delete it. It is
+  # fixed when the issuer is made, so every member joins under it, and each
+  # invitation says so.
+  cat > /tmp/issuer.json <<POLICY
+{ "template": { "administrator": "custodian", "display_name": "{account}", "types": [], "erase_with_account": true },
+  "grants": "read,write,schema,erase", "cap": 100, "moderate_sharing": true, "device_redemption": true }
+POLICY
+  /usr/local/bin/tesserad -config "$CONF/server.json" -add-issuer home-members \
+    -issuer-file /tmp/issuer.json -secret-output "$issuer_secret" >/dev/null \
+    || { rm -f /tmp/issuer.json; fail "could not create the member-invitation issuer"; }
+  rm -f /tmp/issuer.json
+  if [ "$console" = off ]; then
+    echo "voptrack-init: members join by invitation; no Console, no Home service"
+    return
+  fi
+  # Home is a service that holds no store. A member makes it a reader of
+  # chosen tracks in their own store, from the Console, in one request -- so
+  # it never reads anything a member did not choose. The Console holds its
+  # secret and fetches a token per shared store.
+  /usr/local/bin/tesserad -config "$CONF/server.json" -add-service home -no-dataset \
+    -secret-output "$CONSOLE/home.secret" >/dev/null || fail "could not create the Home service"
+  echo "voptrack-init: members join by invitation, from the Console"
+}
+
+# Mutation/export operations share a deployment maintenance lock with both
+# running services. Host-only quiescence is enforced, not assumed from filenames.
+case "${1:-init}" in
+  init|restore|restore-kit|restore-committed-kit|owner-device)
+    if [ "${VOPTRACK_MAINTENANCE_HELD:-}" != yes ]; then
+      exec /usr/local/bin/voptrack-deploy maintenance "$@"
+    fi ;;
+esac
+mode=init
+case "${1:-init}" in
+  recovery-kit|take-backup|recover-producer)
+    exec /usr/local/bin/voptrack-deploy "$1" ;;
+  restore-committed-kit)
+    /usr/local/bin/voptrack-deploy restore-committed-kit || fail "committed kit validation/restore failed"
+    : > "$BOOT/restore-pending"
+    exit 0 ;;
+  restore-kit)
+    # Rebuild on a new machine, step one, before its first start: the recovery
+    # kit, read from stdin (nothing to mount, so no file permissions between
+    # the host and this container to get right). Refuses a deployment that
+    # already exists; it never overwrites one.
+    [ ! -f "$BOOT/owner-password" ] || fail "this deployment already exists; restore only into empty volumes"
+    tar -xf - -C / || fail "the recovery kit could not be read"
+    [ -f "$BOOT/owner-password" ] && [ -f "$CONF/backup.key" ] || fail "that is not a recovery kit"
+    : > "$BOOT/restore-pending"
+    echo "voptrack-init: recovery kit in place; now restore a backup"
+    exit 0 ;;
+  restore)
+    # Step two: a backup (from take-backup), read from stdin. Only after
+    # restore-kit, and only once.
+    [ -f "$BOOT/restore-pending" ] || fail "no restore pending: this deployment already exists, or restore-kit has not run"
+    mode=restore
+    mkdir -p /tmp/restore && tar -xf - -C /tmp/restore || fail "the backup could not be read"
+    echo "voptrack-init: backup read" ;;
+  password)
+    [ ! -f "$BOOT/home-password-retired" ] || fail "the initial password was retired by protected setup; use the password you chose"
+    [ -f "$BOOT/owner-password" ] || fail "no initial password yet -- start the deployment first"
+    cat "$BOOT/owner-password"
+    exit 0 ;;
+  invite)
+    # Home without its Console: one invitation link, printed for the owner to
+    # pass on. Used once; the person chooses their name and password. The
+    # link goes to stdout; what to tell the person, to stderr.
+    [ -f "$BOOT/issuer-home-members.secret" ] || fail "no invitation issuer here -- this is for Home with VOPTRACK_CONSOLE=off"
+    curl -fsS --cacert "$PUBLIC/server.crt" -u "home-members:$(cat "$BOOT/issuer-home-members.secret")" \
+      -X POST https://tesserad:8443/oauth/invitations \
+      | sed -n 's/.*"redeem_url":"\([^"]*\)".*/\1/p' \
+      | { read -r link; pin="$(cat "$PUBLIC/tls-pin" 2>/dev/null)"
+          # A local Home's invitation carries its CA pin, as the Console's do.
+          [ -n "$pin" ] && link="$link&pin=$(printf '%s' "$pin" | sed 's|/|%2F|g; s|+|%2B|g; s|=|%3D|g')"
+          printf '%s\n' "$link"; }
+    echo "voptrack-init: tell the person, with the link: as the owner of this Home you can stop what they share with the household, one track at a time; you cannot read their store or delete from it. Until they set a password in the app, you can also move their account to a new phone, and whoever opens that link reaches their store" >&2
+    exit 0 ;;
+  owner-device)
+    # The owner's phone, from the host only: every device the owner account
+    # has is signed out, then a single-use link is printed for the app to
+    # redeem on the new one (24 hours), carrying the owner's server rights.
+    # The same at install, for the first device. Stop console AND tesserad and
+    # check success before this command; restart with up -d --no-deps --wait
+    # tesserad console caddy only after this operation succeeds.
+    [ -f "$BOOT/owner-password" ] || fail "no owner yet -- start the deployment first"
+    rm -f /tmp/owner-device
+    /usr/local/bin/tesserad -config "$CONF/server.json" -device-code owner -revoke-installations \
+      -secret-output /tmp/owner-device >/dev/null 2>&1 \
+      || fail "could not make the owner's device link -- keep console and tesserad stopped and resolve the failure before restarting"
+    code="$(cat /tmp/owner-device)"; rm -f /tmp/owner-device
+    link="${VOPTRACK_PUBLIC_URL:-https://${VOPTRACK_DOMAIN:-localhost}}/oauth/invitation?code=$code"
+    pin="$(cat "$PUBLIC/tls-pin" 2>/dev/null)"
+    [ -n "$pin" ] && link="$link&pin=$(printf '%s' "$pin" | sed 's|/|%2F|g; s|+|%2B|g; s|=|%3D|g')"
+    printf '%s\n' "$link"
+    echo "voptrack-init: every device the owner had is signed out; open this link in the Voptrack app on the new one (once, within 24 hours)" >&2
+    exit 0 ;;
+  init) ;;
+  *) fail "unknown command: $1" ;;
+esac
+
+# A kit without its backup is a server with no records and no way to make an
+# owner: starting it would look like data loss. Finish the restore first.
+if [ "$mode" = init ] && [ -f "$BOOT/restore-pending" ]; then
+  fail "a restore is pending: run \"docker compose run --rm -T init restore < <backup.tar>\" before starting"
+fi
+
+if [ "${VOPTRACK_STORAGE_ENCRYPTED:-}" != yes ]; then
+  cat >&2 <<'WHY'
+voptrack-init: VOPTRACK_STORAGE_ENCRYPTED is not "yes".
+
+That variable does not encrypt anything. It is your statement that the disk
+holding Docker's volumes is encrypted, and the server refuses to start without
+it, because records otherwise sit on disk in the clear. Encrypt the disk, then
+set VOPTRACK_STORAGE_ENCRYPTED=yes.
+WHY
+  exit 1
+fi
+
+# Which deployment this is. Decided at first start and recorded, because it
+# decides how the owner is provisioned and that is done once: switching it later
+# would silently change nothing, so a mismatch is refused instead.
+#
+#   standard   the owner has a store of their own from the start
+#   household  Voptrack Home: the owner starts with no store; members join by
+#              invitation into stores only they can read
+#   research   Voptrack Research: the researcher starts with no store; studies
+#              are set up in the Console
+variant="${VOPTRACK_VARIANT:-standard}"
+case "$variant" in
+  standard|household|research) ;;
+  *) fail "VOPTRACK_VARIANT must be standard, household or research (got $variant)" ;;
+esac
+if [ -f "$BOOT/variant" ] && [ "$(cat "$BOOT/variant")" != "$variant" ]; then
+  fail "this deployment was started as $(cat "$BOOT/variant"), not $variant; the variant cannot be changed after first start"
+fi
+
+# Whether the web interface runs at all. "off" (Home or a personal server)
+# means the app does everything: no Console, and so no Home service and no
+# Console store -- no credential on the server that reads across members.
+# Decided at first start, like the variant: a Console switched on later would
+# find neither made.
+console="${VOPTRACK_CONSOLE:-on}"
+case "$console" in
+  on|off) ;;
+  *) fail "VOPTRACK_CONSOLE must be on or off (got $console)" ;;
+esac
+if [ "$console" = off ] && [ "$variant" = research ]; then
+  fail "a study server needs its Console: people read a study and join it there"
+fi
+if [ -f "$BOOT/console" ] && [ "$(cat "$BOOT/console")" != "$console" ]; then
+  fail "this deployment was started with the Console $(cat "$BOOT/console"); that cannot be changed after first start"
+fi
+
+domain="${VOPTRACK_DOMAIN:-localhost}"
+public="${VOPTRACK_PUBLIC_URL:-https://$domain}"
+# A conformant client refuses plaintext anywhere but loopback, and the issuer
+# is exactly the URL it is handed. An http issuer produces a server nobody can
+# sign in to, so refuse it here with a reason rather than at the client.
+case "$public" in
+  https://*) ;;
+  *) fail "VOPTRACK_PUBLIC_URL must be https:// (got $public)" ;;
+esac
+
+# The internal hop, Caddy to server, is TLS because the server has no plaintext
+# listener. This certificate is only ever seen by Caddy.
+if [ ! -f "$CONF/server.key" ]; then
+  openssl req -x509 -newkey rsa:2048 -nodes -days 3650 -subj "/CN=tesserad" \
+    -addext "subjectAltName=DNS:tesserad,DNS:localhost,IP:127.0.0.1" \
+    -keyout "$CONF/server.key" -out "$CONF/server.crt" 2>/dev/null
+  chmod 600 "$CONF/server.key"
+  echo "voptrack-init: internal certificate generated"
+fi
+
+if [ -d "$PUBLIC" ]; then
+  cp "$CONF/server.crt" "$PUBLIC/server.crt.new"
+  chmod 644 "$PUBLIC/server.crt.new"
+  mv "$PUBLIC/server.crt.new" "$PUBLIC/server.crt"
+fi
+
+# Caddy's address on the deployment's own network. Tessera limits sign-ins
+# per caller, and behind a proxy every connection comes from the proxy -- so
+# without this the whole server shares one budget that anyone can spend. Only
+# Caddy is trusted, not the network: the Console is on it too and must not be
+# able to speak for other callers. Caddy itself trusts no proxy, so it replaces
+# any X-Forwarded-For a client sends rather than passing a forgery on.
+proxy="${VOPTRACK_PROXY_ADDRESS:-10.117.47.2}"
+
+# Backups while running (Tessera alpha.15). The key lives in the configuration
+# volume, which the server reads and cannot write; the archives in their own
+# volume. A restore needs three things -- an archive, this key, and the
+# retirement fence in the data directory -- and they belong off this machine,
+# in different places. The key is made once and never replaced: replacing it
+# would make every archive before it unreadable.
+if [ ! -f "$BOOT/recovery-lineage" ]; then
+  openssl rand -hex 24 > "$BOOT/recovery-lineage.new"
+  mv "$BOOT/recovery-lineage.new" "$BOOT/recovery-lineage"
+fi
+if [ ! -f "$CONF/backup.key" ]; then
+  head -c 32 /dev/urandom > "$CONF/backup.key"
+  chmod 600 "$CONF/backup.key"
+  echo "voptrack-init: backup key generated -- keep a copy somewhere other than the backups"
+fi
+# A store's storage quota (Tessera alpha.30's max_stored_bytes): none unless
+# the operator sets one -- the owner's decision, 2026-10-11, after people asked
+# why their store had a limit at all. VOPTRACK_STORE_LIMIT_MB unset, "none" or
+# 0 means no quota; a number of MiB sets one, past which writes answer 507
+# dataset_full. New stores take it; existing ones keep theirs.
+store_mb="${VOPTRACK_STORE_LIMIT_MB:-none}"
+case "$store_mb" in
+  ''|none|0) quota_json="" ;;
+  *[!0-9]*) fail "VOPTRACK_STORE_LIMIT_MB must be a whole number of MiB, or none (got $store_mb)" ;;
+  *) quota_json=", \"max_stored_bytes\": $((store_mb * 1048576))" ;;
+esac
+# The memory bound, separate since alpha.30 and never shown as a quota: the
+# most the server holds in memory for one operation, so a large request cannot
+# run a small home server out of memory. 256 MiB, what stores had before.
+memory_bytes=268435456
+# The server's name for people, VOPTRACK_NAME -- the same name the Console puts
+# in its connect-the-app link -- now also in Tessera's discovery (alpha.28),
+# where apps show it next to the address before anyone signs in, never instead
+# of it, because anyone can claim any name. Optional, and rewritten on every
+# start, so renaming is a restart.
+# Kept to what needs no escaping in JSON: no quotes, backslashes or control
+# characters, at most 160 bytes (80 characters of most scripts).
+display_name="${VOPTRACK_NAME:-}"
+display_json=""
+if [ -n "$display_name" ]; then
+  case "$display_name" in
+    *\"*|*\\*|*[[:cntrl:]]*) fail "VOPTRACK_NAME may not contain quotes, backslashes or control characters" ;;
+  esac
+  [ "${#display_name}" -le 160 ] || fail "VOPTRACK_NAME is longer than 160 bytes"
+  display_json="\"display_name\": \"$display_name\","
+fi
+export VOPTRACK_BACKUP_EVERY_HOURS="${VOPTRACK_BACKUP_EVERY_HOURS:-24}"
+export VOPTRACK_BACKUP_KEEP="${VOPTRACK_BACKUP_KEEP:-7}"
+settings="$(/usr/local/bin/voptrack-deploy settings)" || fail "invalid backup settings"
+read -r every keep backup_directory <<SETTINGS
+$settings
+SETTINGS
+mkdir -p /var/lib/voptrack-backups/reserve "$backup_directory"
+
+brand_json="$(/usr/local/bin/voptrack-deploy identity-brand)" || fail "invalid operator identity branding"
+
+website_origin="${VOPTRACK_CONSOLE_URL:-$public}"
+if [ "${VOPTRACK_CONSOLE_PRIVATE:-no}" = yes ] && [ -z "${VOPTRACK_CONSOLE_URL:-}" ]; then
+ website_origin="https://${VOPTRACK_DOMAIN:-localhost}:${VOPTRACK_CONSOLE_PORT:-9443}"
+fi
+export VOPTRACK_WEBSITE_ORIGIN="$website_origin"
+website_json="$(/usr/local/bin/voptrack-deploy website-sign-in)" || fail "invalid operator website sign-in policy"
+
+cat > "$CONF/server.json.new" <<JSON
+{
+  "listen": "0.0.0.0:8443",
+  $display_json
+  $brand_json
+  $website_json
+  "issuer": "$public",
+  "data_dir": "$DATA",
+  "tls_certificate": "$CONF/server.crt",
+  "tls_key": "$CONF/server.key",
+  "engine": "sqlite",
+  "content": true,
+  "encrypted_storage_confirmed": true,
+  "trusted_proxies": ["$proxy"],
+  "limits": { "max_materialized_bytes": $memory_bytes$quota_json },
+  "backup": { "directory": "$backup_directory", "key_file": "$CONF/backup.key",
+              "every_hours": $every, "keep": $keep }
+}
+JSON
+mv "$CONF/server.json.new" "$CONF/server.json"
+/usr/local/bin/voptrack-deploy publish || fail "could not publish generated backup settings"
+/usr/local/bin/voptrack-deploy website-sign-in-public || fail "could not publish generated website sign-in"
+
+# What the app needs to know about this deployment before anyone signs in, and
+# what Tessera never knows: which product, the household's clock, whether there
+# is a web interface. Caddy serves it as /.well-known/voptrack in every variant,
+# Console or not. Rewritten on every start, like the configuration; nothing
+# per-person ever goes in it. The time zone is checked here because with the
+# Console off nothing else would: a household's "this month" depends on it.
+timezone="${VOPTRACK_TIMEZONE:-UTC}"
+case "$timezone" in
+  *..*|/*|*[!A-Za-z0-9_+/-]*) fail "VOPTRACK_TIMEZONE must be an IANA time zone name, e.g. Europe/Helsinki (got $timezone)" ;;
+esac
+[ "$timezone" = UTC ] || [ -f "/usr/share/zoneinfo/$timezone" ] \
+  || fail "VOPTRACK_TIMEZONE: no time zone called $timezone"
+case "$variant" in
+  household) product=home ;;
+  research) product=research ;;
+  *) product=personal ;;
+esac
+web=true; [ "$console" = off ] && web=false
+
+# Browsers request this default icon for identity pages without a favicon link.
+# Public, immutable brand artwork only; no Console or Tessera HTML is rewritten.
+cp /usr/local/share/voptrack/favicon.ico "$PUBLIC/favicon.ico.new"
+chmod 644 "$PUBLIC/favicon.ico.new"
+mv "$PUBLIC/favicon.ico.new" "$PUBLIC/favicon.ico"
+
+# A Home on a local network has no publicly trusted certificate, so the app
+# pins this deployment's own CA root, which it learns from the invitation and
+# connect links (pin=sha256/...). The root is made here, once, and kept with
+# the recovery kit: Caddy's intermediates and leaves rotate beneath it, and a
+# rebuilt Home keeps the same pin, so no phone has to be paired again. Made for
+# every deployment -- Caddy is configured with it -- but only a local one
+# announces a pin; a public one is trusted the ordinary way.
+[ -d "$CA" ] || fail "the CA volume is not mounted"
+if [ ! -f "$CA/root.key" ]; then
+  before_umask="$(umask)"
+  umask 077
+  openssl ecparam -name prime256v1 -genkey -noout -out "$CA/root.key.new" \
+    && openssl req -x509 -new -key "$CA/root.key.new" -days 7305 -sha256 -subj "/CN=Voptrack local CA" \
+         -addext "basicConstraints=critical,CA:TRUE" -addext "keyUsage=critical,keyCertSign,cRLSign" \
+         -out "$CA/root.crt.new" 2>/dev/null \
+    || fail "could not make the local certificate authority"
+  mv "$CA/root.crt.new" "$CA/root.crt" && mv "$CA/root.key.new" "$CA/root.key"
+  umask "$before_umask"  # init's own, which keeps every secret it writes private
+  echo "voptrack-init: local certificate authority made -- it is in the recovery kit"
+fi
+chmod 644 "$CA/root.crt"
+cp "$CA/root.crt" "$PUBLIC/ca.crt.new" && chmod 644 "$PUBLIC/ca.crt.new" && mv "$PUBLIC/ca.crt.new" "$PUBLIC/ca.crt"
+# Local or public: as Caddy decides for itself (localhost, an IP address,
+# *.localhost, *.local, *.internal, *.home.arpa), or as VOPTRACK_TLS says --
+# needed for a name Caddy would try to get a public certificate for, like *.lan.
+tls_mode="${VOPTRACK_TLS:-auto}"
+case "$tls_mode" in
+  local|public) ;;
+  auto)
+    case "$domain" in
+      localhost|*.localhost|*.local|*.internal|*.home.arpa|*:*|\[*) tls_mode=local ;;  # *:* is IPv6
+      *[!0-9.]*) tls_mode=public ;;
+      *) tls_mode=local ;;  # an IPv4 address
+    esac ;;
+  *) fail "VOPTRACK_TLS must be local, public or auto (got $tls_mode)" ;;
+esac
+if [ "$tls_mode" = local ]; then
+  printf 'tls internal\n' > "$PUBLIC/tls.caddy.new"
+  pin="sha256/$(openssl x509 -in "$CA/root.crt" -pubkey -noout | openssl pkey -pubin -outform DER | openssl dgst -sha256 -binary | base64)"
+  printf '%s\n' "$pin" > "$PUBLIC/tls-pin.new"
+  pin_json=", \"tls_pin\": \"$pin\""
+  # The root itself, for the app to anchor its chain at once it has checked the
+  # root's key against the pin: Caddy's chain carries leaf and intermediate.
+  cp "$CA/root.crt" "$PUBLIC/ca.pem.new" && chmod 644 "$PUBLIC/ca.pem.new" && mv "$PUBLIC/ca.pem.new" "$PUBLIC/ca.pem"
+else
+  printf '# a publicly trusted certificate, the ordinary way\n' > "$PUBLIC/tls.caddy.new"
+  : > "$PUBLIC/tls-pin.new"
+  pin_json=""
+  rm -f "$PUBLIC/ca.pem"
+fi
+chmod 644 "$PUBLIC/tls.caddy.new" "$PUBLIC/tls-pin.new"
+mv "$PUBLIC/tls.caddy.new" "$PUBLIC/tls.caddy"
+mv "$PUBLIC/tls-pin.new" "$PUBLIC/tls-pin"
+
+cat > "$PUBLIC/voptrack.json.new" <<JSON
+{"product": "$product", "timezone": "$timezone", "week_start": "monday", "web_interface": $web$pin_json}
+JSON
+chmod 644 "$PUBLIC/voptrack.json.new"
+mv "$PUBLIC/voptrack.json.new" "$PUBLIC/voptrack.json"
+# Routing follows generated settings, including persisted Home wizard choices.
+printf '# Console public routing\n' > "$PUBLIC/console-public.caddy.new"
+printf '# Console private routing\n' > "$PUBLIC/console-private.caddy.new"
+if [ "$console" = off ]; then
+  printf 'respond "This server has no web interface; use the Voptrack app." 404\n' > "$PUBLIC/console-public.caddy.new"
+  cp "$PUBLIC/console-public.caddy.new" "$PUBLIC/console-private.caddy.new"
+elif [ "${VOPTRACK_CONSOLE_PRIVATE:-no}" = yes ]; then
+  printf "respond \"The Console is on this household's own network.\" 404\n" > "$PUBLIC/console-public.caddy.new"
+fi
+chmod 644 "$PUBLIC/console-public.caddy.new" "$PUBLIC/console-private.caddy.new"
+mv "$PUBLIC/console-public.caddy.new" "$PUBLIC/console-public.caddy"
+mv "$PUBLIC/console-private.caddy.new" "$PUBLIC/console-private.caddy"
+if [ -f "$BOOT/home-setup.json" ]; then
+  cp "$BOOT/home-setup.json" "$PUBLIC/home-setup.json.new"
+  chmod 644 "$PUBLIC/home-setup.json.new"
+  mv "$PUBLIC/home-setup.json.new" "$PUBLIC/home-setup.json"
+fi
+
+echo "voptrack-init: $variant deployment, configured for $public"
+
+if [ "$mode" = restore ]; then
+  archive="$(ls -1 /tmp/restore | grep -v '^dataset.db.retired$' | grep -v '^\.' | head -1)"
+  [ -n "$archive" ] && [ -f /tmp/restore/dataset.db.retired ] || fail "the backup holds no archive or no fence"
+  /usr/local/bin/tesserad -config "$CONF/server.json" -restore "/tmp/restore/$archive" \
+    -backup-key-file "$CONF/backup.key" -retirement-fence /tmp/restore/dataset.db.retired >/dev/null \
+    || fail "the archive did not restore"
+  # The ledger goes on with the deployment: a later restore must still know
+  # what was erased before this one.
+  cp /tmp/restore/dataset.db.retired "$DATA/dataset.db.retired"
+  rm -rf /tmp/restore "$BOOT/restore-pending"
+  echo "voptrack-init: restored from $archive"
+fi
+
+# The owner is written only after provisioning succeeds, so a failure here
+# leaves nothing that claims an owner exists.
+if [ ! -f "$BOOT/owner-password" ]; then
+  openssl rand -base64 18 | tr -d '\n' > "$BOOT/owner-password.new"
+  if [ "$variant" = household ] || [ "$variant" = research ]; then
+    # No records of their own: the owner (a household's, or a study's
+    # researcher) administers the server. In a household, members' stores are
+    # held by the sealed custodian below; in research, each study's issuer
+    # names who holds its participants' stores. With server rights and no
+    # -grants, Tessera puts them in no store at all (alpha.17).
+    set -- -may-administer-server -may-create-datasets
+  else
+    set -- -grants read,write,schema,erase
+  fi
+  /usr/local/bin/tesserad -config "$CONF/server.json" -add-person owner "$@" \
+    -password-file "$BOOT/owner-password.new" >/dev/null \
+    || { rm -f "$BOOT/owner-password.new"; fail "could not provision the owner"; }
+  if [ "$variant" = household ]; then
+    household_members
+  fi
+  if [ "$variant" = research ]; then
+    # The study-analysis reader. Each study's issuer names it as a reader of
+    # every participant store it creates, so the researcher's dashboards can
+    # read across participants with one secret -- and it must exist before
+    # any issuer names it. It reads, never writes, and holds nothing until a
+    # participant joins.
+    [ -d "$CONSOLE" ] || fail "the Console's volume is not mounted; cannot set up studies"
+    /usr/local/bin/tesserad -config "$CONF/server.json" -add-service analysis -no-dataset \
+      -secret-output "$CONSOLE/analysis.secret" >/dev/null || fail "could not create the analysis service"
+    echo "voptrack-init: studies are set up in the Console"
+  fi
+  if { [ "$variant" = household ] || [ "$variant" = research ]; } && [ "$console" = on ]; then
+    # The Console's own store: studies, consent records, withdrawals and saved
+    # dashboards are records there, so the server's backups carry them. A
+    # store of the service's own that nobody else holds, the owner included;
+    # it reads, writes and defines its own types, and cannot erase. Its
+    # identifier is written beside the secret for the Console to read.
+    /usr/local/bin/tesserad -config "$CONF/server.json" -add-service console-state -new-dataset \
+      -secret-output "$CONSOLE/console-state.secret" -dataset-output "$CONSOLE/console-state.dataset" \
+      >/dev/null || fail "could not create the Console's store"
+  fi
+  printf '%s\n' "$variant" > "$BOOT/variant"
+  printf '%s\n' "$console" > "$BOOT/console"
+  mv "$BOOT/owner-password.new" "$BOOT/owner-password"
+  echo "voptrack-init: owner provisioned -- read the password with:"
+  echo "    docker compose run --rm init password"
+fi

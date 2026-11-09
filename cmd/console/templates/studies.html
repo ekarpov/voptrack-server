@@ -1,0 +1,19 @@
+{{define "page_title"}}{{call .T "studies"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<header class="dashboard-heading"><div><h1>Studies</h1><p class="dashboard-subtitle">Manage recruitment and follow data collection.</p></div></header>
+{{if $d.Unavailable}}<p class="notice" role="status">Some study information is unavailable. This list may be incomplete. <a href="/studies">Try again</a>.</p>{{end}}
+{{if $d.Error}}<p class="notice" role="alert" data-error="{{formErrorKey $d.Error}}"><strong>{{call .T "form_errors"}}</strong><br>{{call .T (formErrorKey $d.Error)}}</p>{{end}}
+<div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "studies"}}">
+<table class="data">
+<thead><tr><th scope="col">{{call .T "study_title"}}</th><th scope="col">{{call .T "study_status"}}</th><th scope="col">{{call .T "study_view"}}</th></tr></thead>
+  <tbody>{{range $d.Studies}}<tr><td><a href="/studies/{{.Slug}}/{{if eq .Status "draft"}}setup/{{if .Setup}}{{.Setup.Stage}}{{else}}basics{{end}}{{else}}dashboard{{end}}">{{.Title}}</a></td><td><span class="status status-{{.Status}}">{{call $.T (printf "status_%s" .Status)}}</span></td><td><a href="/study/{{.Slug}}">/study/{{.Slug}}</a></td></tr>{{else}}<tr><td class="muted">{{if $d.Unavailable}}Study list unavailable{{else}}{{call .T "no_studies"}}{{end}}</td></tr>{{end}}</tbody>
+</table>
+</div>
+<details class="study-create" {{if $d.Error}}open{{end}}><summary class="button">Create study</summary><form class="spec" method="post" action="/studies">
+  <input type="hidden" name="csrf" value="{{.CSRF}}">
+  <label>{{call .T "study_title"}} <input name="title" value="{{$d.Title}}" id="field-title" {{if eq (formErrorKey $d.Error) "form_title_required"}}aria-invalid="true" aria-describedby="error-title"{{end}} required maxlength="200">{{if eq (formErrorKey $d.Error) "form_title_required"}}<span class="field-error" id="error-title">{{call .T (formErrorKey $d.Error)}}</span>{{end}}</label>
+  <label>{{call .T "study_slug"}} <input name="slug" value="{{$d.Slug}}" id="field-slug" {{if (or (eq (formErrorKey $d.Error) "form_slug_invalid") (eq (formErrorKey $d.Error) "form_slug_used"))}}aria-invalid="true" aria-describedby="error-slug"{{end}} required pattern="[a-z0-9][a-z0-9-]{1,62}" maxlength="63">{{if (or (eq (formErrorKey $d.Error) "form_slug_invalid") (eq (formErrorKey $d.Error) "form_slug_used"))}}<span class="field-error" id="error-slug">{{call .T (formErrorKey $d.Error)}}</span>{{end}}</label>
+  <button class="button">{{call .T "study_create"}}</button>
+</form></details>
+{{end}}

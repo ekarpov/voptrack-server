@@ -1,0 +1,47 @@
+{{define "page_title"}}{{call .T "setup_title"}} · {{.Data.Study.Title}}{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<p><a href="/studies">← {{call .T "studies"}}</a></p>
+<h1>{{call .T "setup_title"}}: {{$s.Title}}</h1>
+<p>{{call .T "setup_progress"}} {{$d.Step}} / 6 · {{call .T (printf "setup_%s" $d.Stage)}}</p>
+<nav aria-label="{{call .T "setup_title"}}"><ol class="setup-progress">{{range $d.Stages}}<li><a href="/studies/{{$s.Slug}}/setup/{{.}}" {{if eq . $d.Stage}}aria-current="step"{{end}}>{{call $.T (printf "setup_%s" .)}}</a></li>{{end}}</ol></nav>
+<p class="muted">{{call .T "setup_navigation"}}</p>
+{{if $d.Problem}}<p class="notice" id="setup-error" role="alert" data-setup-error="{{$d.Problem}}">{{call .T $d.Problem}} <a href="/studies/{{$s.Slug}}/setup/{{$d.Stage}}">{{call .T "setup_reload"}}</a></p>{{end}}
+{{if ne $s.Status "draft"}}
+<p class="notice" data-setup-complete>{{call .T "setup_complete"}}</p>
+<p><a class="button" href="/study/{{$s.Slug}}">{{call .T "study_view"}}</a> <a class="button" href="/studies/{{$s.Slug}}/participants">{{call .T "participants"}}</a> <a class="button" href="/studies/{{$s.Slug}}/dashboard">{{call .T "study_dashboard"}}</a> <a class="button" href="/studies/{{$s.Slug}}/policy">{{call .T "policy_title"}}</a> <a class="button" href="/studies/{{$s.Slug}}/edit">{{call .T "setup_manage"}}</a></p>
+<p>{{call .T "setup_policy"}}</p>
+{{if eq $s.JoinMode "open"}}<p><a class="button" href="/study/{{$s.Slug}}/join">{{call .T "join_button"}}</a>{{if $d.AppLink}} <a class="button" href="{{$d.AppLink}}" data-app-link>{{call .T "join_with_app"}}</a>{{end}}</p><p class="consent">{{$d.PublicURL}}/study/{{$s.Slug}}</p>{{else}}<p>{{call .T "join_invite_only"}} <a class="button" href="/studies/{{$s.Slug}}/participants">{{call .T "participants"}}</a></p>{{end}}
+{{else}}
+<form class="study{{if eq $d.Stage "collection"}} designer{{end}}" method="post" action="/studies/{{$s.Slug}}/setup/{{$d.Stage}}">
+<input type="hidden" name="csrf" value="{{.CSRF}}"><input type="hidden" name="revision" value="{{$d.Revision}}">
+{{if eq $d.Stage "basics"}}
+<label>{{call .T "study_title"}}<input name="title" value="{{$s.Title}}" required maxlength="200" {{if eq $d.Problem "form_title_required"}}aria-invalid="true"{{end}} {{if $d.Problem}}aria-describedby="setup-error"{{end}}></label>
+<label>{{call .T "study_slug"}}<input value="{{$s.Slug}}" readonly></label><p class="muted">{{call .T "setup_address_fixed"}}</p>
+<label>{{call .T "study_run_by"}}<input name="run_by" value="{{$s.RunBy}}" maxlength="120" {{if eq $d.Problem "form_run_by_long"}}aria-invalid="true"{{end}} {{if $d.Problem}}aria-describedby="setup-error"{{end}}></label>
+{{else if eq $d.Stage "collection"}}
+<p>{{call .T "study_tracks_note"}}</p><p>{{call .T "designer_blank_rows"}}</p>
+{{if $d.Locked}}<p class="notice">{{call .T "study_tracks_locked"}}</p><a href="/studies/{{$s.Slug}}/tracks">{{call .T "view_tracks"}}</a>{{else}}{{template "design_fields" .}}{{end}}
+{{else if eq $d.Stage "information"}}
+<label>{{call .T "study_summary"}}<textarea name="summary" rows="4" {{if $d.Problem}}aria-describedby="setup-error"{{end}}>{{$s.Summary}}</textarea></label>
+<label>{{call .T "study_collected"}}<textarea name="collected" rows="4" {{if $d.Problem}}aria-describedby="setup-error"{{end}}>{{$s.Collected}}</textarea></label>
+<label>{{call .T "study_who_sees"}}<textarea name="who_sees" rows="3" {{if $d.Problem}}aria-describedby="setup-error"{{end}}>{{$s.WhoSees}}</textarea></label>
+<label>{{call .T "study_how_to_leave"}}<textarea name="how_to_leave" rows="3" {{if $d.Problem}}aria-describedby="setup-error"{{end}}>{{$s.HowToLeave}}</textarea></label>
+<label>{{call .T "study_consent"}}<textarea name="consent" rows="8" {{if $d.Problem}}aria-describedby="setup-error"{{end}}>{{$d.Draft.ConsentText}}</textarea></label>
+<p class="muted">{{call .T "setup_consent_draft"}}</p><label><input type="checkbox" name="material" value="yes" {{if not $d.Draft.Editorial}}checked{{end}}> {{call .T "study_material"}}</label>
+{{else if eq $d.Stage "recruitment"}}
+<label>{{call .T "study_join"}}<select name="join_mode" {{if $d.Problem}}aria-describedby="setup-error"{{end}}><option value="invite" {{if ne $s.JoinMode "open"}}selected{{end}}>{{call .T "join_invite"}}</option><option value="open" {{if eq $s.JoinMode "open"}}selected{{end}}>{{call .T "join_open"}}</option></select></label>
+{{else}}
+<h2>{{call .T "setup_readiness"}}</h2><ul class="setup-checklist" data-readiness>{{range $d.Missing}}<li><a href="/studies/{{$s.Slug}}/setup/{{.Stage}}">{{call $.T .Key}}</a></li>{{else}}<li>{{call .T "setup_ready"}}</li>{{end}}</ul>
+<p>{{call .T "setup_track_lock"}}</p>{{if $d.Locked}}<p class="notice" data-setup-tracks-locked>{{call .T "study_tracks_locked"}}</p>{{end}}<p>{{call .T "setup_policy"}}</p>
+<article class="study-page" data-setup-preview><h2>{{call .T "setup_preview"}}</h2><h3>{{$s.Title}}</h3>
+<p class="lead" data-section="summary">{{$s.Summary}}</p><h3>{{call .T "study_collected"}}</h3><p data-section="collected">{{$s.Collected}}</p>{{if $s.RunBy}}<h3>{{call .T "study_run_by"}}</h3><p>{{$s.RunBy}}</p>{{end}}
+<h3>{{call .T "study_who_sees"}}</h3><p data-section="who_sees">{{$s.WhoSees}}</p><h3>{{call .T "study_how_to_leave"}}</h3><p data-section="how_to_leave">{{$s.HowToLeave}}</p>
+<h3>{{call .T "setup_intended"}}</h3><p class="consent" data-draft-consent>{{$d.Draft.ConsentText}}</p>
+<details><summary>{{call .T "participant_versions"}} · <span data-published-version>{{$d.Current.Version}}</span></summary>{{range $s.Consent}}<h4>{{call $.T "study_consent_version"}} {{.Version}} · {{if .Editorial}}{{call $.T "participant_editorial"}}{{else}}{{call $.T "participant_material"}}{{end}}</h4><p class="consent">{{.Text}}</p>{{end}}</details></article>
+{{if eq $d.Stage "review"}}<p>{{call .T "setup_publish_note"}}</p><button class="button" name="action" value="publish">{{call .T "setup_publish"}}</button> <button class="button" name="action" value="open">{{call .T "setup_open"}}</button>{{end}}
+{{end}}
+<p class="actions"><button class="button" name="action" value="back">{{call .T "setup_save_back"}}</button> <button class="button" name="action" value="save">{{call .T "setup_save"}}</button> <button class="button" name="action" value="next">{{call .T "setup_save_next"}}</button></p>
+</form>
+{{end}}
+{{end}}

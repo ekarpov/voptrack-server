@@ -1,0 +1,696 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.breaths"
+        }
+      },
+      "id" : "breaths",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "contextID",
+          "discriminatorMeaning" : "qualifier",
+          "observationContinuity" : "discrete"
+        },
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "isUsedForNew" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.window"
+        }
+      },
+      "id" : "window",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : false,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "time",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "s",
+              "fieldID" : "windowUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "s",
+                "h"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "isUsedForNew" : false,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 0,
+            "unitPlaces" : {
+              "h" : 1,
+              "s" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "s"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 3600
+            },
+            "id" : "h"
+          }
+        ],
+        "canonicalUnit" : "s",
+        "defaultUnit" : "s",
+        "dimension" : "time",
+        "unitField" : "windowUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "s",
+              "h"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.windowUnit"
+        }
+      },
+      "id" : "windowUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.rate"
+        }
+      },
+      "id" : "rate",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "contextID",
+          "discriminatorMeaning" : "qualifier"
+        },
+        "collectionMeaning" : "sample",
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1
+          }
+        }
+      },
+      "type" : "float",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.rateUnit"
+        }
+      },
+      "id" : "rateUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "breaths/min"
+              }
+            }
+          }
+        },
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "breaths/min"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.contextID"
+        }
+      },
+      "id" : "contextID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "resting"
+            },
+            {
+              "type" : "text",
+              "value" : "asleep"
+            },
+            {
+              "type" : "text",
+              "value" : "afterExercise"
+            }
+          ],
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "afterExercise" : {
+              "bundled" : {
+                "key" : "model.health.option.afterExercise"
+              }
+            },
+            "asleep" : {
+              "bundled" : {
+                "key" : "model.health.option.asleep"
+              }
+            },
+            "resting" : {
+              "bundled" : {
+                "key" : "model.health.option.resting"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.respiratoryRate.field.rateOrigin"
+        }
+      },
+      "id" : "rateOrigin",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.respiratory_rate",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete",
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "supplied"
+              }
+            }
+          }
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "supplied"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "supplied" : {
+              "bundled" : {
+                "key" : "model.health.option.supplied"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.respiratory_rate",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"breaths\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.breaths\",\"type\":\"integer\"},{\"id\":\"window\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.window\",\"type\":\"float\"},{\"id\":\"windowUnit\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.windowUnit\",\"type\":\"text\"},{\"id\":\"rate\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.rate\",\"type\":\"float\"},{\"id\":\"rateUnit\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.rateUnit\",\"type\":\"text\"},{\"id\":\"contextID\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.contextID\",\"type\":\"text\"},{\"id\":\"rateOrigin\",\"meta_id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate.field.rateOrigin\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.respiratory_rate\",\"name\":\"model.health.respiratoryRate\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "breaths",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.breaths",
+          "type" : "integer"
+        },
+        {
+          "id" : "window",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.window",
+          "type" : "float"
+        },
+        {
+          "id" : "windowUnit",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.windowUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "rate",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.rate",
+          "type" : "float"
+        },
+        {
+          "id" : "rateUnit",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.rateUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "contextID",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.contextID",
+          "type" : "text"
+        },
+        {
+          "id" : "rateOrigin",
+          "meta_id" : "com.voptrack.track.respiratory_rate",
+          "name" : "model.health.respiratoryRate.field.rateOrigin",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.respiratory_rate",
+      "name" : "model.health.respiratoryRate",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.health.respiratoryRate"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "health.respiratory",
+        "symbol" : "wind"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.pulse",
+          "symbol" : "heart.fill"
+        },
+        "id" : "com.voptrack.category.health",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.health"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "breaths",
+      "window",
+      "windowUnit",
+      "rate",
+      "rateUnit",
+      "contextID",
+      "rateOrigin"
+    ]
+  }
+}

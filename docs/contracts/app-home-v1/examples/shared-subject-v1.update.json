@@ -1,0 +1,32 @@
+{
+  "operations": [
+    {
+      "fields": {
+        "category": {
+          "type": "text",
+          "value": "pet"
+        },
+        "contract_version": {
+          "type": "integer",
+          "value": 1
+        },
+        "kind_text": {
+          "type": "null"
+        },
+        "name": {
+          "type": "text",
+          "value": "Rexy"
+        },
+        "subject_id": {
+          "type": "text",
+          "value": "5c1e0b7d2a9f4e3b8d6c1a0f9e8d7c6b"
+        }
+      },
+      "op": "update",
+      "target": {
+        "id": "obj-0001",
+        "type": "com.voptrack.shared_subject"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+# OPTIONAL host-approved overlay. Normal compose mounts/permissions are unchanged.
+# Explicitly prepare .replication-outbox (0700, uid 10001) inside bundles first.
+services:
+  collector:
+    command: ["-outbox", "/var/lib/voptrack-bundles/.replication-outbox"]
+  replicator:
+    image: ${VOPTRACK_IMAGE:?select a verified immutable image}
+    profiles: ["off-machine"]
+    user: "10001:10001"
+    entrypoint: ["/usr/local/bin/voptrack-replicator"]
+    command: ["-config", "/host-config.json"]
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+    tmpfs:
+      - /tmp:uid=10001,mode=0700
+      - /var/lib/tessera:uid=10001,mode=0700
+    volumes:
+      - type: volume
+        source: bundles
+        target: /queue
+        volume:
+          subpath: .replication-outbox
+      - replication-state:/var/lib/voptrack-replication
+      - runtime:/status
+      - ${VOPTRACK_REPLICATION_CONFIG:?explicit private config path}:/host-config.json:ro
+      - ${VOPTRACK_REPLICATION_CREDENTIAL:?explicit dedicated credential path}:/authorization/s3.json:ro
+    depends_on:
+      collector:
+        condition: service_started
+volumes:
+  replication-state:

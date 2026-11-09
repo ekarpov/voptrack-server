@@ -1,0 +1,369 @@
+{
+  "vocabulary": "voptrack.tracking",
+  "version": "1.0",
+  "status": "draft",
+  "rules": {
+    "append_only": true,
+    "note": "Names are never removed or repurposed. A consumer MUST fail loudly on an entry whose scale is absent rather than assume one.",
+    "scale": "value_in_base = value x scale. The base unit has a scale of exactly 1. Scales are exact decimal literals; parse as written. A unit with no scale is an error, never 1.",
+    "version": "Lives here, not in a repository tag, so a consumer pins a value it can check at runtime rather than a tag it must trust. Additions bump the minor. Nothing is ever removed, so nothing forces a major."
+  },
+  "field_roles": [
+    {
+      "id": "subject",
+      "doc": "Who or what the record is about."
+    },
+    {
+      "id": "source",
+      "doc": "Where the record came from: a device, an import, manual entry."
+    },
+    {
+      "id": "timestamp",
+      "doc": "When the record applies."
+    },
+    {
+      "id": "end_timestamp",
+      "doc": "The end of the period a record covers, where it has one."
+    },
+    {
+      "id": "value",
+      "doc": "A measured or recorded value. A type may carry several."
+    },
+    {
+      "id": "unit",
+      "doc": "The unit of a value in the same record."
+    },
+    {
+      "id": "delivery.delivered_at",
+      "doc": "When an object was offered. An ordinary queryable date_time field; roles are not queryable."
+    },
+    {
+      "id": "delivery.supersedes",
+      "doc": "Reference to the earlier delivery this one replaces."
+    },
+    {
+      "id": "delivery.source",
+      "doc": "On a recipient's copy: reference to the object it was copied from."
+    }
+  ],
+  "type_roles": [
+    {
+      "id": "track",
+      "doc": "A series of records about one subject over time."
+    },
+    {
+      "id": "plan",
+      "doc": "An intention or schedule, possibly delivered by someone else."
+    },
+    {
+      "id": "grant.request",
+      "doc": "An inert request for access. Creates nothing until approved."
+    }
+  ],
+  "meanings": [
+    {
+      "id": "sample",
+      "aggregations": [
+        "latest",
+        "minimum",
+        "maximum",
+        "average"
+      ],
+      "doc": "A reading at a moment. Summing is meaningless."
+    },
+    {
+      "id": "additive",
+      "aggregations": [
+        "latest",
+        "minimum",
+        "maximum",
+        "sum",
+        "average"
+      ],
+      "doc": "Quantities that accumulate."
+    },
+    {
+      "id": "counter",
+      "aggregations": [
+        "latest"
+      ],
+      "doc": "A running total that only increases; differences are what matter."
+    },
+    {
+      "id": "valuation",
+      "aggregations": [
+        "latest"
+      ],
+      "doc": "A point-in-time worth."
+    },
+    {
+      "id": "interval",
+      "aggregations": [],
+      "doc": "A duration between two points; typed operations."
+    },
+    {
+      "id": "categorical",
+      "aggregations": [],
+      "doc": "A label, not a quantity."
+    },
+    {
+      "id": "money",
+      "aggregations": [],
+      "doc": "An amount with a currency."
+    },
+    {
+      "id": "money_valuation",
+      "aggregations": [],
+      "doc": "A point-in-time monetary worth."
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "count",
+      "base": "meter_tick",
+      "doc": "Generic ticks. No physical conversion is implied."
+    },
+    {
+      "id": "time",
+      "base": "s"
+    },
+    {
+      "id": "mass",
+      "base": "kg"
+    },
+    {
+      "id": "length",
+      "base": "m"
+    },
+    {
+      "id": "pressure",
+      "base": "kPa"
+    },
+    {
+      "id": "frequency",
+      "base": "bpm"
+    },
+    {
+      "id": "angle",
+      "base": "deg"
+    },
+    {
+      "id": "volume",
+      "base": "L"
+    },
+    {
+      "id": "energy",
+      "base": "kJ"
+    }
+  ],
+  "units": [
+    {
+      "id": "meter_tick",
+      "dimension": "count",
+      "symbol": "tick",
+      "scale": 1
+    },
+    {
+      "id": "s",
+      "dimension": "time",
+      "symbol": "s",
+      "scale": 1
+    },
+    {
+      "id": "h",
+      "dimension": "time",
+      "symbol": "h",
+      "scale": 3600
+    },
+    {
+      "id": "kg",
+      "dimension": "mass",
+      "symbol": "kg",
+      "scale": 1
+    },
+    {
+      "id": "g",
+      "dimension": "mass",
+      "symbol": "g",
+      "scale": 0.001
+    },
+    {
+      "id": "mg",
+      "dimension": "mass",
+      "symbol": "mg",
+      "scale": 1e-06
+    },
+    {
+      "id": "lb",
+      "dimension": "mass",
+      "symbol": "lb",
+      "scale": 0.45359237
+    },
+    {
+      "id": "m",
+      "dimension": "length",
+      "symbol": "m",
+      "scale": 1
+    },
+    {
+      "id": "cm",
+      "dimension": "length",
+      "symbol": "cm",
+      "scale": 0.01
+    },
+    {
+      "id": "in",
+      "dimension": "length",
+      "symbol": "in",
+      "scale": 0.0254
+    },
+    {
+      "id": "km",
+      "dimension": "length",
+      "symbol": "km",
+      "scale": 1000
+    },
+    {
+      "id": "mi",
+      "dimension": "length",
+      "symbol": "mi",
+      "scale": 1609.344
+    },
+    {
+      "id": "mmHg",
+      "dimension": "pressure",
+      "symbol": "mmHg",
+      "scale": 0.133322387415
+    },
+    {
+      "id": "kPa",
+      "dimension": "pressure",
+      "symbol": "kPa",
+      "scale": 1
+    },
+    {
+      "id": "bpm",
+      "dimension": "frequency",
+      "symbol": "bpm",
+      "scale": 1
+    },
+    {
+      "id": "deg",
+      "dimension": "angle",
+      "symbol": "°",
+      "scale": 1
+    },
+    {
+      "id": "L",
+      "dimension": "volume",
+      "symbol": "L",
+      "scale": 1
+    },
+    {
+      "id": "mL",
+      "dimension": "volume",
+      "symbol": "mL",
+      "scale": 0.001
+    },
+    {
+      "id": "fl_oz_us",
+      "dimension": "volume",
+      "symbol": "fl oz",
+      "scale": 0.0295735295625
+    },
+    {
+      "id": "kJ",
+      "dimension": "energy",
+      "symbol": "kJ",
+      "scale": 1
+    },
+    {
+      "id": "kcal",
+      "dimension": "energy",
+      "symbol": "kcal",
+      "scale": 4.184
+    }
+  ],
+  "annotation_keys": [
+    {
+      "id": "dimension",
+      "on": "field",
+      "doc": "The dimension of a measured value. Dimensionless declares \"count\" explicitly; absent means unspecified."
+    },
+    {
+      "id": "meaning",
+      "on": "field",
+      "doc": "One of meanings[].id. Decides which aggregations are valid. MUST be explicit: a dimension says what a number measures, never how it may be combined.",
+      "required_for": "any field carrying a dimension"
+    },
+    {
+      "id": "unit_source",
+      "on": "field",
+      "values": [
+        "record",
+        "fixed"
+      ],
+      "doc": "Where the unit is found. \"record\" is the default for measured fields."
+    },
+    {
+      "id": "unit_field",
+      "on": "field",
+      "doc": "With unit_source \"record\": the field carrying the unit."
+    },
+    {
+      "id": "unit",
+      "on": "field",
+      "doc": "With unit_source \"fixed\": the unit for every record of this type."
+    },
+    {
+      "id": "revision",
+      "on": "type",
+      "doc": "Changed by the authoring client whenever it changes the type. Meaningful only where a single writer maintains it."
+    },
+    {
+      "id": "superseded_by",
+      "on": "field",
+      "reserved": true,
+      "doc": "Names the field that replaces this one."
+    },
+    {
+      "id": "deprecated",
+      "on": "field",
+      "reserved": true,
+      "doc": "Closed for writing, open for reading. The field keeps its roles so stored records stay findable."
+    }
+  ],
+  "recognition": {
+    "track": {
+      "requires": [
+        {
+          "role": "timestamp",
+          "storage_type": "date_time"
+        },
+        {
+          "role": "value",
+          "annotations": [
+            "dimension",
+            "meaning"
+          ],
+          "at_least": 1
+        }
+      ]
+    },
+    "delivery": {
+      "requires": [
+        {
+          "role": "delivery.delivered_at",
+          "storage_type": "date_time"
+        }
+      ],
+      "optional": [
+        "delivery.supersedes"
+      ],
+      "on_copy": [
+        "delivery.source"
+      ]
+    },
+    "note": "A contract is a minimum, never an exact match. Unrecognized fields, roles and annotations MUST be preserved by anything that copies, exports or re-serialises an object."
+  }
+}

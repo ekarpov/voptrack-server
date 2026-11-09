@@ -1,0 +1,84 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+
+    ]
+  },
+  "fields" : [
+    {
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject_plan",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "payload",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject_plan",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "blob"
+    },
+    {
+      "id" : "owner",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject_plan",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "creation",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject_plan",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "text"
+    }
+  ],
+  "id" : "com.voptrack.subject_plan",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"subject\",\"meta_id\":\"com.voptrack.subject_plan\",\"name\":\"model.subjectPlan.field.subject\",\"type\":\"reference\"},{\"id\":\"payload\",\"meta_id\":\"com.voptrack.subject_plan\",\"name\":\"model.subjectPlan.field.payload\",\"type\":\"blob\"},{\"id\":\"owner\",\"meta_id\":\"com.voptrack.subject_plan\",\"name\":\"model.subjectPlan.field.owner\",\"type\":\"reference\"},{\"id\":\"creation\",\"meta_id\":\"com.voptrack.subject_plan\",\"name\":\"model.subjectPlan.field.creation\",\"type\":\"text\"}],\"id\":\"com.voptrack.subject_plan\",\"name\":\"model.subjectPlan\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "subject",
+          "meta_id" : "com.voptrack.subject_plan",
+          "name" : "model.subjectPlan.field.subject",
+          "type" : "reference"
+        },
+        {
+          "id" : "payload",
+          "meta_id" : "com.voptrack.subject_plan",
+          "name" : "model.subjectPlan.field.payload",
+          "type" : "blob"
+        },
+        {
+          "id" : "owner",
+          "meta_id" : "com.voptrack.subject_plan",
+          "name" : "model.subjectPlan.field.owner",
+          "type" : "reference"
+        },
+        {
+          "id" : "creation",
+          "meta_id" : "com.voptrack.subject_plan",
+          "name" : "model.subjectPlan.field.creation",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.subject_plan",
+      "name" : "model.subjectPlan"
+    }
+  },
+  "kind" : "reference"
+}

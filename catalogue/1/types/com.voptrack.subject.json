@@ -1,0 +1,84 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+
+    ]
+  },
+  "fields" : [
+    {
+      "id" : "name",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "blob"
+    },
+    {
+      "id" : "avatar",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "details",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "blob"
+    },
+    {
+      "id" : "avatarStyle",
+      "internal" : false,
+      "meta_id" : "com.voptrack.subject",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "blob"
+    }
+  ],
+  "id" : "com.voptrack.subject",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"name\",\"meta_id\":\"com.voptrack.subject\",\"name\":\"model.subject.field.name\",\"type\":\"blob\"},{\"id\":\"avatar\",\"meta_id\":\"com.voptrack.subject\",\"name\":\"model.subject.field.avatar\",\"type\":\"reference\"},{\"id\":\"details\",\"meta_id\":\"com.voptrack.subject\",\"name\":\"model.subject.field.details\",\"type\":\"blob\"},{\"id\":\"avatarStyle\",\"meta_id\":\"com.voptrack.subject\",\"name\":\"model.subject.field.avatar\",\"type\":\"blob\"}],\"id\":\"com.voptrack.subject\",\"name\":\"model.subject\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "name",
+          "meta_id" : "com.voptrack.subject",
+          "name" : "model.subject.field.name",
+          "type" : "blob"
+        },
+        {
+          "id" : "avatar",
+          "meta_id" : "com.voptrack.subject",
+          "name" : "model.subject.field.avatar",
+          "type" : "reference"
+        },
+        {
+          "id" : "details",
+          "meta_id" : "com.voptrack.subject",
+          "name" : "model.subject.field.details",
+          "type" : "blob"
+        },
+        {
+          "id" : "avatarStyle",
+          "meta_id" : "com.voptrack.subject",
+          "name" : "model.subject.field.avatar",
+          "type" : "blob"
+        }
+      ],
+      "id" : "com.voptrack.subject",
+      "name" : "model.subject"
+    }
+  },
+  "kind" : "reference"
+}

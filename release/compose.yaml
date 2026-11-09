@@ -1,0 +1,375 @@
+# Voptrack server: pull and start.
+#
+#   VOPTRACK_DOMAIN=storage.example.org VOPTRACK_STORAGE_ENCRYPTED=yes \
+#     docker compose up -d
+#   docker compose run --rm init password     # the owner's initial password
+#
+# Then open https://<your domain>/admin and sign in as "owner".
+#
+# This is the whole deployment: no configuration files, no certificates, no
+# scripts on the host. Everything is generated on first start into named
+# volumes, and a restart changes nothing but what the environment changed.
+#
+# VOPTRACK_DOMAIN     the public hostname. Its DNS must point here, and ports 80
+#                     and 443 must reach this machine, for Caddy to obtain a
+#                     real certificate. Left unset it is localhost, and Caddy
+#                     issues from its own CA -- fine to look at, not to use.
+# VOPTRACK_STORAGE_ENCRYPTED
+#                     "yes" is your statement that the disk under Docker's
+#                     volumes is encrypted. It encrypts nothing itself, and the
+#                     server will not start without it.
+# VOPTRACK_PUBLIC_URL only when the public address is not https://<domain>,
+#                     for example a non-standard port.
+# VOPTRACK_VARIANT    standard (default), household or research. Fixed at first start.
+#                     See release/household/README.md.
+name: voptrack
+
+x-server: &server
+  image: ${VOPTRACK_IMAGE:-voptrack-server:latest}
+  environment:
+    VOPTRACK_DOMAIN: ${VOPTRACK_DOMAIN:-localhost}
+    VOPTRACK_PUBLIC_URL: ${VOPTRACK_PUBLIC_URL:-}
+    VOPTRACK_STORAGE_ENCRYPTED: ${VOPTRACK_STORAGE_ENCRYPTED:-}
+    VOPTRACK_VARIANT: ${VOPTRACK_VARIANT:-standard}
+    VOPTRACK_CONSOLE: ${VOPTRACK_CONSOLE:-on}
+    VOPTRACK_CONSOLE_PRIVATE: ${VOPTRACK_CONSOLE_PRIVATE:-no}
+    VOPTRACK_PROXY_ADDRESS: ${VOPTRACK_PROXY_ADDRESS:-10.117.47.2}
+    VOPTRACK_BACKUP_EVERY_HOURS: ${VOPTRACK_BACKUP_EVERY_HOURS:-24}
+    VOPTRACK_BACKUP_KEEP: ${VOPTRACK_BACKUP_KEEP:-7}
+    VOPTRACK_BACKUP_REQUEST_REVISION: ${VOPTRACK_BACKUP_REQUEST_REVISION:-}
+    VOPTRACK_STORE_LIMIT_MB: ${VOPTRACK_STORE_LIMIT_MB:-}
+    VOPTRACK_NAME: ${VOPTRACK_NAME:-}
+    VOPTRACK_TIMEZONE: ${VOPTRACK_TIMEZONE:-UTC}
+    VOPTRACK_TLS: ${VOPTRACK_TLS:-auto}
+    # Owned-website defaults are selected at first provisioning; branding and
+    # public client names never designate a separately registered app as trusted.
+    VOPTRACK_WEBSITE_SIGN_IN: ${VOPTRACK_WEBSITE_SIGN_IN:-auto}
+    VOPTRACK_IDENTITY_BRAND: ${VOPTRACK_IDENTITY_BRAND:-auto}
+    VOPTRACK_WEBSITE_CLIENT_ID: ${VOPTRACK_WEBSITE_CLIENT_ID:-}
+    VOPTRACK_WEBSITE_DATA_GRANTS: ${VOPTRACK_WEBSITE_DATA_GRANTS:-}
+    VOPTRACK_WEBSITE_ADMINISTER: ${VOPTRACK_WEBSITE_ADMINISTER:-}
+    VOPTRACK_CONSOLE_URL: ${VOPTRACK_CONSOLE_URL:-}
+    VOPTRACK_CONSOLE_PORT: ${VOPTRACK_CONSOLE_PORT:-9443}
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  read_only: true
+  tmpfs:
+    - /tmp
+
+services:
+  # One-shot: writes configuration and the internal certificate, provisions the
+  # owner on first start, then exits. It is the only thing that can write the
+  # configuration; the server mounts it read-only.
+  init:
+    <<: *server
+    entrypoint: ["/usr/local/bin/voptrack-init"]
+    command: ["init"]
+    restart: "no"
+    volumes:
+      - data:/var/lib/tessera
+      - config:/var/lib/voptrack-config
+      - bootstrap:/var/lib/voptrack-bootstrap
+      - public:/var/lib/voptrack-public
+      # The local certificate authority, made once; in the recovery kit.
+      - ca:/var/lib/voptrack-ca
+      # For writing the services' secrets at first start, and for the
+      # recovery kit and a restore.
+      - console:/var/lib/voptrack-console
+      # Only init may prepare the fixed destination slots.
+      - backups:/var/lib/voptrack-backups
+
+  tesserad:
+    <<: *server
+    entrypoint: ["/usr/local/bin/voptrack-deploy"]
+    command: ["serve"]
+    restart: unless-stopped
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - data:/var/lib/tessera
+      # Read-only: a compromised server cannot rewrite what it is told to be
+      # on the next restart. The bootstrap volume, holding the owner's initial
+      # password, is not mounted here at all.
+      - config:/var/lib/voptrack-config:ro
+      - runtime:/var/lib/voptrack-runtime
+      - public:/var/lib/voptrack-public:ro
+      # Encrypted archives, written while running. Copy them off this machine
+      # with the backup key and the retirement fence -- see release/README.md.
+      - backups:/var/lib/voptrack-backups
+    expose:
+      - "8443"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "--cacert", "/var/lib/voptrack-config/server.crt",
+             "https://127.0.0.1:8443/.well-known/tessera"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+  # The Console: dashboards and, as it grows, everything a household does on
+  # the web. It reads with each person's own sign-in, never with a credential
+  # of its own. It trusts the server through the certificate init published --
+  # it never sees the configuration volume, which holds the server's key.
+  console:
+    <<: *server
+    entrypoint: ["/usr/local/bin/voptrack-deploy"]
+    command: ["console"]
+    restart: unless-stopped
+    environment:
+      VOPTRACK_DOMAIN: ${VOPTRACK_DOMAIN:-localhost}
+      VOPTRACK_PUBLIC_URL: ${VOPTRACK_PUBLIC_URL:-}
+      VOPTRACK_TIMEZONE: ${VOPTRACK_TIMEZONE:-UTC}
+      VOPTRACK_NAME: ${VOPTRACK_NAME:-}
+      VOPTRACK_VARIANT: ${VOPTRACK_VARIANT:-standard}
+      VOPTRACK_CONSOLE_PRIVATE: ${VOPTRACK_CONSOLE_PRIVATE:-no}
+      VOPTRACK_CONSOLE: ${VOPTRACK_CONSOLE:-on}
+      VOPTRACK_CONSOLE_PORT: ${VOPTRACK_CONSOLE_PORT:-9443}
+      VOPTRACK_CONSOLE_URL: ${VOPTRACK_CONSOLE_URL:-}
+      VOPTRACK_WEBSITE_CLIENT_ID: ${VOPTRACK_WEBSITE_CLIENT_ID:-}
+      TESSERA_URL: https://tesserad:8443
+      TESSERA_CA_FILE: /var/lib/voptrack-public/server.crt
+      # The pin a local Home's links carry; empty for a public one.
+      TLS_PIN_FILE: /var/lib/voptrack-public/tls-pin
+      CONSOLE_STATE_DIR: /var/lib/voptrack-console
+      HOME_SERVICE: home
+      ANALYSIS_SERVICE: analysis
+      ANALYSIS_SECRET_FILE: /var/lib/voptrack-console/analysis.secret
+      HOME_SECRET_FILE: /var/lib/voptrack-console/home.secret
+      ISSUER_ID: home-members
+      BACKUP_BUNDLE_DIR: /var/lib/voptrack-bundles
+      BACKUP_DIR: /var/lib/voptrack-backups
+      RECOVERY_KIT_SOCKET: /var/lib/voptrack-kit-control/kit.sock
+      RUNTIME_OBSERVATION_FILE: /var/lib/voptrack-runtime/server.json
+      BACKUP_SETTINGS_FILE: /var/lib/voptrack-public/backup-settings.json
+      STATE_SERVICE: console-state
+      STATE_SECRET_FILE: /var/lib/voptrack-console/console-state.secret
+      STATE_DATASET_FILE: /var/lib/voptrack-console/console-state.dataset
+      ISSUER_SECRET_FILE: /var/lib/voptrack-console/issuer-home-members.secret
+    depends_on:
+      tesserad:
+        condition: service_healthy
+    volumes:
+      - public:/var/lib/voptrack-public:ro
+      - console:/var/lib/voptrack-console
+      # Archive-only listing and authenticated delivery. Read-only: the Console
+      # has neither the unlocking key nor the current retirement fence.
+      - backups:/var/lib/voptrack-backups:ro
+      - bundles:/var/lib/voptrack-bundles:ro
+      - kit-control:/var/lib/voptrack-kit-control:ro
+      - runtime:/var/lib/voptrack-runtime:ro
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+      start_period: 5s
+
+  # Only this constrained component reads kit material. No network listener,
+  # Docker socket, data volume, administrator token or host-command endpoint.
+  kit:
+    <<: *server
+    network_mode: none
+    entrypoint: ["/usr/local/bin/voptrack-kit"]
+    command: ["serve"]
+    restart: unless-stopped
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - public:/var/lib/voptrack-public:ro
+      - config:/var/lib/voptrack-config:ro
+      - bootstrap:/var/lib/voptrack-bootstrap:ro
+      - ca:/var/lib/voptrack-ca:ro
+      # Read material, acquire its cooperative lock; never change secrets.
+      - console:/var/lib/voptrack-console
+      - collector:/var/lib/voptrack-collector:ro
+      - kits:/var/lib/voptrack-kits
+      - kit-control:/var/lib/voptrack-kit-control
+
+  kit-admin:
+    <<: *server
+    profiles: ["kit-admin"]
+    network_mode: none
+    entrypoint: ["/usr/local/bin/voptrack-kit"]
+    command: ["approve"]
+    volumes:
+      - public:/var/lib/voptrack-public:ro
+      - config:/var/lib/voptrack-config:ro
+      - bootstrap:/var/lib/voptrack-bootstrap:ro
+      - ca:/var/lib/voptrack-ca:ro
+      - console:/var/lib/voptrack-console
+      - collector:/var/lib/voptrack-collector:ro
+      - kits:/var/lib/voptrack-kits
+
+  # Retrieval-only worker. Provision its credential explicitly; no administrator
+  # token or recovery key is mounted here or stored with published bundles.
+  collector:
+    <<: *server
+    entrypoint: ["/usr/local/bin/voptrack-collector"]
+    command: []
+    restart: unless-stopped
+    depends_on:
+      tesserad:
+        condition: service_healthy
+    volumes:
+      - public:/var/lib/voptrack-public:ro
+      - collector:/var/lib/voptrack-collector:ro
+      - bundles:/var/lib/voptrack-bundles
+
+  # Explicit provision/revoke commands only. The administrator token is supplied
+  # as an ephemeral private file; this service is not part of normal startup.
+  collector-admin:
+    <<: *server
+    profiles: ["collector-admin"]
+    entrypoint: ["/usr/local/bin/voptrack-collector"]
+    command: ["-mode", "provision"]
+    volumes:
+      - public:/var/lib/voptrack-public:ro
+      - collector:/var/lib/voptrack-collector
+
+  # Public TLS, and the one hostname for everything: the protocol, sign-in and
+  # /admin go to the server, every other path to the Console. The Caddyfile is
+  # carried in this file, so a deployment is still one file on the host. The
+  # hop to the server is verified against the certificate init published,
+  # rather than skipped.
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    # A fixed address, so the server can trust exactly Caddy's forwarded
+    # client addresses and nobody else's. Change the subnet with
+    # VOPTRACK_PROXY_SUBNET and VOPTRACK_PROXY_ADDRESS if it collides with a
+    # network on the host.
+    networks:
+      default:
+        ipv4_address: ${VOPTRACK_PROXY_ADDRESS:-10.117.47.2}
+    environment:
+      VOPTRACK_DOMAIN: ${VOPTRACK_DOMAIN:-localhost}
+      VOPTRACK_CONSOLE_PRIVATE: ${VOPTRACK_CONSOLE_PRIVATE:-no}
+      VOPTRACK_CONSOLE: ${VOPTRACK_CONSOLE:-on}
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+    ports:
+      - "${VOPTRACK_PUBLISH_PREFIX:-}${VOPTRACK_HTTP_PORT:-80}:80"
+      - "${VOPTRACK_PUBLISH_PREFIX:-}${VOPTRACK_HTTPS_PORT:-443}:443"
+      - "${VOPTRACK_CONSOLE_BIND:-127.0.0.1}:${VOPTRACK_CONSOLE_PORT:-9443}:9443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - public:/var/lib/voptrack-public:ro
+      - ca:/var/lib/voptrack-ca:ro
+    depends_on:
+      tesserad:
+        condition: service_healthy
+      console:
+        condition: service_healthy
+
+configs:
+  caddyfile:
+    content: |
+      # Local certificates come from the deployment's own CA, which init made
+      # and the recovery kit keeps, so the key the app pins never changes.
+      {
+        # IP clients omit the TLS server name. Select this installation's certificate.
+        default_sni {$$VOPTRACK_DOMAIN:localhost}
+      	pki {
+      		ca local {
+      			root {
+      				format pem_file
+      				cert /var/lib/voptrack-ca/root.crt
+      				key /var/lib/voptrack-ca/root.key
+      			}
+      		}
+      	}
+      }
+      (voptrack_favicon) {
+        handle /favicon.ico {
+          root * /var/lib/voptrack-public
+          header Content-Type image/vnd.microsoft.icon
+          header X-Content-Type-Options nosniff
+          header Cache-Control "no-cache"
+          file_server
+        }
+      }
+      {$$VOPTRACK_DOMAIN:localhost} {
+        import voptrack_favicon
+      	# "tls internal" on a local network, nothing for a public name: init decides.
+      	import /var/lib/voptrack-public/tls.caddy
+      	encode gzip
+      	# A local Home's CA root, for the app to anchor at after checking it
+      	# against the pin it was given; 404 for a server with a public name.
+      	handle /.well-known/voptrack/ca.pem {
+      		root * /var/lib/voptrack-public
+      		rewrite * /ca.pem
+      		header Content-Type application/x-pem-file
+      		header Cache-Control "no-cache"
+      		file_server
+      	}
+      	# Voptrack's own: product, the household's clock, whether there is a
+      	# web interface. Written by init; served whether the Console runs or not.
+      	handle /.well-known/voptrack {
+      		root * /var/lib/voptrack-public
+      		rewrite * /voptrack.json
+      		header Content-Type application/json
+      		header Cache-Control "no-cache"
+      		file_server
+      	}
+      	@tessera path /v1/* /oauth/* /.well-known/* /admin /admin/*
+      	handle @tessera {
+      		reverse_proxy https://tesserad:8443 {
+      			transport http {
+      				tls_trust_pool file /var/lib/voptrack-public/server.crt
+      				tls_server_name tesserad
+      			}
+      		}
+      	}
+      	handle {
+      		# Kept on the home network: the public site does not serve the
+      		# Console at all, only Tessera, which is what the app talks to.
+        import /var/lib/voptrack-public/console-public.caddy
+      		reverse_proxy console:8080
+      	}
+      }
+      # The Console on a port of its own. Published on 127.0.0.1 unless
+      # VOPTRACK_CONSOLE_BIND names another address (the machine's address on
+      # the home network), and never forwarded by the router.
+      {$$VOPTRACK_DOMAIN:localhost}:9443 {
+        import voptrack_favicon
+      	import /var/lib/voptrack-public/tls.caddy
+      	encode gzip
+        import /var/lib/voptrack-public/console-private.caddy
+      	reverse_proxy console:8080
+      }
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${VOPTRACK_PROXY_SUBNET:-10.117.47.0/24}
+          # Automatic addresses come from the top half only, so none of the
+          # services that start before Caddy can take Caddy's fixed address.
+          # (Without this, one of them did.)
+          ip_range: ${VOPTRACK_PROXY_POOL:-10.117.47.128/25}
+
+volumes:
+  backups:
+  data:
+  config:
+  bootstrap:
+  public:
+  ca:
+  console:
+  caddy_data:
+  caddy_config:
+
+  collector:
+  bundles:
+
+  runtime:
+  kits:
+  kit-control:

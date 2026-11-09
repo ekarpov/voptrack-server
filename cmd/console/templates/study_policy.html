@@ -1,0 +1,19 @@
+{{define "page_title"}}{{call .T "policy_title"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<p><a href="/studies/{{$d.Study.Slug}}/edit">← {{call .T "back"}}</a> · <a href="/studies/{{$d.Study.Slug}}/dashboard">{{call .T "study_dashboard"}}</a></p>
+<h1>{{call .T "policy_title"}}</h1>
+<h2>{{$d.Study.Title}}</h2>
+<p>{{call .T "policy_guidance"}}</p>
+<p>{{call .T "policy_limits"}}</p>
+{{if $d.Current}}<p>{{call .T "policy_current"}}: {{$d.Current}} · {{call .T "policy_revision"}}: {{$d.Revision}}</p>{{end}}
+{{if $d.Error}}<p class="notice" role="alert" id="policy-error" data-error="{{$d.Error}}">{{call .T $d.Error}}</p>{{end}}
+<form class="study" method="post" action="/studies/{{$d.Study.Slug}}/policy">
+<input type="hidden" name="csrf" value="{{.CSRF}}">
+<input type="hidden" name="revision" value="{{$d.Revision}}">
+<label>{{call .T "policy_threshold"}}<input name="threshold" inputmode="numeric" value="{{$d.Threshold}}" placeholder="5" required maxlength="10" aria-describedby="policy-range{{if $d.Error}} policy-error{{end}}" {{if $d.Error}}aria-invalid="true"{{end}}></label>
+<p id="policy-range">{{call .T "policy_range"}}</p>
+<label><input type="checkbox" name="confirm_lower" value="yes"> {{call .T "policy_lower"}}</label>
+<button class="button">{{call .T "save"}}</button>
+</form>
+{{end}}

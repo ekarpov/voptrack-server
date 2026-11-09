@@ -1,0 +1,38 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "kind" : "number",
+        "name" : "Value",
+        "unit" : "mg"
+      }
+    ],
+    "name" : "number",
+    "typeID" : "study.s2027_vectors.numbermg"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "annotations" : {
+          "unit" : "mg",
+          "unit_field" : "value_unit",
+          "unit_source" : "record"
+        },
+        "id" : "value",
+        "meta_id" : "study.s2027_vectors.numbermg",
+        "name" : "Value",
+        "type" : "float"
+      },
+      {
+        "id" : "value_unit",
+        "meta_id" : "study.s2027_vectors.numbermg",
+        "name" : "Value unit",
+        "type" : "text"
+      }
+    ],
+    "id" : "study.s2027_vectors.numbermg",
+    "name" : "number",
+    "parent_id" : "com.voptrack.track"
+  }
+}

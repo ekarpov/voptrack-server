@@ -1,0 +1,603 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.choreID"
+        }
+      },
+      "id" : "choreID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : true,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.status"
+        }
+      },
+      "id" : "status",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "choreID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "done"
+            },
+            {
+              "type" : "text",
+              "value" : "skipped"
+            },
+            {
+              "type" : "text",
+              "value" : "partial"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "done" : {
+              "bundled" : {
+                "key" : "model.household.option.done"
+              }
+            },
+            "partial" : {
+              "bundled" : {
+                "key" : "model.household.option.partial"
+              }
+            },
+            "skipped" : {
+              "bundled" : {
+                "key" : "model.household.option.skipped"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.duration"
+        }
+      },
+      "id" : "duration",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "choreID"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "time",
+          "unitSource" : {
+            "recordField" : {
+              "defaultUnitID" : "s",
+              "fieldID" : "durationUnit",
+              "sharing" : "exclusive"
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "s",
+                "h"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : true,
+          "number" : {
+            "maximumFractionDigits" : 1,
+            "minimumFractionDigits" : 1,
+            "unitPlaces" : {
+              "h" : 1,
+              "s" : 0
+            }
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "s"
+          },
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 3600
+            },
+            "id" : "h"
+          }
+        ],
+        "canonicalUnit" : "s",
+        "defaultUnit" : "s",
+        "dimension" : "time",
+        "unitField" : "durationUnit",
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "s",
+              "h"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.durationUnit"
+        }
+      },
+      "id" : "durationUnit",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.location"
+        }
+      },
+      "id" : "location",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.household.choreCompletion.field.context"
+        }
+      },
+      "id" : "context",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.chore_completion",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.chore_completion",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"choreID\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.choreID\",\"type\":\"text\"},{\"id\":\"status\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.status\",\"type\":\"text\"},{\"id\":\"duration\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.duration\",\"type\":\"float\"},{\"id\":\"durationUnit\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.durationUnit\",\"type\":\"text\"},{\"id\":\"location\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.location\",\"type\":\"text\"},{\"id\":\"context\",\"meta_id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion.field.context\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.chore_completion\",\"name\":\"model.household.choreCompletion\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "choreID",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.choreID",
+          "type" : "text"
+        },
+        {
+          "id" : "status",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.status",
+          "type" : "text"
+        },
+        {
+          "id" : "duration",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.duration",
+          "type" : "float"
+        },
+        {
+          "id" : "durationUnit",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.durationUnit",
+          "type" : "text"
+        },
+        {
+          "id" : "location",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.location",
+          "type" : "text"
+        },
+        {
+          "id" : "context",
+          "meta_id" : "com.voptrack.track.chore_completion",
+          "name" : "model.household.choreCompletion.field.context",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.chore_completion",
+      "name" : "model.household.choreCompletion",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.household.choreCompletion"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "appearance" : {
+        "color" : "household.chore",
+        "symbol" : "checkmark.circle.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "household.maintenance",
+          "symbol" : "house.fill"
+        },
+        "id" : "com.voptrack.category.household",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.household"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "choreID",
+      "status",
+      "duration",
+      "durationUnit",
+      "location",
+      "context"
+    ]
+  }
+}

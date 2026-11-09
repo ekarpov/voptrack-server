@@ -1,0 +1,153 @@
+[
+  {
+    "fields" : [
+      {
+        "id" : "subject",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.subject",
+        "roles" : [
+          "subject"
+        ],
+        "type" : "reference"
+      },
+      {
+        "id" : "source",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.source",
+        "roles" : [
+          "source"
+        ],
+        "type" : "reference"
+      },
+      {
+        "id" : "timestamp",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.timestamp",
+        "roles" : [
+          "timestamp"
+        ],
+        "type" : "date_time"
+      },
+      {
+        "id" : "endTimestamp",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.endTimestamp",
+        "roles" : [
+          "end_timestamp"
+        ],
+        "type" : "date_time"
+      },
+      {
+        "id" : "plan",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.plan",
+        "type" : "reference"
+      },
+      {
+        "id" : "planPeriod",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.planPeriod",
+        "type" : "text"
+      },
+      {
+        "id" : "planOccurrence",
+        "meta_id" : "com.voptrack.track",
+        "name" : "model.track.field.planOccurrence",
+        "type" : "date_time"
+      }
+    ],
+    "id" : "com.voptrack.track",
+    "name" : "model.track",
+    "roles" : [
+      "track"
+    ]
+  },
+  {
+    "fields" : [
+      {
+        "annotations" : {
+          "meaning" : "sample",
+          "unit" : "h",
+          "unit_field" : "hours_unit",
+          "unit_source" : "record"
+        },
+        "id" : "hours",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Hours slept",
+        "type" : "float"
+      },
+      {
+        "id" : "hours_unit",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Hours slept unit",
+        "type" : "text"
+      },
+      {
+        "annotations" : {
+          "meaning" : "additive"
+        },
+        "id" : "awakenings",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Awakenings",
+        "type" : "integer"
+      },
+      {
+        "annotations" : {
+          "unit" : "cups",
+          "unit_field" : "caffeine_unit",
+          "unit_source" : "record"
+        },
+        "id" : "caffeine",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Caffeine",
+        "type" : "float"
+      },
+      {
+        "id" : "caffeine_unit",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Caffeine unit",
+        "type" : "text"
+      },
+      {
+        "id" : "mood",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Mood",
+        "type" : "text"
+      },
+      {
+        "id" : "napped",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Napped",
+        "type" : "boolean"
+      },
+      {
+        "id" : "bedtime",
+        "meta_id" : "study.s2027_sleep.sleep",
+        "name" : "Bedtime",
+        "type" : "date_time"
+      }
+    ],
+    "id" : "study.s2027_sleep.sleep",
+    "name" : "Sleep",
+    "parent_id" : "com.voptrack.track"
+  },
+  {
+    "fields" : [
+      {
+        "id" : "weight",
+        "meta_id" : "com.voptrack.track.weight",
+        "name" : "strings.track.weight.field.weight",
+        "type" : "float"
+      },
+      {
+        "id" : "unit",
+        "meta_id" : "com.voptrack.track.weight",
+        "name" : "strings.track.weight.field.unit",
+        "type" : "text"
+      }
+    ],
+    "id" : "com.voptrack.track.weight",
+    "name" : "strings.track.weight",
+    "parent_id" : "com.voptrack.track"
+  }
+]

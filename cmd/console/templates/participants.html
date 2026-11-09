@@ -1,0 +1,21 @@
+{{define "page_title"}}{{call .T "participants"}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<p><a href="/studies/{{$s.Slug}}/edit">← {{$s.Title}}</a></p>
+<h1>{{call .T "participants"}}</h1>
+<p><a class="button" href="/studies/{{$s.Slug}}/dashboard">{{call .T "study_dashboard"}}</a>
+  {{if $s.IssuerID}}<a class="button" href="/studies/{{$s.Slug}}/export.csv" data-export="csv">{{call .T "export_csv"}}</a>
+  <a class="button" href="/studies/{{$s.Slug}}/export.json" data-export="json">{{call .T "export_json"}}</a>{{end}}</p>
+{{with $d.Enrolment}}<p data-enrolment>{{call $.T "enrolment"}}: {{call $.T "state_active"}} <strong data-count="active">{{index . "state_active"}}</strong>{{if index . "state_suspended"}} · {{call $.T "state_suspended"}} <strong data-count="suspended">{{index . "state_suspended"}}</strong>{{end}}{{if index . "state_withdrawn"}} · {{call $.T "state_withdrawn"}} <strong data-count="withdrawn">{{index . "state_withdrawn"}}</strong>{{end}}{{if index . "state_gone"}} · {{call $.T "state_gone"}} <strong data-count="gone">{{index . "state_gone"}}</strong>{{end}}</p>{{end}}
+<div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "participants"}}">
+<table class="data participants">
+  <thead><tr><th scope="col">{{call .T "pseudonym_col"}}</th><th scope="col">{{call .T "consent_version_col"}}</th><th scope="col">{{call .T "joined_col"}}</th><th scope="col">{{call .T "state_col"}}</th>{{range $d.Tracks}}<th scope="col" class="num">{{localizeName .Name $.T}}</th>{{end}}<th scope="col">{{call .T "last_recorded"}}</th><th scope="col">{{call .T "actions"}}</th></tr></thead>
+  <tbody>{{range $d.Consents}}<tr><td data-account>{{.Account}}</td><td class="num">{{.Version}}</td><td>{{.At.Format "2006-01-02 15:04 MST"}}</td>{{with index $d.States .Account}}<td data-state="{{.Key}}">{{call $.T .Key}}{{if not .At.IsZero}} {{.At.Format "2006-01-02"}}{{end}}</td>{{else}}<td></td>{{end}}{{$acct := .Account}}{{$counts := index $d.Complete.Counts .Account}}{{$key := (index $d.States .Account).Key}}{{$reading := or (eq $key "state_active") (eq $key "state_suspended")}}{{range $d.Tracks}}<td class="num" data-records="{{.ID}}">{{if $counts}}{{index $counts .ID}}{{else if $reading}}<span class="muted" title="{{call $.T "not_read"}}">…</span>{{end}}</td>{{end}}<td data-last>{{index $d.Complete.Last .Account}}</td><td>{{$st := index $d.States .Account}}{{if eq $st.Key "state_active"}}<form method="post" action="/studies/{{$s.Slug}}/participants/{{.Account}}/suspend"><input type="hidden" name="csrf" value="{{$.CSRF}}"><button class="button" data-suspend="{{.Account}}">{{call $.T "suspend"}}</button></form>{{else if eq $st.Key "state_suspended"}}<form method="post" action="/studies/{{$s.Slug}}/participants/{{.Account}}/reinstate"><input type="hidden" name="csrf" value="{{$.CSRF}}"><button class="button" data-reinstate="{{.Account}}">{{call $.T "reinstate"}}</button></form>{{end}}</td></tr>{{else}}<tr><td class="muted" colspan="9">{{call .T "no_participants"}}</td></tr>{{end}}</tbody>
+</table>
+</div>
+{{if ne $s.JoinMode "open"}}
+  <form method="post" action="/studies/{{$s.Slug}}/codes"><input type="hidden" name="csrf" value="{{.CSRF}}"><button class="button">{{call .T "create_join_link"}}</button></form>
+  {{if $d.Link}}<p>{{call .T "join_link"}}</p><p><code class="link" data-join-link>{{$d.Link}}</code></p>
+  {{if $d.AppLink}}<p>{{call .T "join_app_link"}}</p><p><code class="link" data-join-app-link>{{$d.AppLink}}</code></p>{{end}}{{end}}
+{{end}}
+{{end}}

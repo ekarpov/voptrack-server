@@ -1,0 +1,19 @@
+{{define "page_title"}}{{.Data.Study.Title}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}{{$s := $d.Study}}
+<article class="study-page">
+<h1>{{$s.Title}}</h1>
+{{if ne $s.Status "draft"}}<p><a href="/study/{{$s.Slug}}/consent">{{call .T "participant_status"}}</a></p>{{end}}
+{{if eq $s.Status "draft"}}<p class="notice">{{call .T "study_is_draft"}}</p>{{end}}
+{{if eq $s.Status "closed"}}<p class="notice">{{call .T "study_is_closed"}}</p>{{end}}
+<p class="lead" data-section="summary">{{$s.Summary}}</p>
+<h2>{{call .T "study_collected"}}</h2><p data-section="collected">{{$s.Collected}}</p>
+{{if $s.RunBy}}<h2>{{call .T "study_run_by"}}</h2><p data-section="run_by">{{$s.RunBy}}</p>{{end}}
+<h2>{{call .T "study_who_sees"}}</h2><p data-section="who_sees">{{$s.WhoSees}}</p>
+<h2>{{call .T "study_how_to_leave"}}</h2><p data-section="how_to_leave">{{$s.HowToLeave}}</p>
+{{if $s.Consent}}<h2>{{call .T "study_consent"}} <span class="muted">({{call .T "study_consent_version"}} <span data-consent-version>{{$d.Current.Version}}</span>)</span></h2><p class="consent" data-section="consent">{{$d.Current.Text}}</p>{{end}}
+{{if and (eq $s.Status "open") (eq $s.JoinMode "open")}}<p><a class="button" href="/study/{{$s.Slug}}/join">{{call .T "join_button"}}</a>
+  {{if $d.AppLink}}<a class="button" href="{{$d.AppLink}}" data-app-link>{{call .T "join_with_app"}}</a>{{end}}</p>{{end}}
+{{if and (eq $s.Status "open") (ne $s.JoinMode "open")}}<p class="muted">{{call .T "join_invite_only"}}</p>{{end}}
+</article>
+{{end}}

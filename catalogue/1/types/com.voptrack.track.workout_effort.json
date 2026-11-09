@@ -1,0 +1,508 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.track.running",
+      "com.voptrack.track.walking",
+      "com.voptrack.track.cycling",
+      "com.voptrack.track.workout_session",
+      "com.voptrack.track.swimming",
+      "com.voptrack.track.hiking",
+      "com.voptrack.track.rowing",
+      "com.voptrack.track.mobility_session",
+      "com.voptrack.track.mind_body_session",
+      "com.voptrack.track.sport_session"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.workoutEffort.field.session"
+        }
+      },
+      "id" : "session",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.workout_effort",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.track.running",
+        "com.voptrack.track.walking",
+        "com.voptrack.track.cycling",
+        "com.voptrack.track.workout_session",
+        "com.voptrack.track.swimming",
+        "com.voptrack.track.hiking",
+        "com.voptrack.track.rowing",
+        "com.voptrack.track.mobility_session",
+        "com.voptrack.track.mind_body_session",
+        "com.voptrack.track.sport_session"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.track.running",
+            "com.voptrack.track.walking",
+            "com.voptrack.track.cycling",
+            "com.voptrack.track.workout_session",
+            "com.voptrack.track.swimming",
+            "com.voptrack.track.hiking",
+            "com.voptrack.track.rowing",
+            "com.voptrack.track.mobility_session",
+            "com.voptrack.track.mind_body_session",
+            "com.voptrack.track.sport_session"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.workoutEffort.field.scaleID"
+        }
+      },
+      "id" : "scaleID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.workout_effort",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete",
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "perceivedEffort0To10"
+              }
+            }
+          }
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "perceivedEffort0To10"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "perceivedEffort0To10" : {
+              "bundled" : {
+                "key" : "model.activity.option.perceivedEffort0To10"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.workoutEffort.field.value"
+        }
+      },
+      "id" : "value",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.workout_effort",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "scaleID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "0"
+            },
+            {
+              "type" : "text",
+              "value" : "1"
+            },
+            {
+              "type" : "text",
+              "value" : "2"
+            },
+            {
+              "type" : "text",
+              "value" : "3"
+            },
+            {
+              "type" : "text",
+              "value" : "4"
+            },
+            {
+              "type" : "text",
+              "value" : "5"
+            },
+            {
+              "type" : "text",
+              "value" : "6"
+            },
+            {
+              "type" : "text",
+              "value" : "7"
+            },
+            {
+              "type" : "text",
+              "value" : "8"
+            },
+            {
+              "type" : "text",
+              "value" : "9"
+            },
+            {
+              "type" : "text",
+              "value" : "10"
+            }
+          ],
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : true
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.workout_effort",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"session\",\"meta_id\":\"com.voptrack.track.workout_effort\",\"name\":\"model.activity.workoutEffort.field.session\",\"type\":\"reference\"},{\"id\":\"scaleID\",\"meta_id\":\"com.voptrack.track.workout_effort\",\"name\":\"model.activity.workoutEffort.field.scaleID\",\"type\":\"text\"},{\"id\":\"value\",\"meta_id\":\"com.voptrack.track.workout_effort\",\"name\":\"model.activity.workoutEffort.field.value\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.workout_effort\",\"name\":\"model.activity.workoutEffort\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "session",
+          "meta_id" : "com.voptrack.track.workout_effort",
+          "name" : "model.activity.workoutEffort.field.session",
+          "type" : "reference"
+        },
+        {
+          "id" : "scaleID",
+          "meta_id" : "com.voptrack.track.workout_effort",
+          "name" : "model.activity.workoutEffort.field.scaleID",
+          "type" : "text"
+        },
+        {
+          "id" : "value",
+          "meta_id" : "com.voptrack.track.workout_effort",
+          "name" : "model.activity.workoutEffort.field.value",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.workout_effort",
+      "name" : "model.activity.workoutEffort",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.workoutEffort"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R4"
+      ],
+      "appearance" : {
+        "color" : "activity.effort",
+        "symbol" : "gauge.with.dots.needle.50percent"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "activity.walking",
+          "symbol" : "figure.walk"
+        },
+        "id" : "com.voptrack.category.activity",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.activity"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "session",
+      "scaleID",
+      "value"
+    ]
+  }
+}

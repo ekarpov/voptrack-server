@@ -1,0 +1,13 @@
+{
+  "name": "Voptrack Study Demo",
+  "light": {
+    "accent": "#0C6A61",
+    "surface": "#F2F2F7",
+    "text": "#111418"
+  },
+  "dark": {
+    "accent": "#0C6A61",
+    "surface": "#F2F2F7",
+    "text": "#111418"
+  }
+}

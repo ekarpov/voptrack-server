@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "fields": [
+      {
+        "id": "contract_version",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.contractVersion",
+        "type": "integer"
+      },
+      {
+        "id": "subject_id",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.subjectID",
+        "type": "text"
+      },
+      {
+        "id": "name",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.name",
+        "type": "text"
+      },
+      {
+        "id": "kind_text",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.kindText",
+        "type": "text"
+      },
+      {
+        "id": "category",
+        "meta_id": "com.voptrack.shared_subject",
+        "name": "model.sharedSubject.field.category",
+        "type": "text"
+      }
+    ],
+    "id": "com.voptrack.shared_subject",
+    "name": "model.sharedSubject",
+    "parent_id": null
+  },
+  "records": [
+    {
+      "id": {
+        "dataset_id": "member-store-a",
+        "id": "obj-0001"
+      },
+      "meta_id": "com.voptrack.shared_subject",
+      "values": [
+        {
+          "type": "integer",
+          "value": 1
+        },
+        {
+          "type": "text",
+          "value": "5c1e0b7d2a9f4e3b8d6c1a0f9e8d7c6b"
+        },
+        {
+          "type": "text",
+          "value": "Rex"
+        },
+        {
+          "type": "text",
+          "value": "Dog"
+        },
+        {
+          "type": "text",
+          "value": "pet"
+        }
+      ]
+    },
+    {
+      "id": {
+        "dataset_id": "member-store-a",
+        "id": "obj-0002"
+      },
+      "meta_id": "com.voptrack.shared_subject",
+      "values": [
+        {
+          "type": "integer",
+          "value": 1
+        },
+        {
+          "type": "text",
+          "value": "a07f3c9e5b1d48e2906c4f8a1b3d5e7f"
+        },
+        {
+          "type": "text",
+          "value": "Rex"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "text",
+          "value": "thing"
+        }
+      ]
+    }
+  ],
+  "watermark": "w:example"
+}

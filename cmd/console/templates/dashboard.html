@@ -1,0 +1,33 @@
+{{define "page_title"}}{{.Data.Board.Name}} · Voptrack{{end}}
+{{define "content"}}
+{{$d := .Data}}
+<p><a href="{{$d.Back}}">← {{call .T "back"}}</a></p>
+<h1>{{$d.Board.Name}}</h1>
+{{if $d.StudyTitle}}<p>{{call .T "study_dashboard"}}: {{$d.StudyTitle}}</p><p><a href="/studies/{{slice $d.Scope 6}}/policy">{{call .T "policy_title"}}</a></p><p class="muted">{{call .T "policy_limits"}}</p>{{end}}
+{{if and $d.StudyTitle (not $d.Panels)}}<p class="muted">{{call .T "study_dashboards_empty"}}</p>{{end}}
+<div class="cards">
+{{range $i, $p := $d.Panels}}
+  <article class="card">
+    {{if $p.Gone}}
+      <p class="muted">{{call $.T "panel_gone"}}</p>
+    {{else}}
+      {{if $p.Title}}<h2>{{if $p.Link}}<a href="{{$p.Link}}">{{localizePanelTitle $p $.T}}</a>{{else}}{{localizePanelTitle $p $.T}}{{end}}</h2>{{end}}
+      {{if $p.Result.Skipped}}<p class="notice">{{call $.T "skipped"}} {{range $p.Result.Skipped}}<span class="chip">{{.}}</span>{{end}}</p>{{end}}
+      {{if $p.Result.Truncated}}<p class="notice">{{call $.T "truncated"}}</p>{{end}}
+      {{if and $p.Result.Research (ne $p.Result.Status "released")}}<p class="notice" data-release="{{$p.Result.Status}}">{{call $.T (printf "policy_result_%s" $p.Result.Status)}} {{if $p.Result.K}}(K = {{$p.Result.K}}){{end}}</p>{{end}}
+      {{if $p.Result.Unsupported}}<p class="notice">These values need to be viewed in their currency or unit. Open Track history to see them.</p><a href="/tracks?scope={{$d.Scope}}&amp;type={{$p.Result.Spec.Type}}&amp;period=month">Open Track history →</a>{{end}}
+      {{if $p.Rows}}
+        {{if $p.Chart.TooMany}}<p class="muted" data-too-many>{{call $.T "chart_too_many"}}</p>{{else}}<p class="chart-hint muted">{{call $.T "chart_scroll"}}</p>{{if $.Research}}{{template "chart" $p.Chart}}{{else}}<div class="panel-visualization"><div class="home-chart-wide">{{template "chart" $p.Chart}}</div><div class="home-chart-small">{{template "chart" $p.CompactChart}}</div></div>{{end}}{{end}}
+        <div class="table-scroll" role="region" tabindex="0" aria-label="{{call $.T "records"}}">
+<table class="data"><thead><tr><th scope="col">{{call $.T "group"}}</th><th scope="col">{{call $.T (printf "m_%s" $p.Result.Spec.Measure)}}</th></tr></thead><tbody>{{range $p.Rows}}<tr><th scope="row">{{if .Label}}{{.Label}}{{else if and .Status (ne .Status "released")}}—{{else}}{{call $.T "total"}}{{end}}</th>{{if and .Status (ne .Status "released")}}<td class="num">{{call $.T (printf "policy_cell_%s" .Status)}}</td>{{else}}<td class="num" data-value>{{.Value}}</td>{{end}}</tr>{{end}}</tbody></table>
+</div>
+      {{else if and (not $p.Result.Research) (not $p.Result.Unsupported)}}<p class="muted">{{call $.T "no_data"}}</p>{{end}}
+    {{end}}
+    {{if $d.CanEdit}}
+    {{if and $d.StudyTitle (eq (len $d.Panels) 1)}}<p class="notice">{{call $.T "dashboard_remove_final"}}</p>{{end}}
+    <form method="post" action="/dashboards/{{$d.Scope}}/{{$d.Board.ID}}/remove"><input type="hidden" name="csrf" value="{{$.CSRF}}"><input type="hidden" name="index" value="{{$i}}">{{if $d.StudyTitle}}<input type="hidden" name="version" value="{{$d.Token}}">{{end}}<button class="link">{{call $.T "remove"}}</button></form>
+    {{end}}
+  </article>
+{{end}}
+</div>
+{{end}}

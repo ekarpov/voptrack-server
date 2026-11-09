@@ -1,0 +1,3 @@
+{{define "page_title"}}{{call .T "participant_studies"}} · Voptrack{{end}}
+{{define "content"}}<h1>{{call .T "participant_studies"}}</h1>
+{{range .Data}}<article class="card"><h2><a href="/study/{{.Slug}}/consent">{{.Title}}</a></h2><p>{{.RunBy}}</p></article>{{else}}<p>{{call .T "participant_none"}}</p>{{end}}{{end}}

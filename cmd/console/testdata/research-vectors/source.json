@@ -1,0 +1,12 @@
+{
+  "fields" : [
+    {
+      "id" : "name",
+      "meta_id" : "com.voptrack.source",
+      "name" : "model.source.field.name",
+      "type" : "blob"
+    }
+  ],
+  "id" : "com.voptrack.source",
+  "name" : "model.source"
+}

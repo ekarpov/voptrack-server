@@ -1,0 +1,177 @@
+{
+  "catalogueVersion" : 2,
+  "dependencies" : {
+    "parents" : [
+
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "date_time"
+    },
+    {
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "date_time"
+    },
+    {
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : null,
+      "type" : "reference"
+    },
+    {
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "text"
+    },
+    {
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "date_time"
+    },
+    {
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "date_time"
+    },
+    {
+      "id" : "writeToken",
+      "internal" : true,
+      "meta_id" : "com.voptrack.track",
+      "referenceTargets" : null,
+      "required" : null,
+      "type" : "text"
+    }
+  ],
+  "id" : "com.voptrack.track",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"subject\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.subject\",\"roles\":[\"subject\"],\"type\":\"reference\"},{\"id\":\"source\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.source\",\"roles\":[\"source\"],\"type\":\"reference\"},{\"id\":\"timestamp\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.timestamp\",\"roles\":[\"timestamp\"],\"type\":\"date_time\"},{\"id\":\"endTimestamp\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.endTimestamp\",\"roles\":[\"end_timestamp\"],\"type\":\"date_time\"},{\"id\":\"plan\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.plan\",\"type\":\"reference\"},{\"id\":\"planPeriod\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.planPeriod\",\"type\":\"text\"},{\"id\":\"planOccurrence\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.planOccurrence\",\"type\":\"date_time\"},{\"id\":\"addedAt\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.addedAt\",\"type\":\"date_time\"},{\"id\":\"writeToken\",\"meta_id\":\"com.voptrack.track\",\"name\":\"model.track.field.writeToken\",\"type\":\"text\"}],\"id\":\"com.voptrack.track\",\"name\":\"model.track\",\"roles\":[\"track\"]}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "subject",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.subject",
+          "roles" : [
+            "subject"
+          ],
+          "type" : "reference"
+        },
+        {
+          "id" : "source",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.source",
+          "roles" : [
+            "source"
+          ],
+          "type" : "reference"
+        },
+        {
+          "id" : "timestamp",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.timestamp",
+          "roles" : [
+            "timestamp"
+          ],
+          "type" : "date_time"
+        },
+        {
+          "id" : "endTimestamp",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.endTimestamp",
+          "roles" : [
+            "end_timestamp"
+          ],
+          "type" : "date_time"
+        },
+        {
+          "id" : "plan",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.plan",
+          "type" : "reference"
+        },
+        {
+          "id" : "planPeriod",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.planPeriod",
+          "type" : "text"
+        },
+        {
+          "id" : "planOccurrence",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.planOccurrence",
+          "type" : "date_time"
+        },
+        {
+          "id" : "addedAt",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.addedAt",
+          "type" : "date_time"
+        },
+        {
+          "id" : "writeToken",
+          "meta_id" : "com.voptrack.track",
+          "name" : "model.track.field.writeToken",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track",
+      "name" : "model.track",
+      "roles" : [
+        "track"
+      ]
+    }
+  },
+  "kind" : "trackRoot"
+}

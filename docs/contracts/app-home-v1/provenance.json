@@ -1,0 +1,18 @@
+{
+  "source": "app dev",
+  "sourceRevision": "dd0fd9a0d3b6ed93fd9eb4f7830a5586affed65a",
+  "releaseStatus": "source inspected; app release not qualified",
+  "files": {
+    "examples/home-copy-label-v1.expense-insert.json": "7e609dd76dcd7c5f4aa5a12c321c041da01f114100a177a379d037ad8ad768cd",
+    "examples/home-copy-label-v1.insert.json": "8128405d3fa386cac84713712e3f37f8966f44986da0fed411d3ad4662969560",
+    "examples/shared-subject-v1.copied-record.json": "39a7f49ba61cf2dfdd13d78f6c994600b047016c6e8d35134382f20e91a51755",
+    "examples/shared-subject-v1.grant.json": "41e0de84a53c16e632e724435191e4c4112057014672148b8e7ecba66b04a530",
+    "examples/shared-subject-v1.insert.json": "ce7992794c227f6eead8cbac437a35532dd49905fb3da2f4ecad7ea5d631ff49",
+    "examples/shared-subject-v1.meta.json": "a430c9086bdedfdfdb54fcb40bd28192df6f98d3604a5e0fc4c958e06e2b0676",
+    "examples/shared-subject-v1.read.json": "5b235e4737b4bebd31dd820c6e9f7d24a09d6fba929e3359839e75156ffd7fbf",
+    "examples/shared-subject-v1.update.json": "5d1136611f94920ed105169fabaab086ef85dc7c60e20a0179b8d4ea52bdcac9",
+    "home-copy-label-v1.md": "4e773b837c5377a2cc8af4f3e8609c0bba4c6b7350a8965a3666b4090bc3ca8e",
+    "shared-subject-v1.md": "8a4e4cc913aef42b74a6136aa5156f7c2b7b72851e95e78cbbd64b4062684644"
+  },
+  "publicationNote": "The shared subject document uses a public Tessera link. Its contract and synthetic examples retain their semantics."
+}

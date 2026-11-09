@@ -1,0 +1,540 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan",
+      "com.voptrack.track.symptom_episode"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.bowelObservation.field.scaleID"
+        }
+      },
+      "id" : "scaleID",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bowel_observation",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete",
+          "suppliedValue" : {
+            "constant" : {
+              "_0" : {
+                "type" : "text",
+                "value" : "reportedForm4"
+              }
+            }
+          }
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "reportedForm4"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "reportedForm4" : {
+              "bundled" : {
+                "key" : "model.health.option.reportedForm4"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.bowelObservation.field.form"
+        }
+      },
+      "id" : "form",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bowel_observation",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "scaleID",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "hard"
+            },
+            {
+              "type" : "text",
+              "value" : "formed"
+            },
+            {
+              "type" : "text",
+              "value" : "loose"
+            },
+            {
+              "type" : "text",
+              "value" : "watery"
+            }
+          ],
+          "isRequired" : false,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "formed" : {
+              "bundled" : {
+                "key" : "model.health.option.formed"
+              }
+            },
+            "hard" : {
+              "bundled" : {
+                "key" : "model.health.option.hard"
+              }
+            },
+            "loose" : {
+              "bundled" : {
+                "key" : "model.health.option.loose"
+              }
+            },
+            "watery" : {
+              "bundled" : {
+                "key" : "model.health.option.watery"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.bowelObservation.field.color"
+        }
+      },
+      "id" : "color",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bowel_observation",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.bowelObservation.field.symptom"
+        }
+      },
+      "id" : "symptom",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bowel_observation",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.track.symptom_episode"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false,
+          "referenceTargetTypeIDs" : [
+            "com.voptrack.track.symptom_episode"
+          ]
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.health.bowelObservation.field.amount"
+        }
+      },
+      "id" : "amount",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.bowel_observation",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.bowel_observation",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"scaleID\",\"meta_id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation.field.scaleID\",\"type\":\"text\"},{\"id\":\"form\",\"meta_id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation.field.form\",\"type\":\"text\"},{\"id\":\"color\",\"meta_id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation.field.color\",\"type\":\"text\"},{\"id\":\"symptom\",\"meta_id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation.field.symptom\",\"type\":\"reference\"},{\"id\":\"amount\",\"meta_id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation.field.amount\",\"type\":\"text\"}],\"id\":\"com.voptrack.track.bowel_observation\",\"name\":\"model.health.bowelObservation\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "scaleID",
+          "meta_id" : "com.voptrack.track.bowel_observation",
+          "name" : "model.health.bowelObservation.field.scaleID",
+          "type" : "text"
+        },
+        {
+          "id" : "form",
+          "meta_id" : "com.voptrack.track.bowel_observation",
+          "name" : "model.health.bowelObservation.field.form",
+          "type" : "text"
+        },
+        {
+          "id" : "color",
+          "meta_id" : "com.voptrack.track.bowel_observation",
+          "name" : "model.health.bowelObservation.field.color",
+          "type" : "text"
+        },
+        {
+          "id" : "symptom",
+          "meta_id" : "com.voptrack.track.bowel_observation",
+          "name" : "model.health.bowelObservation.field.symptom",
+          "type" : "reference"
+        },
+        {
+          "id" : "amount",
+          "meta_id" : "com.voptrack.track.bowel_observation",
+          "name" : "model.health.bowelObservation.field.amount",
+          "type" : "text"
+        }
+      ],
+      "id" : "com.voptrack.track.bowel_observation",
+      "name" : "model.health.bowelObservation",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "track",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.health.bowelObservation"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+        "R4"
+      ],
+      "appearance" : {
+        "color" : "health.bowel",
+        "symbol" : "list.clipboard.fill"
+      },
+      "category" : {
+        "appearance" : {
+          "color" : "health.pulse",
+          "symbol" : "heart.fill"
+        },
+        "id" : "com.voptrack.category.health",
+        "name" : {
+          "bundled" : {
+            "key" : "model.category.suggestion.health"
+          }
+        }
+      },
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "coherentLatest",
+      "planRecipeKeys" : [
+        "P3"
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "scaleID",
+      "form",
+      "color",
+      "symptom",
+      "amount"
+    ]
+  }
+}

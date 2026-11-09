@@ -1,0 +1,19 @@
+{{define "chart"}}
+{{if .Empty}}<p class="muted">—</p>{{else}}
+<div class="chart-scroll" tabindex="0" role="region" aria-label="{{if .Line}}{{range .Dots}}{{.Label}}: {{.Value}}; {{end}}{{else}}{{range .Bars}}{{.Label}}: {{.Value}}; {{end}}{{end}}">
+<svg class="chart" viewBox="0 0 {{.Width}} {{.Height}}" role="{{if .Interactive}}group{{else}}img{{end}}" {{if .Interactive}}aria-label="Chart periods. Select a point to filter records."{{end}}>
+  <title>{{if .Line}}{{range .Dots}}{{.Label}}: {{.Value}}; {{end}}{{else}}{{range .Bars}}{{.Label}}: {{.Value}}; {{end}}{{end}}</title>
+  {{range .Ticks}}<line class="grid" x1="{{$.AxisY}}" x2="{{$.AxisRight}}" y1="{{.Y}}" y2="{{.Y}}"/><text class="tick" x="{{$.TickX}}" y="{{.Y}}" text-anchor="end" dy="4">{{.Label}}</text>{{end}}
+  {{if .Line}}
+    <path class="line" d="{{.Path}}"/>
+    {{range .Dots}}{{if .URL}}<a href="{{.URL}}" aria-label="Show records for {{.Label}} · {{.Value}}" {{if .Selected}}aria-current="true"{{end}}><circle class="chart-target" cx="{{.X}}" cy="{{.Y}}" r="16"/>{{end}}<circle class="dot{{if .Selected}} selected{{end}}" cx="{{.X}}" cy="{{.Y}}" r="3.5"><title>{{.Label}}: {{.Value}}</title></circle>{{if .URL}}</a>{{end}}{{end}}
+    {{range $i, $bar := .Bars}}{{if or (and (not $.Compact) (chartLabelVisible $i (len $.Bars))) (and $.Compact (or (eq $i 0) (eq $bar.Label $.LastLabel)))}}<text class="axis" x="{{.LabelX}}" y="{{$.Height}}" dy="-28" text-anchor="middle"><title>{{.Label}}</title>{{if .AxisLabel}}{{.AxisLabel}}{{else}}{{chartLabelText .Label}}{{end}}</text>{{end}}{{end}}
+  {{else}}
+    {{range $i, $bar := .Bars}}{{if .URL}}<a href="{{.URL}}" aria-label="Show records for {{.Label}} · {{.Value}}">{{end}}<rect class="bar" x="{{.X}}" y="{{.Y}}" width="{{.W}}" height="{{.H}}"><title>{{.Label}}: {{.Value}}</title></rect>{{if .URL}}</a>{{end}}
+    {{if or (and (not $.Compact) (chartLabelVisible $i (len $.Bars))) (and $.Compact (or (eq $i 0) (eq $bar.Label $.LastLabel)))}}<text class="axis" x="{{.LabelX}}" y="{{$.Height}}" dy="-28" text-anchor="middle"><title>{{.Label}}</title>{{if .AxisLabel}}{{.AxisLabel}}{{else}}{{chartLabelText .Label}}{{end}}</text>
+    <text class="val" x="{{.LabelX}}" y="{{.Y}}" dy="-4" text-anchor="middle">{{.Value}}</text>{{end}}{{end}}
+  {{end}}
+</svg>
+</div>
+{{end}}
+{{end}}

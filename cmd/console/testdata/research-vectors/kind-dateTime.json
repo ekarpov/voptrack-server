@@ -1,0 +1,26 @@
+{
+  "described" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "kind" : "dateTime",
+        "name" : "Value"
+      }
+    ],
+    "name" : "dateTime",
+    "typeID" : "study.s2027_vectors.datetime"
+  },
+  "schema" : {
+    "fields" : [
+      {
+        "id" : "value",
+        "meta_id" : "study.s2027_vectors.datetime",
+        "name" : "Value",
+        "type" : "date_time"
+      }
+    ],
+    "id" : "study.s2027_vectors.datetime",
+    "name" : "dateTime",
+    "parent_id" : "com.voptrack.track"
+  }
+}

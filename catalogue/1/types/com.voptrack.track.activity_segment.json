@@ -1,0 +1,616 @@
+{
+  "catalogueVersion" : 1,
+  "dependencies" : {
+    "parents" : [
+      "com.voptrack.track"
+    ],
+    "parts" : [
+
+    ],
+    "references" : [
+      "com.voptrack.subject",
+      "com.voptrack.source",
+      "com.voptrack.subject_plan"
+    ]
+  },
+  "fields" : [
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.subject"
+        }
+      },
+      "id" : "subject",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.subject"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "subject"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.source"
+        }
+      },
+      "id" : "source",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : [
+        "com.voptrack.source"
+      ],
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "source"
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.timestamp"
+        }
+      },
+      "id" : "timestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "endFieldID" : "endTimestamp"
+        },
+        "collectionMeaning" : "interval",
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "timestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.endTimestamp"
+        }
+      },
+      "id" : "endTimestamp",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        },
+        "role" : "endTimestamp"
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.plan"
+        }
+      },
+      "id" : "plan",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : [
+        "com.voptrack.subject_plan"
+      ],
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "reference",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "reference",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planPeriod"
+        }
+      },
+      "id" : "planPeriod",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "text",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.planOccurrence"
+        }
+      },
+      "id" : "planOccurrence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : true,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.track.field.addedAt"
+        }
+      },
+      "id" : "addedAt",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : false
+        },
+        "presentation" : {
+          "inputHint" : "dateTime",
+          "isLabel" : false,
+          "isPrimary" : false
+        }
+      },
+      "type" : "date_time",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activitySegment.field.sequence"
+        }
+      },
+      "id" : "sequence",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.activity_segment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "constraints" : {
+          "isRequired" : true,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 1,
+            "upperBound" : 200
+          }
+        },
+        "presentation" : {
+          "inputHint" : "automatic",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activitySegment.field.segmentKind"
+        }
+      },
+      "id" : "segmentKind",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.activity_segment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "work"
+            },
+            {
+              "type" : "text",
+              "value" : "rest"
+            },
+            {
+              "type" : "text",
+              "value" : "lap"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "lap" : {
+              "bundled" : {
+                "key" : "model.activity.option.lap"
+              }
+            },
+            "rest" : {
+              "bundled" : {
+                "key" : "model.activity.option.rest"
+              }
+            },
+            "work" : {
+              "bundled" : {
+                "key" : "model.activity.option.work"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activitySegment.field.captureKind"
+        }
+      },
+      "id" : "captureKind",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.activity_segment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : true,
+      "shows" : {
+        "analytics" : {
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "categorical",
+        "constraints" : {
+          "allowedValues" : [
+            {
+              "type" : "text",
+              "value" : "manualLap"
+            },
+            {
+              "type" : "text",
+              "value" : "automaticSplit"
+            },
+            {
+              "type" : "text",
+              "value" : "manualSegment"
+            }
+          ],
+          "isRequired" : true,
+          "maximumTextUTF8Bytes" : 1023
+        },
+        "presentation" : {
+          "inputHint" : "selection",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "valueLabels" : {
+            "automaticSplit" : {
+              "bundled" : {
+                "key" : "model.activity.option.automaticSplit"
+              }
+            },
+            "manualLap" : {
+              "bundled" : {
+                "key" : "model.activity.option.manualLap"
+              }
+            },
+            "manualSegment" : {
+              "bundled" : {
+                "key" : "model.activity.option.manualSegment"
+              }
+            }
+          }
+        }
+      },
+      "type" : "text",
+      "units" : null
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activitySegment.field.distance"
+        }
+      },
+      "id" : "distanceMetres",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.activity_segment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "segmentKind"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "measurement" : {
+          "dimensionID" : "length",
+          "unitSource" : {
+            "inherited" : {
+              "_0" : {
+                "encodingVersion" : "1",
+                "referenceSystemID" : "activity.segment.distance",
+                "unitID" : "m"
+              }
+            }
+          },
+          "usesRegionalDefault" : false,
+          "vocabulary" : {
+            "closed" : {
+              "_0" : [
+                "m"
+              ]
+            }
+          }
+        },
+        "presentation" : {
+          "inputHint" : "numeric",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0,
+            "minimumFractionDigits" : 0
+          },
+          "unitDisplay" : {
+            "original" : {
+
+            }
+          }
+        },
+        "role" : "value"
+      },
+      "type" : "float",
+      "units" : {
+        "allowedUnits" : [
+          {
+            "conversion" : {
+              "offset" : 0,
+              "scale" : 1
+            },
+            "id" : "m"
+          }
+        ],
+        "canonicalUnit" : "m",
+        "defaultUnit" : null,
+        "dimension" : "length",
+        "unitField" : null,
+        "usesRegionalDefault" : false,
+        "vocabulary" : {
+          "closed" : {
+            "_0" : [
+              "m"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "displayName" : {
+        "bundled" : {
+          "key" : "model.activity.activitySegment.field.repetitions"
+        }
+      },
+      "id" : "repetitions",
+      "internal" : false,
+      "meta_id" : "com.voptrack.track.activity_segment",
+      "planLink" : false,
+      "referenceTargets" : null,
+      "required" : false,
+      "shows" : {
+        "analytics" : {
+          "discriminatorFieldID" : "segmentKind",
+          "observationContinuity" : "discrete"
+        },
+        "collectionMeaning" : "additive",
+        "constraints" : {
+          "isRequired" : false,
+          "numericRange" : {
+            "includesLowerBound" : true,
+            "includesUpperBound" : true,
+            "lowerBound" : 0
+          }
+        },
+        "presentation" : {
+          "inputHint" : "automatic",
+          "isLabel" : false,
+          "isPrimary" : false,
+          "number" : {
+            "maximumFractionDigits" : 0
+          }
+        }
+      },
+      "type" : "integer",
+      "units" : null
+    }
+  ],
+  "id" : "com.voptrack.track.activity_segment",
+  "installation" : {
+    "body" : "{\"type\":{\"fields\":[{\"id\":\"sequence\",\"meta_id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment.field.sequence\",\"type\":\"integer\"},{\"id\":\"segmentKind\",\"meta_id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment.field.segmentKind\",\"type\":\"text\"},{\"id\":\"captureKind\",\"meta_id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment.field.captureKind\",\"type\":\"text\"},{\"id\":\"distanceMetres\",\"meta_id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment.field.distance\",\"type\":\"float\"},{\"id\":\"repetitions\",\"meta_id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment.field.repetitions\",\"type\":\"integer\"}],\"id\":\"com.voptrack.track.activity_segment\",\"name\":\"model.activity.activitySegment\",\"parent_id\":\"com.voptrack.track\"}}",
+    "request" : "POST datasets/{dataset}/meta",
+    "type" : {
+      "fields" : [
+        {
+          "id" : "sequence",
+          "meta_id" : "com.voptrack.track.activity_segment",
+          "name" : "model.activity.activitySegment.field.sequence",
+          "type" : "integer"
+        },
+        {
+          "id" : "segmentKind",
+          "meta_id" : "com.voptrack.track.activity_segment",
+          "name" : "model.activity.activitySegment.field.segmentKind",
+          "type" : "text"
+        },
+        {
+          "id" : "captureKind",
+          "meta_id" : "com.voptrack.track.activity_segment",
+          "name" : "model.activity.activitySegment.field.captureKind",
+          "type" : "text"
+        },
+        {
+          "id" : "distanceMetres",
+          "meta_id" : "com.voptrack.track.activity_segment",
+          "name" : "model.activity.activitySegment.field.distance",
+          "type" : "float"
+        },
+        {
+          "id" : "repetitions",
+          "meta_id" : "com.voptrack.track.activity_segment",
+          "name" : "model.activity.activitySegment.field.repetitions",
+          "type" : "integer"
+        }
+      ],
+      "id" : "com.voptrack.track.activity_segment",
+      "name" : "model.activity.activitySegment",
+      "parent_id" : "com.voptrack.track"
+    }
+  },
+  "kind" : "part",
+  "presentation" : {
+    "displayName" : {
+      "bundled" : {
+        "key" : "model.activity.activitySegment"
+      }
+    },
+    "headline" : {
+      "homeCardSum" : null,
+      "metric" : null
+    },
+    "libraryDeclaration" : {
+      "analysisRecipeKeys" : [
+
+      ],
+      "defaultCollectionMetrics" : [
+
+      ],
+      "overview" : "standard",
+      "planRecipeKeys" : [
+
+      ],
+      "recordCategorySuggestions" : [
+
+      ],
+      "recordConstraints" : [
+
+      ],
+      "specialization" : {
+        "runSplit" : {
+          "_0" : {
+            "alsoParentTypeIDs" : [
+
+            ],
+            "parentTypeID" : "com.voptrack.track.running",
+            "sequenceFieldID" : "sequence"
+          }
+        }
+      },
+      "supportsExpenseAllocation" : false
+    },
+    "periodRule" : {
+      "bucketsOnEndDay" : null,
+      "historyPeriods" : null,
+      "kind" : "calendarSoFar"
+    },
+    "spending" : {
+      "isSpending" : false,
+      "spendingCapPlanKey" : null
+    },
+    "subjectSuggestions" : [
+
+    ],
+    "summaryDefinition" : null,
+    "valueFieldIDs" : [
+      "sequence",
+      "segmentKind",
+      "captureKind",
+      "distanceMetres",
+      "repetitions"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "sourceRepository": "https://github.com/ekarpov/voptrack-ios",
+  "copiedFromCommit": "f9e902a8983d6736f0573eed1e9044f08e9e4df8",
+  "currentCatalogueVersion": 2,
+  "versions": {
+    "1": {
+      "sourceRevision": "04a035cbf2067bb4a8960d6626e6439979a62d64",
+      "manifestSHA256": "f3422e6753ab0da2b0301454495717e04dc79012fc8ad25d36e48c2b78a19aac",
+      "documents": 80,
+      "vectors": 75
+    },
+    "2": {
+      "sourceRevision": "30440aea0bf5f0cc95f4110b437c9e8ca83009b6",
+      "manifestSHA256": "fff42e31ac1a258782e85f40475909cb5ad3276d64cc571ab0c84690b0a7ccbb",
+      "documents": 80,
+      "vectors": 75
+    }
+  }
+}
